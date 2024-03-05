@@ -1,2 +1,0 @@
-# Bankerise BackOffice PROXYM
- 
