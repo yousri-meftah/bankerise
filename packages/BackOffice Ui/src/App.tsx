@@ -1,7 +1,8 @@
+import Sidebar from "./Global/Sidebar";
 function App() {
   return (
     <>
-      <p className="bg-red-700">hello</p>
+    <Sidebar/>
     </>
   );
 }
