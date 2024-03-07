@@ -1,3 +1,15 @@
+import { MdOutlineDashboard } from "react-icons/md";
+import { LuFileStack } from "react-icons/lu";
+import { IoSettingsSharp } from "react-icons/io5";
+import { AiFillMessage } from "react-icons/ai";
+import { FaUsers } from "react-icons/fa";
+import { PiSuitcaseSimpleDuotone } from "react-icons/pi";
+import { MdOutlineCached } from "react-icons/md";
+import { TbSettingsSearch } from "react-icons/tb";
+import { AiOutlineAudit } from "react-icons/ai";
+import { SiGoogleforms } from "react-icons/si";
+import { BiSolidBookContent } from "react-icons/bi";
+import { FaProjectDiagram } from "react-icons/fa";
 export const Modules = [
     {name:"Dashboard",link:"/",icon:MdOutlineDashboard},
     {name:"Applications Management",link:"/",icon:LuFileStack},
@@ -12,3 +24,5 @@ export const Modules = [
     {name:"Content Management",link:"/",icon:BiSolidBookContent },
     {name:"BPMN Configuration",link:"/",icon:FaProjectDiagram },
 ]
+
+export const MainColor="#0d0f1d"

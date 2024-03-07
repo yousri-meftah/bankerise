@@ -1,8 +1,9 @@
-import Sidebar from "./Global/Sidebar";
+import Layout from "./Global/Layout.tsx";
+
 function App() {
   return (
     <>
-    <Sidebar/>
+    <Layout/>
     </>
   );
 }
