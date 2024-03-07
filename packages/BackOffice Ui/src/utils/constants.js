@@ -10,6 +10,7 @@ import { AiOutlineAudit } from "react-icons/ai";
 import { SiGoogleforms } from "react-icons/si";
 import { BiSolidBookContent } from "react-icons/bi";
 import { FaProjectDiagram } from "react-icons/fa";
+import {logo, logoxs} from '../../public/Images/index.js'
 export const Modules = [
     {name:"Dashboard",link:"/",icon:MdOutlineDashboard},
     {name:"Applications Management",link:"/",icon:LuFileStack},
@@ -26,3 +27,5 @@ export const Modules = [
 ]
 
 export const MainColor="#0d0f1d"
+
+export const Logos = {logo,logoxs}
