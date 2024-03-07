@@ -6,7 +6,7 @@ const Sidebarr = () => {
   
   return (
     <>
-      <div className='bg-gradient-to-b from-[#0d0f1d] to-[#1c2434] min-h-screen w-72 text-gray-100'>
+      <div className='bg-gradient-to-b from-[#0d0f1d] to-[#24303f] min-h-screen w-72 text-gray-100'>
 
         <div className='p-3 flex justify-end'>
           <HiMenuAlt3 size={36} className='cursor-pointer' />
