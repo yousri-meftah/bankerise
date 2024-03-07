@@ -5,7 +5,10 @@ import Index from './Index.tsx';
 const Layout = () => {
   return (
     <div className='flex'>
-      <Sidebar />
+      <div >
+        <Sidebar />
+      </div>
+      
       <Index/>
     </div>
 

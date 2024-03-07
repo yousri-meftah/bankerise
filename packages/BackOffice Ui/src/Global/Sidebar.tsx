@@ -7,7 +7,7 @@ const Sidebarr = () => {
 
   return (
     <>
-      <div className='bg-gradient-to-b from-[#0d0f1d] to-[#24303f] min-h-screen w-72 text-gray-100'>
+      <div className='bg-gradient-to-b from-[#0d0f1d] to-[#24303f] min-h-full w-72 text-gray-100'>
 
         <div className='p-3 h-[65px] flex justify-around'>
           <img src={Logos.logo} alt="Bankerise's Logo" className='hover:cursor-pointer'/>
