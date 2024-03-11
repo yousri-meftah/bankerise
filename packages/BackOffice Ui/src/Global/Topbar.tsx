@@ -9,7 +9,7 @@ function classNames(...classes) {
 }
 const Topbar = () => {
   return (
-    <Disclosure as="nav" className="bg-[#0d0f1d]">
+    <Disclosure as="nav" className="bg-[#0d0f1d] shadow-2xl">
       {({ open }) => (
         <>
           <div className=" max-w-screen px-2 sm:px-4 lg:px-8">

@@ -1,14 +1,13 @@
-
 import Sidebar from './Sidebar.tsx';
 import Index from './Index.tsx';
 const Layout = () => {
   return (
     <div className='flex'>
-      <div >
+      <div className='relative z-999'>
         <Sidebar />
       </div>
-      
-      <Index/>
+    
+      <Index />
     </div>
 
 
