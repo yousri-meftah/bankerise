@@ -10,7 +10,7 @@ import { AiOutlineAudit } from "react-icons/ai";
 import { SiGoogleforms } from "react-icons/si";
 import { BiSolidBookContent } from "react-icons/bi";
 import { FaProjectDiagram } from "react-icons/fa";
-import {logo, logoxs} from '../../public/Images/index.js'
+import {logo, logoxs} from '../../public/Images/index'
 export const Modules = [
     {name:"Dashboard",link:"/",icon:MdOutlineDashboard},
     {name:"Applications Management",link:"/applications-management",icon:LuFileStack},

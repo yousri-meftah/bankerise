@@ -1,4 +1,5 @@
-import { Button  } from "../../Components/Moving-border"
+import AppCard from "../../Components/AppCard"
+import { Button } from "../../Components/Moving-border"
 
 const ApplicationsManagement = () => {
   const tabs = [
@@ -7,8 +8,8 @@ const ApplicationsManagement = () => {
   ]
   return (
     <>
-   
-    <div className=" px-4 py-6 sm:px-6 lg:px-8">
+
+      <div className=" px-4 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="sm:hidden">
             <label htmlFor="tabs" className="sr-only">
@@ -47,13 +48,23 @@ const ApplicationsManagement = () => {
       <div className='flex justify-between items-center my-8 mx-16'>
         <span className='font-extrabold text-xl bg-gradient-to-r from-[#8e9eab] to-[#eef2f3] bg-clip-text text-transparent '>Applications Management</span>
         <Button
-        type="button"
-        className="rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:white/20"
-      >
-        Add an Application
-      </Button>
+          type="button"
+          className="rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:white/20"
+        >
+          Add an Application
+        </Button>
       </div>
-      </>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16">
+
+        <AppCard description="Bankerise's Official Studio" title="Bankerise Studio" />
+        <AppCard description="The centralized administrative dashboard for Bankerise, providing control over all Bankerise applications" title="BackOffice" />
+        <AppCard description="" title="CSA" />
+        <AppCard description="Gateway Management front/back" title="API-Gateway" />
+
+      </div>
+   
+    </>
   )
 }
 
