@@ -1,7 +1,14 @@
+import { useState, useTransition } from "react";
 import AppCard from "../../Components/AppCard"
 import { Button } from "../../Components/Moving-border"
-
+import { Applications } from "../../utils/constants"
 const ApplicationsManagement = () => {
+  const [tab, setTab] = useState("false");
+  
+
+  // const handleTabChange = (id) => {
+  //     setTab(id);
+  // };
   const tabs = [
     { name: 'Adminstration', href: '#', current: true },
     { name: 'Customer', href: '#', current: false },
@@ -55,15 +62,15 @@ const ApplicationsManagement = () => {
         </Button>
       </div>
 
+      {/* APPLICATIONS HERE */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16">
 
-        <AppCard description="Bankerise's Official Studio" title="Bankerise Studio" />
-        <AppCard description="The centralized administrative dashboard for Bankerise, providing control over all Bankerise applications" title="BackOffice" />
-        <AppCard description="" title="CSA" />
-        <AppCard description="Gateway Management front/back" title="API-Gateway" />
+        {Applications.map((app, index) => (
+          <AppCard key={index} title={app.title} description={app.description} />
+        ))}
 
       </div>
-   
+
     </>
   )
 }

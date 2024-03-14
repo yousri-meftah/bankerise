@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import Dashboard from "../Modules/Dashboard/Dashboard";
 import ApplicationsManagement from "../Modules/ApplicationsManagement/ApplicationsManagement";
 import ConfigurationManagement from "../Modules/ConfigurationManagement/ConfigurationManagement";
@@ -15,18 +15,20 @@ const Routers = () => {
   return (
 
     <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/applications-management" element={<ApplicationsManagement />} />
-      <Route path="/configuration-management" element={<ConfigurationManagement />} />
-      <Route path="/message-center" element={<MessageCenter />} />
-      <Route path="/users-management" element={<UsersManagement />} />
-      <Route path="/jobs-management" element={<JobsManagement />} />
-      <Route path="/cache-maintenance" element={<CacheMaintenance />} />
-      <Route path="/lookups-configuration" element={<LookupsConfiguration />} />
-      <Route path="/audit" element={<Audit />} />
-      <Route path="/forms-management" element={<FormsManagement />} />
-      <Route path="/content-management" element={<ContentManagement />} />
-      <Route path="/bpmn-configuration" element={<BPMNConfiguration />} />
+
+      <Route index path="dashboard" element={<Dashboard />} />
+      <Route path="applications-management" element={<ApplicationsManagement />} />
+      <Route path="configuration-management" element={<ConfigurationManagement />} />
+      <Route path="message-center" element={<MessageCenter />} />
+      <Route path="users-management" element={<UsersManagement />} />
+      <Route path="jobs-management" element={<JobsManagement />} />
+      <Route path="cache-maintenance" element={<CacheMaintenance />} />
+      <Route path="lookups-configuration" element={<LookupsConfiguration />} />
+      <Route path="audit" element={<Audit />} />
+      <Route path="forms-management" element={<FormsManagement />} />
+      <Route path="content-management" element={<ContentManagement />} />
+      <Route path="bpmn-configuration" element={<BPMNConfiguration />} />
+
     </Routes>
 
   )

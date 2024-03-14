@@ -11,7 +11,7 @@ const AppCard: React.FC<CardDataStatsProps> = ({
 }) => {
   
   return (
-    <div className="rounded-lg border border-stroke py-6 px-7 shadow-default border-[#363a4a] backdrop-filter backdrop-blur-sm bg-[#464a5c]/10 hover:cursor-pointer relative aspect-auto size-full ">
+    <div className="rounded-lg border border-stroke py-6 px-7 shadow-default border-[#363a4a] backdrop-filter backdrop-blur-sm bg-[#464a5c]/10 hover:cursor-pointer relative aspect-auto size-full hover:scale-105 duration-300">
       <EvervaultCard  />
       
       <div className="mt-4 flex items-end justify-between ">

@@ -1,5 +1,5 @@
 import Background from '../Components/Background'
-import Routes from '../Components/Routes'
+import PrivateRoutes from '../Components/PrivateRoutes'
 import Topbar from './Topbar'
 
 const Index = () => {
@@ -9,7 +9,7 @@ const Index = () => {
       <div className='relative isolate'>
 
         {/* MODULES ROUTES */}
-        <Routes />
+        <PrivateRoutes />
 
         {/* BACKGROUND FOR ALL MODULES */}
         <Background />

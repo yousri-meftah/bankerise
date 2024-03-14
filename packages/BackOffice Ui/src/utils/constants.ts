@@ -12,20 +12,39 @@ import { BiSolidBookContent } from "react-icons/bi";
 import { FaProjectDiagram } from "react-icons/fa";
 import {logo, logoxs} from '../../public/Images/index'
 export const Modules = [
-    {name:"Dashboard",link:"/",icon:MdOutlineDashboard},
-    {name:"Applications Management",link:"/applications-management",icon:LuFileStack},
-    {name:"Configuration Management",link:"/configuration-management",icon:IoSettingsSharp},
-    {name:"Message Center",link:"/message-center",icon:AiFillMessage},
-    {name:"Users Management",link:"/users-management",icon:FaUsers},
-    {name:"Jobs Management",link:"/jobs-management",icon:PiSuitcaseSimpleDuotone},
-    {name:"Cache Maintenance",link:"/cache-maintenance",icon:MdOutlineCached},
-    {name:"Lookups Configuration",link:"/lookups-configuration",icon:TbSettingsSearch},
-    {name:"Audit",link:"/audit",icon:AiOutlineAudit},
-    {name:"Forms Management",link:"/forms-management",icon:SiGoogleforms},
-    {name:"Content Management",link:"/content-management",icon:BiSolidBookContent },
-    {name:"BPMN Configuration",link:"/bpmn-configuration",icon:FaProjectDiagram },
+    {name:"Dashboard",link:"dashboard",icon:MdOutlineDashboard},
+    {name:"Applications Management",link:"applications-management",icon:LuFileStack},
+    {name:"Configuration Management",link:"configuration-management",icon:IoSettingsSharp},
+    {name:"Message Center",link:"message-center",icon:AiFillMessage},
+    {name:"Users Management",link:"users-management",icon:FaUsers},
+    {name:"Jobs Management",link:"jobs-management",icon:PiSuitcaseSimpleDuotone},
+    {name:"Cache Maintenance",link:"cache-maintenance",icon:MdOutlineCached},
+    {name:"Lookups Configuration",link:"lookups-configuration",icon:TbSettingsSearch},
+    {name:"Audit",link:"audit",icon:AiOutlineAudit},
+    {name:"Forms Management",link:"forms-management",icon:SiGoogleforms},
+    {name:"Content Management",link:"content-management",icon:BiSolidBookContent },
+    {name:"BPMN Configuration",link:"bpmn-configuration",icon:FaProjectDiagram },
 ]
 
+export const Applications = [
+    { 
+      title: "Bankerise Studio", 
+      description: "Bankerise's Official Studio" 
+    },
+    { 
+      title: "BackOffice", 
+      description: "The centralized administrative dashboard for Bankerise, providing control over all Bankerise applications" 
+    },
+    { 
+      title: "CSA", 
+      description: "" 
+    },
+    { 
+      title: "API-Gateway", 
+      description: "Gateway Management front/back" 
+    }
+  ];
+  
 export const MainColor="#0d0f1d"
 
 export const Logos = {logo,logoxs}
