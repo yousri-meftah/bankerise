@@ -29,19 +29,39 @@ export const Modules = [
 export const Applications = [
     { 
       title: "Bankerise Studio", 
-      description: "Bankerise's Official Studio" 
+      description: "Bankerise's Official Studio" ,
+      service:"administration",
+      type:"app"
     },
     { 
       title: "BackOffice", 
-      description: "The centralized administrative dashboard for Bankerise, providing control over all Bankerise applications" 
+      description: "The centralized administrative dashboard for Bankerise, providing control over all Bankerise applications" ,
+      service:"administration",
+      type:"app"
     },
     { 
       title: "CSA", 
-      description: "" 
+      description: "" ,
+      service:"administration",
+      type:"app"
     },
     { 
-      title: "API-Gateway", 
-      description: "Gateway Management front/back" 
+      title: "API-Gateway Admin", 
+      description: "Gateway Management for Administration Apps" ,
+      service:"administration",
+      type:"gateway"
+    },
+    { 
+      title: "API-Gateway front", 
+      description: "Gateway Management front" ,
+      service:"administration",
+      type:"gateway"
+    },
+    { 
+      title: "Customer", 
+      description: "Customer  Application for the CSA" ,
+      service:"customer",
+      type:"app"
     }
   ];
   
