@@ -4,7 +4,7 @@ import Topbar from './Topbar'
 
 const Index = () => {
   return (
-    <div className='flex flex-col w-full bg-[#171821] overflow-x-hidden'>
+    <div className='flex flex-col w-full bg-[--secondary] overflow-x-hidden'>
       <Topbar />
       <div className='relative isolate'>
 

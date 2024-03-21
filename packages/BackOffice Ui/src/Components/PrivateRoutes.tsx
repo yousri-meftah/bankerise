@@ -17,7 +17,7 @@ const Routers = () => {
     <Routes>
 
       <Route index path="dashboard" element={<Dashboard />} />
-      <Route path="applications-management" element={<ApplicationsManagement />} />
+      <Route path="applications-management/*" element={<ApplicationsManagement />} />
       <Route path="configuration-management" element={<ConfigurationManagement />} />
       <Route path="message-center" element={<MessageCenter />} />
       <Route path="users-management" element={<UsersManagement />} />

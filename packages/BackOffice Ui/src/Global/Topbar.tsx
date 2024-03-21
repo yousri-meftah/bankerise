@@ -3,13 +3,16 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import SwitchButton from '../Components/DarkModeSwitch'
+import LanguageToggle from '../Components/LanguageToggleButton'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 const Topbar = () => {
+
   return (
-    <Disclosure as="nav" className="bg-[#0d0f1d] shadow-2xl">
+    <Disclosure as="nav" className="bg-[--primary] shadow-2xl">
       {({ open }) => (
         <>
           <div className=" max-w-screen px-2 sm:px-4 lg:px-8">
@@ -27,7 +30,7 @@ const Topbar = () => {
                     <input
                       id="search"
                       name="search"
-                      className="block w-full rounded-md border-0 bg-gray-700 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:bg-gray-500 focus:text-gray-900 focus:placeholder:text-gray-700 focus:ring-0 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 bg-[--searchBar] py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:bg-[--searchBarFocus] focus:text-gray-900 focus:placeholder:text-gray-700 focus:ring-0 sm:text-sm sm:leading-6"
                       placeholder="Search"
                       type="search"
                     />
@@ -45,15 +48,11 @@ const Topbar = () => {
                   )}
                 </Disclosure.Button>
               </div>
-          <div className="hidden lg:ml-4 lg:block ">
-                <div className="flex items-center ">
-                  <button
-                    type="button"
-                    className="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
+              <div className="hidden lg:ml-4 lg:block ">
+                <div className="flex items-center gap-4">
+                  <SwitchButton />
+                  <LanguageToggle />
+
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-4 flex-shrink-0 ">

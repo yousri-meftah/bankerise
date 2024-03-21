@@ -1,11 +1,11 @@
 
 const Background = () => {
   return (
-    <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 h-screen">
+    <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
       <div className="overflow-hidden">
         {/* SVG FOR LINES */}
         <svg
-          className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+          className="absolute inset-0 -z-10 h-full w-full stroke-gray-700/50 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
           aria-hidden="true"
         >
           <defs>

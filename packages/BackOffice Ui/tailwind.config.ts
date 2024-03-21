@@ -14,7 +14,13 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: 'hsl(var(--primary) / <alpha-value>)',
+        secondary: 'hsl(var(--secondary) / <alpha-value>)',
+        textPrimary: 'hsl(var(--textPrimary) / <alpha-value>)',
+    },
+    },
   },
   plugins: [addVariablesForColors, require('@tailwindcss/forms'),],
   

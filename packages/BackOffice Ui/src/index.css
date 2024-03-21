@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+
+:root {
+  [data-theme='dark'] {
+    --primary: hsl(233, 38%, 8%);
+    --secondary: hsl(234, 18%, 11%);
+    --textPrimary: hsl(0, 0%, 94%);
+    --colorStart: hsl(206.9, 14.72%, 61.37%);
+    --colorEnd: hsl(192, 17.24%, 94.31%);
+    --searchBar: hsl(216.92, 19.12%, 26.67%);
+    --searchBarFocus: hsl(220, 8.94%, 46.08%);
+    --txt: hsl(0, 0%, 94%);
+    --tabColor: hsl(216.92, 19.12%, 26.67%);
+    --tabColor: hsl(217.89, 10.61%, 64.9%);
+    --tabColorHover: hsl(234.45, 89.47%, 73.92%);
+  }
+
+  [data-theme='light'] {
+    --primary: hsl(0, 0%, 94%);
+    --secondary: hsl(0, 0%, 94%);
+    --textPrimary: hsl(222, 47%, 11%);
+    --colorStart: hsl(233, 38%, 8%);
+    --colorEnd: hsl(206.9, 14.72%, 61.37%);
+    --searchBar: hsl(220, 8.94%, 46.08%);
+    --searchBarFocus: hsl(216, 12.2%, 83.92%);
+    --txt: hsl(233, 38%, 8%);
+    --tabColor: hsl(216.92, 19.12%, 26.67%);
+    --tabColorHover: hsl(243.65, 54.5%, 41.37%);
+  }
+}
+
+}
