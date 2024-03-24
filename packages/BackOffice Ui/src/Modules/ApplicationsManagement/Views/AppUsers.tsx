@@ -1,5 +1,5 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
-import UsersTable from "./UsersTable";
+import UsersTable from "../Components/UsersTable";
 const words = `User Management
 `;
 const AppUsers = () => {

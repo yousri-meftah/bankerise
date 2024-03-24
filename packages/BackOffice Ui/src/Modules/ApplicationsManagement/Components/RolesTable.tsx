@@ -34,7 +34,7 @@ const RolesTable = () => {
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalRecords);
-    debugger;
+  
 
 
 

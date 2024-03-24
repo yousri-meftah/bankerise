@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import Applications from "./Components/Applications"
+import Applications from "./Views/Applications"
 import ApplicationEdit from "./Components/ApplicationEdit"
 
 const ApplicationsManagement = () => {

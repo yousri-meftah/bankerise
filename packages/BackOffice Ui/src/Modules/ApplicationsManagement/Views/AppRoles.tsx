@@ -1,5 +1,5 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
-import RolesTable from "./RolesTable";
+import RolesTable from "../Components/RolesTable";
 const words = `Application Role Management
 `;
 const AppRoles = () => {

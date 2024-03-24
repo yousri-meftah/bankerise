@@ -15,15 +15,30 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+
+      "animation": {
+        shimmer: "shimmer 2s linear infinite"
+      },
+      "keyframes": {
+        shimmer: {
+          from: {
+            "backgroundPosition": "0 0"
+          },
+          to: {
+            "backgroundPosition": "-200% 0"
+          }
+        }
+      },
+
       colors: {
         primary: 'hsl(var(--primary) / <alpha-value>)',
         secondary: 'hsl(var(--secondary) / <alpha-value>)',
         textPrimary: 'hsl(var(--textPrimary) / <alpha-value>)',
-    },
+      },
     },
   },
   plugins: [addVariablesForColors, require('@tailwindcss/forms'),],
-  
+
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
