@@ -5,6 +5,9 @@ import { useState } from "react";
 import ConfirmationForDisableModal from "./ConfirmationForDisableModal";
 import { HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
+import PrimaryButton from "@components/Button";
+import { Link, useNavigate } from "react-router-dom";
+import AddUser from "../Views/AddUser";
 const statuses = { Active: 'text-green-400 bg-green-400/10', Inactive: 'text-rose-400 bg-rose-400/10' }
 const Users = [
   {
@@ -88,7 +91,8 @@ function classNames(...classes: any) {
 
 export default function UsersTable() {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const navigate = useNavigate();
   const handleOpenConfirmationModal = () => {
     setIsConfirmationModalOpen(true);
   };
@@ -98,9 +102,24 @@ export default function UsersTable() {
   };
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-gray-900/10 backdrop-blur-sm backdrop:filter px-10">
+    <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10">
       {isConfirmationModalOpen && <ConfirmationForDisableModal onClose={handleCloseConfirmationModal} />}
-      <h2 className="px-4 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">Users</h2>
+      <div className="flex justify-between">
+        <h2 className="px-4 text-base font-semibold leading-7 text-[--txt] sm:px-6 lg:px-8" >Users</h2>
+        <div className="size-fit" onClick={() => setIsDialogOpen(true)}>
+          <Link to={"addUser/"}>
+            <PrimaryButton text="Add User" /></Link>
+        </div>
+
+        {/* DIALOG FOR ADDING USER */}
+        <AddUser open={isDialogOpen} setOpen={() => {
+          setIsDialogOpen(false)
+          navigate("/private/applications-management/edit/users")
+        }
+        } />
+
+      </div>
+
       <table className="mt-6 w-full whitespace-nowrap text-left">
         <colgroup>
           <col className="w-full sm:w-4/12" />
@@ -109,7 +128,7 @@ export default function UsersTable() {
           <col className="lg:w-1/12" />
           <col className="lg:w-1/12" />
         </colgroup>
-        <thead className="border-b border-white/10 text-sm leading-6 text-white">
+        <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
           <tr>
             <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
               UserName
@@ -134,7 +153,7 @@ export default function UsersTable() {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/5">
+        <tbody className="divide-y divide-[--border-Devide]">
           {Users.map((item, i) => (
             <motion.tr
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -143,22 +162,22 @@ export default function UsersTable() {
               key={item.Email}>
               <td className="py-4 pl-4 sm:pl-6 lg:pl-8">
                 <div className="flex items-center gap-x-4">
-                  <div className="truncate text-sm font-medium leading-6 text-white">{item.UserName}</div>
+                  <div className="truncate text-sm font-medium leading-6 text-[--txt]">{item.UserName}</div>
                 </div>
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                 <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-gray-400">{item.Email}</div>
+                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item.Email}</div>
                 </div>
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                 <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-gray-400">{item.FirstName}</div>
+                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item.FirstName}</div>
                 </div>
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                 <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-gray-400">{item.LastName}</div>
+                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item.LastName}</div>
                 </div>
               </td>
               <td className="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
@@ -166,37 +185,37 @@ export default function UsersTable() {
                   <div className={classNames(statuses[item.Status], 'flex-none rounded-full p-1')}>
                     <div className="h-1.5 w-1.5 rounded-full bg-current" />
                   </div>
-                  <div className="hidden text-white sm:block">{item.Status}</div>
+                  <div className="hidden text-[--txt] sm:block">{item.Status}</div>
                 </div>
               </td>
-              <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
+              <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-[--textSeconday] md:table-cell lg:pr-20">
                 {item.Role}
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                 <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-gray-400">{item.CreationDate}</div>
+                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item.CreationDate}</div>
                 </div>
               </td>
               <td className="hidden py-4 pl-6 pr-4 sm:table-cell sm:pr-8 ">
                 <div className="flex gap-x-3">
-                  <a href="#" className="text-indigo-400 hover:text-indigo-300">
+                  <a href="#" className="text-[--indigoText] hover:text-indigo-300">
                     Details
                   </a>
                   <button
                     type="button"
-                    className="rounded bg-gray-100/10 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-600/10"
+                    className="rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300"
                     onClick={handleOpenConfirmationModal}
                   >
                     <IoLockOpen size={19} color="white" />
                   </button>
                   <button
                     type="button"
-                    className="rounded bg-red-600/20 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/10"
-                    onClick={()=>setOpen(true)}
+                    className="rounded bg-[--deleteButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/50 duration-300"
+
                   >
-                    <HiOutlineTrash size={19} color="white" />
+                    <HiOutlineTrash size={19} color="white" onClick={() => setOpen(true)} />
                   </button>
-                  {open && <ConfirmationModal onClose={() => setOpen(false)} title={"Delete User"} desc={"Are you sure you want to delete this User?"}/>}
+                  {open && <ConfirmationModal onClose={() => setOpen(false)} title={"Delete User"} desc={"Are you sure you want to delete this User?"} />}
                 </div>
               </td>
 
@@ -205,6 +224,6 @@ export default function UsersTable() {
           ))}
         </tbody>
       </table>
-    </div>
+    </div >
   )
 }

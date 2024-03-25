@@ -8,16 +8,14 @@ function classNames(...classes: any[]) {
 }
 
 export default function SwitchButton() {
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(true)
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') :  'dark';
     document.querySelector('body')?.setAttribute('data-theme', storedTheme as string);
-
     if (storedTheme) {
       setTheme(storedTheme);
-      
     }
   }, []);
   const setDarkMode = () => {

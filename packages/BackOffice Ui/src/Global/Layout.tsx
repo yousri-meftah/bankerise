@@ -3,7 +3,7 @@ import Index from './Index.tsx';
 const Layout = () => {
   return (
     <div className='flex'>
-      <div className='relative'>
+      <div className='relative z-50'>
         <Sidebar />
       </div>
     

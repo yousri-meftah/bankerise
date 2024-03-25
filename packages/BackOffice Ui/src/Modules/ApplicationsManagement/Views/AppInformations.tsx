@@ -5,6 +5,8 @@ import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import { PiLightbulbBold } from "react-icons/pi";
 import InfoModal from '../Components/InfoModal'
 import PrimaryButton from "@components/Button";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 const words = `Application Information
 `;
 const AppInformations = () => {
@@ -152,7 +154,7 @@ const AppInformations = () => {
                     </div>
                     <div className="flex">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                            initial={{ opacity: 0, scale: 0.9, x: -30 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ duration: 0.4 }}
                             className="flex-col flex-1">
@@ -192,7 +194,7 @@ const AppInformations = () => {
                     </div>
                     <div className="flex mt-6">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                            initial={{ opacity: 0, scale: 0.9, x: -30 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ duration: 0.4 }}
                             className="flex-col flex-1">
@@ -287,11 +289,14 @@ const AppInformations = () => {
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-[--textPrimary]">
-                    Cancel
-                </button>
-                <PrimaryButton text={"Save"}/>
-                   
+                <Link to={"/private/applications-management"}>
+                    <button type="button" className="text-sm font-semibold leading-6 text-[--textPrimary]">
+                        Cancel
+                    </button>
+                </Link>
+                <Link to={"/private/applications-management"} onClick={() => toast.success("Successfully Saved.")} >
+                    <PrimaryButton text={"Save"} />
+                </Link>
 
 
             </div>
