@@ -1,53 +1,54 @@
 
-import {apiSlice} from '../../api/apiSlice';
+import {applications_controlle} from './applicatiobs_controll';
+import { application_controlle_endpoints } from '../../../constants/store_constants';
 
 
-const applicationEndpoints = apiSlice.injectEndpoints({
+const applicationEndpoints = applications_controlle.injectEndpoints({
   endpoints: (builder) => ({
     getConfigApplication: builder.query({
       query: (attr) => ({
-        url: '/',
+        url: application_controlle_endpoints.ConfigApplication,
         params: attr
       })
     }),
     putConfigApplication: builder.mutation({
       query: (data) => ({
-        url: '/',
+        url: application_controlle_endpoints.ConfigApplication,
         method: 'PUT',
         body: data
       }),
     }),
     postConfigApplication: builder.mutation({
       query: (data) => ({
-        url: '/',
+        url: application_controlle_endpoints.ConfigApplication,
         method: 'POST',
         body: data
       }),
     }),
     putFeatures: builder.mutation({
       query: (data) => ({
-        url: '/features',
+        url: application_controlle_endpoints.Features,
         method: 'PUT',
         body: data
       }),
     }),
     putComposedPermissions: builder.mutation({
       query: (data) => ({
-        url: '/composed-permissions',
+        url: application_controlle_endpoints.ComposedPermissions,
         method: 'PUT',
         body: data
       }),
     }),
     postComposedPermissions: builder.mutation({
       query: (data) => ({
-        url: '/composed-permissions',
+        url: application_controlle_endpoints.ComposedPermissions,
         method: 'POST',
         body: data
       }),
     }),
     deleteComposedPermissions: builder.mutation({
       query: (data) => ({
-        url: '/composed-permissions',
+        url: application_controlle_endpoints.ComposedPermissions,
         method: 'DELETE',
         body: data
       }),
@@ -60,17 +61,17 @@ const applicationEndpoints = apiSlice.injectEndpoints({
     }),
     getRegistrationMapping: builder.query({
       query: () => ({
-        url: '/registration-mapping',
+        url: application_controlle_endpoints.RegistrationMapping,
       })
     }),
     getFeatureById: builder.query({
       query: ({ id }) => ({
-        url: `/features/${id}`,
+        url: `${application_controlle_endpoints.Features}/${id}`,
       })
     }),
     getComposedPermissionsById: builder.query({
       query: ({ id }) => ({
-        url: `/composed-permissions/${id}`,
+        url: `${application_controlle_endpoints.ComposedPermissions}/${id}`,
       })
     }),
     getComposedPermissionById: builder.query({
