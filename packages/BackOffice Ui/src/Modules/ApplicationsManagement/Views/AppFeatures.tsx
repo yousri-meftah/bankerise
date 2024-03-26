@@ -1,7 +1,7 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { IoChevronDownSharp, IoChevronUpSharp } from "react-icons/io5";
-import {permissions } from '@utils/constants'
+import { permissions } from '@utils/constants'
 import { motion } from "framer-motion";
 const words = `Application Features Catalogue
 `;
@@ -52,18 +52,18 @@ const AppFeatures = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.2*i }}
+        transition={{ duration: 0.2 * i }}
         className="m-5">
         <div key={permission.id} className="relative flex items-start gap-2 ">
-        {permission.subPermissions && (
-          <div onClick={() => togglePermission(permission.id)}>
-            {openPermissions.includes(permission.id) ? (
-              <IoChevronUpSharp color="gray" className="duration-200 " />
-            ) : (
-              <IoChevronDownSharp color="gray" className="duration-200 " />
-            )}
-          </div>
-        )}
+          {permission.subPermissions && (
+            <div onClick={() => togglePermission(permission.id)}>
+              {openPermissions.includes(permission.id) ? (
+                <IoChevronUpSharp color="gray" className="duration-200 " />
+              ) : (
+                <IoChevronDownSharp color="gray" className="duration-200 " />
+              )}
+            </div>
+          )}
           <div className="flex h-6 items-center">
             <input
               id={permission.id}

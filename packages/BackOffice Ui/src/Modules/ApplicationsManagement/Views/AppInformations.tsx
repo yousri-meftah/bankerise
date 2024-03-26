@@ -153,6 +153,8 @@ const AppInformations = () => {
 
                     </div>
                     <div className="flex">
+
+{/* Redirect WEB URL */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, x: -30 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -166,10 +168,7 @@ const AppInformations = () => {
 
                                 }}><PiLightbulbBold size={20} color="white" /></div>
                                 <span className="block text-md font-medium leading-6 text-[--textPrimary]">Redirect WEB URL :</span>
-
                             </div>
-
-
                         </motion.div>
                         <div className="flex-1 my-auto">
                             <div className="sm:col-span-4">
@@ -193,6 +192,8 @@ const AppInformations = () => {
                         </div>
                     </div>
                     <div className="flex mt-6">
+
+{/* Mapping WEB Referer */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, x: -30 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -232,6 +233,8 @@ const AppInformations = () => {
                         </div>
                     </div>
                     {InfoModalOpened ? <InfoModal open={InfoModalOpened} setOpen={setInfoModal} title={Title} desc={Desc} /> : null}
+                    
+{/* Enable Mobile Version */}
                     <div className="flex mt-6">
                         <div className="flex-col flex-1">
                             <span className="flex justify-center text-sm font-medium leading-6 text-[--txt]">Enable Mobile Version</span>
@@ -239,10 +242,7 @@ const AppInformations = () => {
                         </div>
                         <div className="flex-1 my-auto">
                             <div className="sm:col-span-4">
-                                <div className="w-fit" onClick={() => showMobileSection(!MobileSection)}>
-                                    <SwitchButton />
-                                </div>
-
+                                <SwitchButton onClick={() => showMobileSection(!MobileSection)} />
                             </div>
                         </div>
                     </div>
@@ -288,6 +288,7 @@ const AppInformations = () => {
                 </div>
             </div>
 
+{/* BUTTONS */}
             <div className="mt-6 flex items-center justify-center gap-x-6">
                 <Link to={"/private/applications-management"}>
                     <button type="button" className="text-sm font-semibold leading-6 text-[--textPrimary]">
@@ -297,9 +298,9 @@ const AppInformations = () => {
                 <Link to={"/private/applications-management"}  >
                     <PrimaryButton text={"Save"} onClick={() => toast.success("Successfully Saved.")} />
                 </Link>
-
-
             </div>
+
+
         </form >
     )
 }

@@ -1,8 +1,13 @@
+import AppStatus from "../Components/AppStatus"
+import AppFeatures from "./AppFeatures"
 
 
 const EditRole = () => {
   return (
-    <div>EditRole</div>
+    <>
+    <AppStatus role={true}/>
+    <AppFeatures/>
+    </>
   )
 }
 
