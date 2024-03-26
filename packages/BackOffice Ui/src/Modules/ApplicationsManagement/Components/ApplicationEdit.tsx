@@ -4,7 +4,7 @@ import AppInformations from "../Views/AppInformations";
 import AppFeatures from "../Views/AppFeatures";
 import AppRoles from "../Views/AppRoles";
 import AppUsers from "../Views/AppUsers";
-import AddUser from "../Views/AddUser";
+import EditRole from "../Views/EditRole";
 
 const tabs = [
     { name: 'Application Information', id: 1, path: '' },
@@ -16,7 +16,6 @@ const tabs = [
 
 const ApplicationEdit = () => {
     const [selectedTabId, setSelectedTabId] = useState(1);
-
     return (
         <>
             <div className="sm:hidden">
@@ -56,13 +55,14 @@ const ApplicationEdit = () => {
             <Routes>
                 <Route index element={<AppInformations />} />
                 <Route path="features/*" element={<AppFeatures />} />
-                <Route path="roles/*" element={<AppRoles />} />
+                <Route path="roles/*" element={<AppRoles />}/ >
+                <Route path="roles/editRole/*" element={<EditRole />}/>
                 <Route path="users/*" element={<AppUsers />} >
                     <Route path="addUser/*" />
                 </Route>
+                <Route path="users/userDetails/*" element={<AppUsers />} />
             </Routes>
         </>
     );
-};
-
+}
 export default ApplicationEdit;

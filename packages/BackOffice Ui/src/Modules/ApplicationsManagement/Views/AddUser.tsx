@@ -134,7 +134,7 @@ export default function AddUser({ open, setOpen }) {
                                                     </div>
                                                 </div>
                                                 <div className='flex justify-center mt-20 ' onClick={()=>toast.success('User Successfully Created')}>
-                                                    <PrimaryButton text="Confirm" />
+                                                    <PrimaryButton text="Confirm" onClick={setOpen}/>
                                                 </div>
                                                 
                                                 </div>

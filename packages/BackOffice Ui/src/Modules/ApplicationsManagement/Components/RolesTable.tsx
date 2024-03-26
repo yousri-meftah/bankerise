@@ -1,58 +1,19 @@
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BsDiagram3Fill } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa";
-import { HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineDocumentDuplicate, HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
 import PrimaryButton from "@components/Button";
-const originalRoles = [
-    { name: 'Admin' },
-    { name: 'User' },
-    { name: 'Client' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    // More Roles...
-]
+import Pagination from "@components/Pagination";
+import {originalRoles} from '@utils/constants'
+import { Link } from "react-router-dom";
+
 
 const RolesTable = () => {
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [records, setRecords] = useState<{ name: string; }[]>([]);
+   
     const [open, setOpen] = useState(false);
-
-    const pageSize = 5; // Number of records per page
-    const totalRecords = originalRoles.length;
-    const totalPages = Math.ceil(totalRecords / pageSize);
-
-
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
-    useEffect(() => {
-        const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = Math.min(startIndex + pageSize, totalRecords);
-        setRecords(originalRoles.slice(startIndex, endIndex));
-    }, [currentPage, pageSize, totalRecords]);
-
+    const [records, setRecords] = useState<{ name: string; }[]>([]);
 
     return (
         <div className=" backdrop-filter backdrop-blur-sm ">
@@ -104,9 +65,10 @@ const RolesTable = () => {
                                                     </td>
 
                                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex justify-end items-center gap-2">
-                                                        <a href="#" className="text-[--indigoText] hover:text-indigo-300 duration-200">
+                                                        <Link to="editRole/" className="text-[--indigoText] hover:text-indigo-300 duration-200">
                                                             Edit<span className="sr-only">, {person.name}</span>
-                                                        </a>
+                                                        </Link>
+                                                        <HiOutlineDocumentDuplicate size={21} className="text-[--txt] hover:scale-105 duration-300 hover:cursor-pointer"/>
                                                         <button
                                                             type="button"
                                                             className="rounded bg-[--deleteButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/50 duration-300"
@@ -119,54 +81,17 @@ const RolesTable = () => {
                                             ))}
                                         </tbody>
                                     </table>
-                                    {open && <ConfirmationModal onClose={() => setOpen(false)} title={"Delete Role"} desc={"Are you sure you want to delete this role?"} />}
+
+
+                                    {/* ROLE DELETION MODAL */}
+                                    {open && <ConfirmationModal onClose={() => setOpen(false)} title={"Delete Role"} desc={"Are you sure you want to delete this role?"} msg={'Role has been Deleted Successfully'} />}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="pt-5 p-24 sticky bottom-0 mt-24">
-                <nav className="flex items-center justify-between border-t border-[--border-color] px-4 sm:px-0">
-                    <div className="-mt-px flex w-0 flex-1">
-                        <button
-                            type="button"
-                            className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-[--textSeconday] hover:border-gray-300 hover:text-gray-400 disabled:text-gray-500/60"
-                            onClick={handlePreviousPage}
-                            disabled={currentPage === 1}
-                        >
-                            <ArrowLongLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-                            Previous
-                        </button>
-                    </div>
-                    <div className="hidden md:-mt-px md:flex">
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-                            <a
-                                href="#"
-                                key={n}
-                                className={`${currentPage === n
-                                    ? 'inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600'
-                                    : 'inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-400'
-                                    }`}
-                                onClick={() => setCurrentPage(n)}
-                            >
-                                {n}
-                            </a>
-                        ))}
-                    </div>
-                    <div className="-mt-px flex w-0 flex-1 justify-end">
-                        <button
-                            type="button"
-                            className="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-[--textSeconday] hover:border-gray-300 hover:text-gray-400 disabled:text-gray-500/60"
-                            onClick={handleNextPage}
-                            disabled={currentPage === totalPages}
-                        >
-                            Next
-                            <ArrowLongRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-                        </button>
-                    </div>
-                </nav>
-            </div>
+            <Pagination setRecords={setRecords} array={originalRoles} pages={6}/>
         </div>
     );
 };

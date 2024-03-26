@@ -26,7 +26,214 @@ export const Modules = [
     { name: "Content Management", link: "content-management", icon: BiSolidBookContent },
     { name: "BPMN Configuration", link: "bpmn-configuration", icon: FaProjectDiagram },
 ]
+export const permissions = [
+  {
+    id: 'all',
+    label: 'All',
+  },
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    description: 'Access Dashboard module.',
+    subPermissions: [
+      { id: 'view-dashboard', label: 'View Dashboard', description: 'Permission to view dashboard.' },
+      { id: 'edit-dashboard', label: 'Edit Dashboard', description: 'Permission to edit dashboard.' },
+    ],
+  },
+  {
+    id: 'applications-management',
+    label: 'Applications Management',
+    description: 'Access Applications Management module.',
+    subPermissions: [
+      { id: 'create-application', label: 'Create Application', description: 'Permission to create applications.' },
+      { id: 'edit-application', label: 'Edit Application', description: 'Permission to edit applications.' },
+      { id: 'delete-application', label: 'Delete Application', description: 'Permission to delete applications.' },
+    ],
+  },
+  {
+    id: 'configuration-management',
+    label: 'Configuration Management',
+    description: 'Access Configuration Management module.',
+    subPermissions: [
+      { id: 'manage-configuration', label: 'Manage Configuration', description: 'Permission to manage configurations.' },
+    ],
+  },
+  {
+    id: 'message-center',
+    label: 'Message Center',
+    description: 'Access Message Center module.',
+    subPermissions: [
+      { id: 'send-message', label: 'Send Message', description: 'Permission to send messages.' },
+      { id: 'receive-message', label: 'Receive Message', description: 'Permission to receive messages.' },
+    ],
+  },
+  {
+    id: 'users-management',
+    label: 'Users Management',
+    description: 'Access Users Management module.',
+    subPermissions: [
+      { id: 'create-user', label: 'Create User', description: 'Permission to create users.' ,  },
+      { id: 'edit-user', label: 'Edit User', description: 'Permission to edit users.' },
+      { id: 'delete-user', label: 'Delete User', description: 'Permission to delete users.' },
+    ],
+  },
+  {
+    id: 'jobs-management',
+    label: 'Jobs Management',
+    description: 'Access Jobs Management module.',
+    subPermissions: [
+      { id: 'create-job', label: 'Create Job', description: 'Permission to create jobs.' },
+      { id: 'edit-job', label: 'Edit Job', description: 'Permission to edit jobs.' },
+      { id: 'delete-job', label: 'Delete Job', description: 'Permission to delete jobs.' },
+    ],
+  },
+  {
+    id: 'cache-maintenance',
+    label: 'Cache Maintenance',
+    description: 'Access Cache Maintenance module.',
+    subPermissions: [
+      { id: 'clear-cache', label: 'Clear Cache', description: 'Permission to clear cache.' },
+    ],
+  },
+  {
+    id: 'lookups-configuration',
+    label: 'Lookups Configuration',
+    description: 'Access Lookups Configuration module.',
+    subPermissions: [
+      { id: 'manage-lookups', label: 'Manage Lookups', description: 'Permission to manage lookups.' },
+    ],
+  },
+  {
+    id: 'audit',
+    label: 'Audit',
+    description: 'Access Audit module.',
+    subPermissions: [
+      { id: 'view-audit-logs', label: 'View Audit Logs', description: 'Permission to view audit logs.' },
+    ],
+  },
+  {
+    id: 'forms-management',
+    label: 'Forms Management',
+    description: 'Access Forms Management module.',
+    subPermissions: [
+      { id: 'create-form', label: 'Create Form', description: 'Permission to create forms.' },
+      { id: 'edit-form', label: 'Edit Form', description: 'Permission to edit forms.' },
+      { id: 'delete-form', label: 'Delete Form', description: 'Permission to delete forms.' },
+    ],
+  },
+  {
+    id: 'content-management',
+    label: 'Content Management',
+    description: 'Access Content Management module.',
+    subPermissions: [
+      { id: 'create-content', label: 'Create Content', description: 'Permission to create content.' },
+      { id: 'edit-content', label: 'Edit Content', description: 'Permission to edit content.' },
+      { id: 'delete-content', label: 'Delete Content', description: 'Permission to delete content.' },
+    ],
+  },
+  {
+    id: 'bpmn-configuration',
+    label: 'BPMN Configuration',
+    description: 'Access BPMN Configuration module.',
+    subPermissions: [
+      { id: 'configure-bpmn', label: 'Configure BPMN', description: 'Permission to configure BPMN.' },
+    ],
+  },
+];
 
+export const originalRoles = [
+    { name: 'Admin' },
+    { name: 'User' },
+    { name: 'Client' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    { name: 'SUPER Admin' },
+    // More Roles...
+]
+
+export const Users = [
+  
+    {
+      UserName: 'michaelfoster',
+      Email: 'michaelfoster@example.com',
+      FirstName: 'Michael',
+      LastName: 'Foster',
+      Status: 'Active',
+      Role: 'Admin',
+      CreationDate: '2023-01-23T11:00',
+    },
+    {
+      UserName: 'lindsaywalton',
+      Email: 'lindsaywalton@example.com',
+      FirstName: 'Lindsay',
+      LastName: 'Walton',
+      Status: 'Active',
+      Role: 'User',
+      CreationDate: '2023-01-23T09:00',
+    },
+    {
+      UserName: 'courtneyhenry',
+      Email: 'courtneyhenry@example.com',
+      FirstName: 'Courtney',
+      LastName: 'Henry',
+      Status: 'Inactive',
+      Role: 'User',
+      CreationDate: '2023-01-23T00:00',
+    },
+    {
+      UserName: 'courtneyhenry',
+      Email: 'courtneyhenry@example.com',
+      FirstName: 'Courtney',
+      LastName: 'Henry',
+      Status: 'Active',
+      Role: 'Admin',
+      CreationDate: '2023-01-21T13:00',
+    },
+    {
+      UserName: 'michaelfoster',
+      Email: 'michaelfoster@example.com',
+      FirstName: 'Michael',
+      LastName: 'Foster',
+      Status: 'Active',
+      Role: 'User',
+      CreationDate: '2023-01-18T12:34',
+    },
+    {
+      UserName: 'courtneyhenry',
+      Email: 'courtneyhenry@example.com',
+      FirstName: 'Courtney',
+      LastName: 'Henry',
+      Status: 'Active',
+      Role: 'Admin',
+      CreationDate: '2023-01-16T15:54',
+    },
+    {
+      UserName: 'michaelfoster',
+      Email: 'michaelfoster@example.com',
+      FirstName: 'Michael',
+      LastName: 'Foster',
+      Status: 'Active',
+      Role: 'User',
+      CreationDate: '2023-01-16T11:31',
+    },
+    {
+      UserName: 'whitneyfrancis',
+      Email: 'whitneyfrancis@example.com',
+      FirstName: 'Whitney',
+      LastName: 'Francis',
+      Status: 'Active',
+      Role: 'User',
+      CreationDate: '2023-01-09T08:45',
+    },
+    // Add more items as needed...
+  ];
 
 export const MainColor = "#0d0f1d"
 

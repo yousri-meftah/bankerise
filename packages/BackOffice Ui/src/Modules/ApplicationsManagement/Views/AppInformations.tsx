@@ -294,8 +294,8 @@ const AppInformations = () => {
                         Cancel
                     </button>
                 </Link>
-                <Link to={"/private/applications-management"} onClick={() => toast.success("Successfully Saved.")} >
-                    <PrimaryButton text={"Save"} />
+                <Link to={"/private/applications-management"}  >
+                    <PrimaryButton text={"Save"} onClick={() => toast.success("Successfully Saved.")} />
                 </Link>
 
 
