@@ -1,8 +1,17 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoChevronDownSharp, IoChevronUpSharp } from "react-icons/io5";
 import { permissions } from '@utils/constants'
 import { motion } from "framer-motion";
+import { Pagination } from 'swiper/modules';
+import 'swiper/css/pagination'
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import 'swiper/css';
+import AppStatus from "../Components/AppStatus";
+import Accordion from "@components/Accordion";
+import { SlideNextButton } from "../Components/SlideNextButton";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+
 const words = `Application Features Catalogue
 `;
 const AppFeatures = () => {
@@ -20,6 +29,26 @@ const AppFeatures = () => {
   const halfLength = Math.ceil(permissions.length / 2);
   const firstHalf = permissions.slice(0, halfLength);
   const secondHalf = permissions.slice(halfLength);
+ 
+  const [sliderSettings, setSliderSettings] = useState({
+    slidesPreview: 1,
+    spaceBetween: 60,
+    direction: "vertical",
+    breakpoints: {
+      480: {
+        slidesPerView: 1
+      },
+      600: {
+        slidesPerView: 2
+      },
+      750: {
+        slidesPerView: 3
+      },
+      1100: {
+        slidesPerView: 5
+      }
+    }
+  });
   const renderSubPermissions = (subPermissions: any[], parentId: string) => {
     return subPermissions.map((subPermission) => (
       <div key={subPermission.id} className={`ml-6 ${openPermissions.includes(parentId) ? 'block' : 'hidden'}`}>
@@ -88,28 +117,81 @@ const AppFeatures = () => {
     ));
   };
 
+  useEffect(()=> {
+    if (sliderSettings) {
+      console.log('sliderSettings',sliderSettings);
+    }
+  }, [sliderSettings])
+
   return (
     <>
+      {/* TITLE HERE */}
       <div className="space-y-12 mt-10 mx-10">
         <span className="flex justify-center my-7 pb-6"><TextGenerateEffect words={words} />
-        </span></div>
-      {/* <div className=""><StickyScroll content={content} /></div> */}
+        </span>
+      </div>
+      <AppStatus role={false} />
+
+      <div className=" h-80 flex mx-20">
+        <Swiper {...sliderSettings} className=" flex-1 flex justify-center items-center relative">
+          <SlideNextButton pos={true} setter={setSliderSettings}/>
+
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+
+        </Swiper>
+        <Swiper {...sliderSettings} className=" flex-1 flex justify-center items-center">
+          <SlideNextButton />
+
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
+          <SwiperSlide className="w-[400px] mx-auto">
+            <Accordion />
+          </SwiperSlide>
 
 
-      <div className="space-y-5 mx-24 flex justify-around  ">
-        <div className="  ">{renderPermissions(firstHalf)}</div>
-        <div className="">{renderPermissions(secondHalf)}</div>
+        </Swiper>
+
+
       </div>
 
-      <div className="mt-6 flex justify-center">
 
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        >
-          Save
-        </button>
-      </div>
+
     </>
   )
 }
