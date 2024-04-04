@@ -5,6 +5,7 @@ import AppFeatures from "../Views/AppFeatures";
 import AppRoles from "../Views/AppRoles";
 import AppUsers from "../Views/AppUsers";
 import EditRole from "../Views/EditRole";
+import UserDetails from "../Views/UserDetails";
 
 const tabs = [
     { name: 'Application Information', id: 1, path: '' },
@@ -60,6 +61,7 @@ const ApplicationEdit = () => {
                 <Route path="users/*" element={<AppUsers />} >
                     <Route path="addUser/*" />
                 </Route>
+                <Route path="users/userDetails/*" element={<UserDetails />} />
                 <Route path="users/userDetails/*" element={<AppUsers />} />
             </Routes>
         </>

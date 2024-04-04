@@ -1,5 +1,5 @@
 import React from 'react';
-import LanguageSelector from './../../Components/LanguageSelector'
+import LanguageSelector from '@components/LanguageSelector'
 import {  useTranslation } from "react-i18next";
 const AllProducts = () => {
   const { t } = useTranslation();

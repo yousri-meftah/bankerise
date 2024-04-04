@@ -6,7 +6,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
 import PrimaryButton from "@components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import AddUser from "../Views/AddUser";
+import AddUser from "./AddUser";
 import Pagination from "@components/Pagination";
 import { Users } from '@utils/constants'
 const statuses = { Active: 'text-green-400 bg-green-400/10', Inactive: 'text-rose-400 bg-rose-400/10' }
@@ -33,9 +33,9 @@ export default function UsersTable() {
   return (
     <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10">
       {/* CONFIRMATION MODAL FOR DELETION OF USER */}
-      {IsDeletionopen && <ConfirmationModal onClose={() => setIsDeletionOpen(false)} msg={"User has been Deleted Successfully"} title={"Delete User"} desc={"Are you sure you want to delete this User?"} />}
+      <ConfirmationModal open={IsDeletionopen} setOpen={() => setIsDeletionOpen(false)} msg={"User has been Deleted Successfully"} title={"Delete User"} desc={"Are you sure you want to delete this User?"} />
       {/* CONFIRMATION MODAL FOR DISABLING A USER */}
-      {isConfirmationModalOpen && <ConfirmationForDisableModal onClose={handleCloseConfirmationModal} msg={"User has been Disabled Successfully"}/>}
+      <ConfirmationForDisableModal open={isConfirmationModalOpen} onClose={handleCloseConfirmationModal} msg={"User has been Disabled Successfully"} />
       <div className="flex justify-between">
         <h2 className="px-4 text-base font-semibold leading-7 text-[--txt] sm:px-6 lg:px-8" >Users</h2>
         <div className="flex gap-4 mr-4" >
@@ -137,9 +137,9 @@ export default function UsersTable() {
               </td>
               <td className="hidden py-4 pl-6 pr-4 sm:table-cell sm:pr-8 ">
                 <div className="flex gap-x-3">
-                  <a href="#" className="text-[--indigoText] hover:text-indigo-300">
+                  <Link to={"userDetails"} className="text-[--indigoText] hover:text-indigo-300">
                     Details
-                  </a>
+                  </Link>
 
 
                   {/* DISABLE USER BUTTON */}

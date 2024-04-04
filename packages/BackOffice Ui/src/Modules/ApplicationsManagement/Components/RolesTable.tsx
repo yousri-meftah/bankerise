@@ -84,7 +84,7 @@ const RolesTable = () => {
 
 
                                     {/* ROLE DELETION MODAL */}
-                                    {open && <ConfirmationModal onClose={() => setOpen(false)} title={"Delete Role"} desc={"Are you sure you want to delete this role?"} msg={'Role has been Deleted Successfully'} />}
+                                    <ConfirmationModal open={open} setOpen={() => setOpen(false)} title={"Delete Role"} desc={"Are you sure you want to delete this role?"} msg={'Role has been Deleted Successfully'} />
                                 </div>
                             </div>
                         </div>

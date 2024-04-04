@@ -21,7 +21,7 @@ export default function AddUser({ open, setOpen }) {
                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
 
-                <div className="fixed inset-0 overflow-hidden">
+                <div className="fixed inset-0 overflow-hidden ">
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                             <Transition.Child
@@ -33,11 +33,11 @@ export default function AddUser({ open, setOpen }) {
                                 leaveFrom="translate-x-0"
                                 leaveTo="translate-x-full"
                             >
-                                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                                <Dialog.Panel className="pointer-events-auto w-screen max-w-md ">
+                                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl rounded-xl">
                                         <div className="px-4 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-base font-semibold leading-6 text-gray-900 border-b border-black">
+                                                <Dialog.Title className=" leading-6 text-lg font-bold bg-gradient-to-r from-[#08203e] to-[#557c93] bg-clip-text text-transparent border-b border-black">
                                                     Add User
                                                 </Dialog.Title>
                                                 <div className="ml-3 flex h-7 items-center">

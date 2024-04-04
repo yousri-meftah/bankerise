@@ -3,17 +3,11 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { toast } from 'react-toastify';
 
-export default function ConfirmationForDisableModal({ onClose, msg }) {
-    const [open, setOpen] = useState(true)
-
-    const handleClose = () => {
-        setOpen(false);
-        onClose(); // Notify the parent component that the modal is closed
-    };
+export default function ConfirmationForDisableModal({open, onClose, msg }) {
 
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={handleClose}>
+            <Dialog as="div" className="relative z-10" onClose={onClose}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -42,7 +36,7 @@ export default function ConfirmationForDisableModal({ onClose, msg }) {
                                     <button
                                         type="button"
                                         className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                        onClick={handleClose}
+                                        onClick={onClose}
                                     >
                                         <span className="sr-only">Close</span>
                                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -76,7 +70,7 @@ export default function ConfirmationForDisableModal({ onClose, msg }) {
                                         <button
                                             type="button"
                                             className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                            onClick={handleClose}
+                                            onClick={onClose}
                                         >
                                             Block
                                         </button>
@@ -84,7 +78,7 @@ export default function ConfirmationForDisableModal({ onClose, msg }) {
                                     <button
                                         type="button"
                                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                        onClick={handleClose}
+                                        onClick={onClose}
                                     >
                                         Cancel
                                     </button>

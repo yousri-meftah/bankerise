@@ -1,5 +1,5 @@
 import { logo, logoxs } from '../../public/Images/index'
-import { en_flag,fr_flag } from '../../public/Images/index'
+import { en_flag, fr_flag } from '../../public/Images/index'
 import { MdOutlineDashboard } from "react-icons/md";
 import { LuFileStack } from "react-icons/lu";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -11,20 +11,32 @@ import { TbSettingsSearch } from "react-icons/tb";
 import { AiOutlineAudit } from "react-icons/ai";
 import { SiGoogleforms } from "react-icons/si";
 import { BiSolidBookContent } from "react-icons/bi";
+import { TiSortAlphabetically } from "react-icons/ti";
 import { FaProjectDiagram } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
+import { MdOutlineSmartphone } from "react-icons/md";
+import { VscServerProcess } from "react-icons/vsc";
 export const Modules = [
-    { name: "Dashboard", link: "dashboard", icon: MdOutlineDashboard },
-    { name: "Applications Management", link: "applications-management", icon: LuFileStack },
-    { name: "Configuration Management", link: "configuration-management", icon: IoSettingsSharp },
-    { name: "Message Center", link: "message-center", icon: AiFillMessage },
-    { name: "Users Management", link: "users-management", icon: FaUsers },
-    { name: "Jobs Management", link: "jobs-management", icon: PiSuitcaseSimpleDuotone },
-    { name: "Cache Maintenance", link: "cache-maintenance", icon: MdOutlineCached },
-    { name: "Lookups Configuration", link: "lookups-configuration", icon: TbSettingsSearch },
-    { name: "Audit", link: "audit", icon: AiOutlineAudit },
-    { name: "Forms Management", link: "forms-management", icon: SiGoogleforms },
-    { name: "Content Management", link: "content-management", icon: BiSolidBookContent },
-    { name: "BPMN Configuration", link: "bpmn-configuration", icon: FaProjectDiagram },
+  { hasSubModules: false, name: "Dashboard", link: "dashboard", icon: MdOutlineDashboard },
+  { hasSubModules: false, name: "Applications Management", link: "applications-management", icon: LuFileStack },
+  {
+    hasSubModules: true, name: "Configuration Management", link: "", icon: IoSettingsSharp,
+    subModules: [
+      { name: "Dictionary Management", link: "configuration-management/dictionary-management", icon: TiSortAlphabetically  },
+      { name: "Process Configuration", link: "configuration-management/process-config", icon: VscServerProcess },
+      { name: "Global Parameters", link: "configuration-management/global-parameters" , icon: IoSettings},
+      { name: "Channels Management", link: "configuration-management/channels-management", icon: MdOutlineSmartphone }
+    ]
+  },
+  { hasSubModules: false, name: "Message Center", link: "message-center", icon: AiFillMessage },
+  { hasSubModules: false, name: "Users Management", link: "users-management", icon: FaUsers },
+  { hasSubModules: false, name: "Jobs Management", link: "jobs-management", icon: PiSuitcaseSimpleDuotone },
+  { hasSubModules: false, name: "Cache Maintenance", link: "cache-maintenance", icon: MdOutlineCached },
+  { hasSubModules: false, name: "Lookups Configuration", link: "lookups-configuration", icon: TbSettingsSearch },
+  { hasSubModules: false, name: "Audit", link: "audit", icon: AiOutlineAudit },
+  { hasSubModules: false, name: "Forms Management", link: "forms-management", icon: SiGoogleforms },
+  { hasSubModules: false, name: "Content Management", link: "content-management", icon: BiSolidBookContent },
+  { hasSubModules: false, name: "BPMN Configuration", link: "bpmn-configuration", icon: FaProjectDiagram },
 ]
 export const permissions = [
   {
@@ -72,7 +84,7 @@ export const permissions = [
     label: 'Users Management',
     description: 'Access Users Management module.',
     subPermissions: [
-      { id: 'create-user', label: 'Create User', description: 'Permission to create users.' ,  },
+      { id: 'create-user', label: 'Create User', description: 'Permission to create users.', },
       { id: 'edit-user', label: 'Edit User', description: 'Permission to edit users.' },
       { id: 'delete-user', label: 'Delete User', description: 'Permission to delete users.' },
     ],
@@ -142,103 +154,103 @@ export const permissions = [
 ];
 
 export const originalRoles = [
-    { name: 'Admin' },
-    { name: 'User' },
-    { name: 'Client' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    { name: 'SUPER Admin' },
-    // More Roles...
+  { name: 'Admin' },
+  { name: 'User' },
+  { name: 'Client' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  { name: 'SUPER Admin' },
+  // More Roles...
 ]
 
 export const Users = [
-  
-    {
-      UserName: 'michaelfoster',
-      Email: 'michaelfoster@example.com',
-      FirstName: 'Michael',
-      LastName: 'Foster',
-      Status: 'Active',
-      Role: 'Admin',
-      CreationDate: '2023-01-23T11:00',
-    },
-    {
-      UserName: 'lindsaywalton',
-      Email: 'lindsaywalton@example.com',
-      FirstName: 'Lindsay',
-      LastName: 'Walton',
-      Status: 'Active',
-      Role: 'User',
-      CreationDate: '2023-01-23T09:00',
-    },
-    {
-      UserName: 'courtneyhenry',
-      Email: 'courtneyhenry@example.com',
-      FirstName: 'Courtney',
-      LastName: 'Henry',
-      Status: 'Inactive',
-      Role: 'User',
-      CreationDate: '2023-01-23T00:00',
-    },
-    {
-      UserName: 'courtneyhenry',
-      Email: 'courtneyhenry@example.com',
-      FirstName: 'Courtney',
-      LastName: 'Henry',
-      Status: 'Active',
-      Role: 'Admin',
-      CreationDate: '2023-01-21T13:00',
-    },
-    {
-      UserName: 'michaelfoster',
-      Email: 'michaelfoster@example.com',
-      FirstName: 'Michael',
-      LastName: 'Foster',
-      Status: 'Active',
-      Role: 'User',
-      CreationDate: '2023-01-18T12:34',
-    },
-    {
-      UserName: 'courtneyhenry',
-      Email: 'courtneyhenry@example.com',
-      FirstName: 'Courtney',
-      LastName: 'Henry',
-      Status: 'Active',
-      Role: 'Admin',
-      CreationDate: '2023-01-16T15:54',
-    },
-    {
-      UserName: 'michaelfoster',
-      Email: 'michaelfoster@example.com',
-      FirstName: 'Michael',
-      LastName: 'Foster',
-      Status: 'Active',
-      Role: 'User',
-      CreationDate: '2023-01-16T11:31',
-    },
-    {
-      UserName: 'whitneyfrancis',
-      Email: 'whitneyfrancis@example.com',
-      FirstName: 'Whitney',
-      LastName: 'Francis',
-      Status: 'Active',
-      Role: 'User',
-      CreationDate: '2023-01-09T08:45',
-    },
-    // Add more items as needed...
-  ];
+
+  {
+    UserName: 'michaelfoster',
+    Email: 'michaelfoster@example.com',
+    FirstName: 'Michael',
+    LastName: 'Foster',
+    Status: 'Active',
+    Role: 'Admin',
+    CreationDate: '2023-01-23T11:00',
+  },
+  {
+    UserName: 'lindsaywalton',
+    Email: 'lindsaywalton@example.com',
+    FirstName: 'Lindsay',
+    LastName: 'Walton',
+    Status: 'Active',
+    Role: 'User',
+    CreationDate: '2023-01-23T09:00',
+  },
+  {
+    UserName: 'courtneyhenry',
+    Email: 'courtneyhenry@example.com',
+    FirstName: 'Courtney',
+    LastName: 'Henry',
+    Status: 'Inactive',
+    Role: 'User',
+    CreationDate: '2023-01-23T00:00',
+  },
+  {
+    UserName: 'courtneyhenry',
+    Email: 'courtneyhenry@example.com',
+    FirstName: 'Courtney',
+    LastName: 'Henry',
+    Status: 'Active',
+    Role: 'Admin',
+    CreationDate: '2023-01-21T13:00',
+  },
+  {
+    UserName: 'michaelfoster',
+    Email: 'michaelfoster@example.com',
+    FirstName: 'Michael',
+    LastName: 'Foster',
+    Status: 'Active',
+    Role: 'User',
+    CreationDate: '2023-01-18T12:34',
+  },
+  {
+    UserName: 'courtneyhenry',
+    Email: 'courtneyhenry@example.com',
+    FirstName: 'Courtney',
+    LastName: 'Henry',
+    Status: 'Active',
+    Role: 'Admin',
+    CreationDate: '2023-01-16T15:54',
+  },
+  {
+    UserName: 'michaelfoster',
+    Email: 'michaelfoster@example.com',
+    FirstName: 'Michael',
+    LastName: 'Foster',
+    Status: 'Active',
+    Role: 'User',
+    CreationDate: '2023-01-16T11:31',
+  },
+  {
+    UserName: 'whitneyfrancis',
+    Email: 'whitneyfrancis@example.com',
+    FirstName: 'Whitney',
+    LastName: 'Francis',
+    Status: 'Active',
+    Role: 'User',
+    CreationDate: '2023-01-09T08:45',
+  },
+  // Add more items as needed...
+];
 
 export const MainColor = "#0d0f1d"
 
 export const Logos = { logo, logoxs }
 export const Flags = {
-    en_flag,
-    fr_flag
+  en_flag,
+  fr_flag
 }

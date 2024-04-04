@@ -11,6 +11,10 @@ import Audit from "../Modules/Audit/Audit";
 import FormsManagement from "../Modules/FormsManagement/FormsManagement";
 import ContentManagement from "../Modules/ContentManagement/ContentManagement";
 import BPMNConfiguration from "../Modules/BPMNConfiguration/BPMNConfiguration";
+import Dictionary from "../Modules/ConfigurationManagement/Views/Dictionary";
+import ProcessConfig from "../Modules/ConfigurationManagement/Views/ProcessConfig";
+import GlobalParameters from "../Modules/ConfigurationManagement/Views/GlobalParameters";
+import ChannelsManagement from "../Modules/ConfigurationManagement/Views/ChannelsManagement";
 const Routers = () => {
   return (
 
@@ -18,7 +22,11 @@ const Routers = () => {
 
       <Route index path="dashboard" element={<Dashboard />} />
       <Route path="applications-management/*" element={<ApplicationsManagement />} />
-      <Route path="configuration-management" element={<ConfigurationManagement />} />
+      <Route path="configuration-management/*" element={<ConfigurationManagement />} />
+      <Route path="configuration-management/dictionary-management/*" element={<Dictionary />} />
+      <Route path="configuration-management/process-config/*" element={<ProcessConfig />} />
+      <Route path="configuration-management/global-parameters/*" element={<GlobalParameters />} />
+      <Route path="configuration-management/channels-management/*" element={<ChannelsManagement />} />
       <Route path="message-center" element={<MessageCenter />} />
       <Route path="users-management" element={<UsersManagement />} />
       <Route path="jobs-management" element={<JobsManagement />} />

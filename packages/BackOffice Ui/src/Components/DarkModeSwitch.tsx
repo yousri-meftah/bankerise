@@ -12,8 +12,9 @@ export default function SwitchButton() {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') :  'dark';
+    const storedTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark';
     document.querySelector('body')?.setAttribute('data-theme', storedTheme as string);
+    localStorage.getItem('theme') == 'light' ? setEnabled(false) : null
     if (storedTheme) {
       setTheme(storedTheme);
     }
