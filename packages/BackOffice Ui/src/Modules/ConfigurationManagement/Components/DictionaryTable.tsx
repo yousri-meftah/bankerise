@@ -1,7 +1,5 @@
 import { motion } from "framer-motion"
-import { IoLockOpen } from "react-icons/io5";
-import { HiOutlineTrash } from "react-icons/hi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import Pagination from "@components/Pagination";
 import { useState } from "react";

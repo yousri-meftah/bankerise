@@ -25,7 +25,7 @@ const Background = () => {
         </svg>
         {/* NEON COLORS */}
         <div
-          className="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
+          className="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48  xl:left-[calc(50%-24rem)]"
           aria-hidden="true"
         >
           <div
@@ -36,17 +36,7 @@ const Background = () => {
             }}
           />
         </div>
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-
-          <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-
-            </div>
-          </div>
-        </div>
       </div>
-
-
     </div>
   )
 }

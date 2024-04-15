@@ -1,75 +1,67 @@
-import { PaperClipIcon } from '@heroicons/react/20/solid'
+import SwitchButton from '@components/Switch';
+import { useState } from 'react';
+import { CiUser } from "react-icons/ci";
+import UserInfo from '../Components/UserInfo';
+import UserDevices from '../Components/UserDevices';
+import UserDocuments from '../Components/UserDocuments';
+
+const UserSections = [
+  { label: 'Profile', id: 1 },
+  { label: 'Devices', id: 2 },
+  { label: 'Documents', id: 3 },
+]
 
 export default function UserDetails() {
+  const [selectedUserSection, setSelectedUserSection] = useState(1)
+  const renderUserSection = () => {
+    switch (selectedUserSection) {
+      case 1:
+        return <UserInfo />;
+      case 2:
+        return <UserDevices />;
+      case 3:
+        return <UserDocuments />;
+      default:
+        return null;
+    }
+  };
   return (
-    <div className='bg-[--tableBg]  backdrop-blur-md backdrop:filter py-8 my-10 px-14  '>
-      <div className="px-4 sm:px-0">
-        <h3 className="text-base font-semibold leading-7 text-[--txt]">Applicant Information</h3>
-        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
+
+    <div className='flex items-center'>
+      {/* PROFILE NAV SECTION */}
+      <div className='bg-gray-300/60 h-[750px] min-w-72 mt-9 ml-9 rounded-xl backdrop-blur-md backdrop:filter shadow-md sticky top-40'>
+        <div className='rounded-full border size-fit size mx-auto mt-9 border-black'>
+          <CiUser size={80} className='m-4' />
+        </div>
+        <div className='flex justify-center pt-6 font-semibold'>
+          <span  >
+            Laith Ferjeoui
+          </span>
+        </div>
+        <div className='flex justify-center gap-3 mt-4'>
+          <span>
+            Blocked:
+          </span>
+          <SwitchButton bg={true} />
+        </div>
+        <div className='w-full mt-16'>
+          {UserSections.map((section) => (
+            <div
+              key={section.id}
+              className={`flex justify-center mx-7 h-8 pt-1 rounded-md mb-5 hover:cursor-pointer duration-300 ${section.id === selectedUserSection ? 'bg-gray-700' : 'bg-gray-900'
+                }`}
+              onClick={() => setSelectedUserSection(section.id)}
+            >
+              <span className='text-gray-300'>{section.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="mt-6">
-        <dl className="grid grid-cols-1 sm:grid-cols-2">
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-1 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">Full name</dt>
-            <dd className="mt-1 text-sm leading-6 text-[--textSeconday] sm:mt-2">Margot Foster</dd>
-          </div>
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-1 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">Application for</dt>
-            <dd className="mt-1 text-sm leading-6 text-[--textSeconday] sm:mt-2">Backend Developer</dd>
-          </div>
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-1 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">Email address</dt>
-            <dd className="mt-1 text-sm leading-6 text-[--textSeconday] sm:mt-2">margotfoster@example.com</dd>
-          </div>
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-1 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">Salary expectation</dt>
-            <dd className="mt-1 text-sm leading-6 text-[--textSeconday] sm:mt-2">$120,000</dd>
-          </div>
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-2 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">About</dt>
-            <dd className="mt-1 text-sm leading-6 text-[--textSeconday] sm:mt-2">
-              Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-              qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
-              pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-            </dd>
-          </div>
-          <div className="border-t border-[--border-color] px-4 py-6 sm:col-span-2 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-[--txt]">Attachments</dt>
-            <dd className="mt-2 text-sm text-[--txt]">
-              <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">resume_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">2.4mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">coverletter_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">4.5mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </dd>
-          </div>
-        </dl>
-      </div>
+      
+      {/* USER TABULATION RENDERING FUNCTION */}
+      {renderUserSection()}
+
+    
     </div>
   )
 }

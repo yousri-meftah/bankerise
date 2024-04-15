@@ -29,7 +29,9 @@
     --disableHover: rgb(75 85 99 / 0.1);
     --deleteButton: rgb(220 38 38 / 0.2);
     --indigoText:rgb(129 140 248);
-    
+    --filter: rgb(255 255 255 / 0.4);
+    --Button2: rgb(17 24 39 );
+    --HoverButton2: rgb(17 24 39 / 0.5 );
   }
 
   [data-theme='light'] {
@@ -53,7 +55,9 @@
     --disableHover: rgb(75 85 99 / 0.4);
     --deleteButton: rgb(220 38 38 / 0.9);
     --indigoText:rgb(67 56 202);
-   
+    --filter: rgb(17 24 39 / 0.4);
+    --Button2: rgb(31 41 55 / 0.8);
+    --HoverButton2: rgb(75 85 99 / 0.4);
   }
 }
 
