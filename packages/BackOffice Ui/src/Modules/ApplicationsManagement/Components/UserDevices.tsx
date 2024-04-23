@@ -1,8 +1,11 @@
-import { FaEye } from "react-icons/fa";
+
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom";
 import PrimaryButton from "@components/Button";
 import { toast } from "react-toastify";
+import { MdBlock } from "react-icons/md";
+import ConfirmationForDisableModal from "./ConfirmationForDisableModal";
+import { useState } from "react";
 const Devices = [
   { id: 1, model: "iPhone 12 Pro", platform: "iOS", lastConnection: "2024-04-11T12:34:56Z" },
   { id: 2, model: "Samsung Galaxy S21", platform: "Android", lastConnection: "2024-04-11T12:34:56Z" },
@@ -12,9 +15,18 @@ const Devices = [
 ];
 
 const UserDevices = () => {
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const handleOpenConfirmationModal = () => {
+    setIsConfirmationModalOpen(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setIsConfirmationModalOpen(false);
+  };
   return (
     <>
       <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10 w-full mx-8">
+      <ConfirmationForDisableModal open={isConfirmationModalOpen} onClose={handleCloseConfirmationModal} msg={"Device has been Blocked"} title={"Reason for Blocking this device"} />
         {/* TABLE ITERATION LOGIC */}
         <table className="mt-6 w-full whitespace-nowrap text-left">
           <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
@@ -63,9 +75,9 @@ const UserDevices = () => {
 
                 <td className="hidden py-4 pl-6 pr-4 sm:table-cell sm:pr-8 ">
                   <div className="flex gap-x-3">
-                    <Link to={"userDetails"} className="text-[--indigoText] hover:text-indigo-300">
-                      <FaEye size={19} />
-                    </Link>
+                    <div onClick={handleOpenConfirmationModal} className="text-red-500 hover:text-red-700 hover:cursor-pointer">
+                    <MdBlock size={20} />
+                    </div>
 
                   </div>
                 </td>

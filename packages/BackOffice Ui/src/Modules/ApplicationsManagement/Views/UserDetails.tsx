@@ -27,9 +27,9 @@ export default function UserDetails() {
   };
   return (
 
-    <div className='flex items-center'>
+    <div className='flex items-center '>
       {/* PROFILE NAV SECTION */}
-      <div className='bg-gray-300/60 h-[750px] min-w-72 mt-9 ml-9 rounded-xl backdrop-blur-md backdrop:filter shadow-md sticky top-40'>
+      <div className='bg-gray-300/60 h-[750px] min-w-72 mt-9 ml-9 rounded-xl  backdrop:filter shadow-md sticky top-40'>
         <div className='rounded-full border size-fit size mx-auto mt-9 border-black'>
           <CiUser size={80} className='m-4' />
         </div>
@@ -59,7 +59,10 @@ export default function UserDetails() {
       </div>
       
       {/* USER TABULATION RENDERING FUNCTION */}
-      {renderUserSection()}
+     
+        {renderUserSection()}
+      
+      
 
     
     </div>

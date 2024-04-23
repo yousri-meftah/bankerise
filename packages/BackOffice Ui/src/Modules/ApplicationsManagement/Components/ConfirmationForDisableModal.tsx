@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { toast } from 'react-toastify';
 
-export default function ConfirmationForDisableModal({open, onClose, msg }) {
+export default function ConfirmationForDisableModal({ open, onClose, msg, title }) {
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -47,9 +47,12 @@ export default function ConfirmationForDisableModal({open, onClose, msg }) {
                                         <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                                     </div>
                                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                        <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                                        {title ? <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                                            {title}
+                                        </Dialog.Title> : <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
                                             Reason for Blocking this User
-                                        </Dialog.Title>
+                                        </Dialog.Title>}
+
                                         <div className="col-span-full">
 
                                             <div className="mt-8">

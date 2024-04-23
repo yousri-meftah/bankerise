@@ -1,7 +1,6 @@
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Dashboard from "../Modules/Dashboard/Dashboard";
 import ApplicationsManagement from "../Modules/ApplicationsManagement/ApplicationsManagement";
-import ConfigurationManagement from "../Modules/ConfigurationManagement/ConfigurationManagement";
 import MessageCenter from "../Modules/MessageCenter/MessageCenter";
 import UsersManagement from "../Modules/UsersManagement/UsersManagement";
 import JobsManagement from "../Modules/JobsManagement/JobsManagement";
@@ -22,7 +21,7 @@ const Routers = () => {
 
       <Route index path="dashboard" element={<Dashboard />} />
       <Route path="applications-management/*" element={<ApplicationsManagement />} />
-      <Route path="configuration-management/*" element={<ConfigurationManagement />} />
+      <Route path="configuration-management/*"  />
       <Route path="configuration-management/dictionary-management/*" element={<Dictionary />} />
       <Route path="configuration-management/process-config/*" element={<ProcessConfig />} />
       <Route path="configuration-management/global-parameters/*" element={<GlobalParameters />} />
