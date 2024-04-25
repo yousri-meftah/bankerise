@@ -1,13 +1,17 @@
 import PrimaryButton from "@components/Button";
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import { BsFilter } from "react-icons/bs";
-import { toast } from "react-toastify";
+import SegmentsTable from "../Components/SegmentsTable";
+import { useState } from "react";
+import AddSegment from "../Components/AddSegmentSlideOver";
 
 const words = `Segments
 `;
 const AppSegments = () => {
+  const [addSegement,  setAddSegment] = useState(false)
   return (
     <div className="space-y-12 mt-10 ">
+      <AddSegment open={addSegement} setOpen={()=>setAddSegment(false)}/>
       <span className="flex justify-center my-7 "><TextGenerateEffect words={words} /></span>
       <div className="w-full flex justify-center items-center gap-4 relative">
         <span className="inline-flex items-center rounded-full bg-green-100 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
@@ -28,11 +32,13 @@ const AppSegments = () => {
           <BsFilter size={20} />
           Filter
         </button>
-            <PrimaryButton text={"Add"} onClick={() => toast.success("Added Successfully")} />
+            <PrimaryButton text={"Add"} onClick={()=>setAddSegment(true)} />
           </div>
           
         </div>
       </div>
+
+      <SegmentsTable/>
     </div>
 
   )

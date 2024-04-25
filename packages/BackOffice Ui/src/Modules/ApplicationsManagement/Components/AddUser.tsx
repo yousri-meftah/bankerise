@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import PrimaryButton from '@components/Button'
 import { toast } from 'react-toastify'
 
-export default function AddUser({ open, setOpen }) {
+export default function AddUser({ open, setOpen } ) {
 
     return (
         <Transition.Root show={open} as={Fragment}>
