@@ -3,6 +3,7 @@ import Pagination from "@components/Pagination";
 import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { IoIosSettings } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const segments = [
     {
@@ -56,7 +57,8 @@ const SegmentsTable = () => {
     const [records, setRecords] = useState(segments)
     
     return (
-        <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10">
+        
+        <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10 ">
             
             {/* TABLE ITERATION LOGIC */}
             <table className="mt-6 w-full whitespace-nowrap text-left">
@@ -97,6 +99,7 @@ const SegmentsTable = () => {
                                 <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                                     <div className="flex gap-x-3">
                                         {item.actions.includes("Configure") && (
+                                            <Link to={"params"}>
                                             <button
                                                 type="button"
                                                 className="rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300"
@@ -104,6 +107,8 @@ const SegmentsTable = () => {
                                             >
                                                 <IoIosSettings size={19} color="white" />
                                             </button>
+                                            </Link>
+                                            
                                         )}
                                         {item.actions.includes("Delete") && (
                                             <button
@@ -143,13 +148,15 @@ const SegmentsTable = () => {
                                                 <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                                                     <div className="flex gap-x-3">
                                                         {subItem.actions.includes("Configure") && (
+                                                            <Link to={"params"}>
                                                             <button
                                                                 type="button"
                                                                 className="rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300"
-
+                
                                                             >
                                                                 <IoIosSettings size={19} color="white" />
                                                             </button>
+                                                            </Link>
                                                         )}
                                                         {subItem.actions.includes("Delete") && (
                                                             <button
@@ -189,20 +196,21 @@ const SegmentsTable = () => {
                                                             <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                                                                 <div className="flex gap-x-3">
                                                                     {subItem2.actions.includes("Configure") && (
+                                                                        <Link to={"params"}>
                                                                         <button
                                                                             type="button"
                                                                             className="rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300"
-
                                                                         >
                                                                             <IoIosSettings size={19} color="white" />
                                                                         </button>
+                                                                        </Link>
                                                                     )}
                                                                     {subItem2.actions.includes("Delete") && (
                                                                         <button
                                                                             type="button"
                                                                             className="rounded bg-[--deleteButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/50 duration-300"
                                                                         >
-                                                                            <HiOutlineTrash size={19} color="white" o />
+                                                                            <HiOutlineTrash size={19} color="white"  />
                                                                         </button>
                                                                     )}
 

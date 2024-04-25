@@ -9,6 +9,7 @@ import UserDetails from "../Views/UserDetails";
 import AppSegments from "../Views/AppSegments";
 import { Context } from "../utils/context";
 import AppMobileVersions from "../Views/AppMobileVersions";
+import ConfigureSegmentsTable from "./ConfigureSegmentsTable";
 
 
 const tabs = [
@@ -68,6 +69,7 @@ const ApplicationEdit = () => {
                 <Route index element={<AppInformations />} />
                 <Route path="features/*" element={<AppFeatures />} />
                 <Route path="segments/*" element={<AppSegments />} />
+                <Route path="segments/params/*" element={<ConfigureSegmentsTable />} />
                 <Route path="mobile-versions/*" element={<AppMobileVersions />} />
                 <Route path="roles/*" element={<AppRoles />} />
                 <Route path="roles/editRole/*" element={<EditRole />} />
