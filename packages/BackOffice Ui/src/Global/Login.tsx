@@ -3,6 +3,10 @@ import { LampContainer } from "../Components/Lamp";
 import { Logos } from '../utils/constants'
 import { Link } from "react-router-dom";
 const Login = () => {
+    const redirectToAnotherHost = () => {
+        // Replace 'XXXX' with the URL of the other host
+        window.location.href = '/start'; // Example URL
+    };
     return (
         <LampContainer>
             <motion.div
@@ -16,15 +20,16 @@ const Login = () => {
                 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
             >
                 <img src={Logos.logo} alt="Bankerise's Logo" className='size-80' />
-                <Link  to="/private/dashboard">
+                <Link  to="/dashboard">
                 <button
-                    type="submit"
+                    onClick={redirectToAnotherHost}
+                    type="button" // Specify button type as 'button' to prevent form submission
                     className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
                     Sign in
                 </button>
                 </Link>
-                
+
             </motion.div>
         </LampContainer>
     )
