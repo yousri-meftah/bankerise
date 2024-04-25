@@ -32,6 +32,9 @@
     --filter: rgb(255 255 255 / 0.4);
     --Button2: rgb(17 24 39 );
     --HoverButton2: rgb(17 24 39 / 0.5 );
+    --breadcrumbs: rgb(209 213 219);
+    --breadcrumbHover: rgb(243 244 246) ;
+    --accordionHeader: rgb(209 213 219);
   }
 
   [data-theme='light'] {
@@ -58,6 +61,9 @@
     --filter: rgb(17 24 39 / 0.4);
     --Button2: rgb(31 41 55 / 0.8);
     --HoverButton2: rgb(75 85 99 / 0.4);
+    --breadcrumbs: rgb(17 24 39 );
+    --breadcrumbHover: rgb(75 85 99) ;
+    --accordionHeader: rgb(59 130 246);
   }
 }
 

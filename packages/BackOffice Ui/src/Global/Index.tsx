@@ -1,3 +1,4 @@
+import Breadcrumb from '@components/Breadcrumb'
 import Background from '../Components/Background'
 import PrivateRoutes from '../Components/PrivateRoutes'
 import Topbar from './Topbar'
@@ -7,6 +8,8 @@ const Index = () => {
     <div className='flex flex-col w-full bg-[--secondary] overflow-x-hidden transition duration-150 ease-out' >
       <Topbar />
       <div className='relative isolate'>
+      <Breadcrumb/>
+        {/* MODULES ROUTES */}
         <PrivateRoutes />
         <Background />
       </div>

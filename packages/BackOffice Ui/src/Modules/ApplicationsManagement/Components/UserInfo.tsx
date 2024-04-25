@@ -6,7 +6,7 @@ const UserInfo = () => {
   return (
     <>
       {/* INFO SECTION */}
-      <div className='bg-[--tableBg]  backdrop-blur-md backdrop:filter  my-10 px-14 w-full mx-10'>
+      <div className='bg-[--tableBg] backdrop-blur-lg backdrop:filter my-10 px-14 w-full mx-10'>
         <div className="px-4 pb-2 sm:px-0 border-b border-[--border-color]">
           <h3 className="text-base font-semibold leading-7 text-[--txt] flex justify-center">Customer Information</h3>
         </div>

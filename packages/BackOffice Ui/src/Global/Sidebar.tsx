@@ -78,7 +78,9 @@ const Sidebarr = () => {
 
                   // MODULE WITH SUBMODULE LOGIC HERE
                     : (<div key={i} className={`flex group items-center text-sm gap-3.5 font-medium p-2 rounded-md my-1 duration-200 ${selectedModule === module ? 'bg-gray-600' : 'hover:bg-gray-700 hover:cursor-pointer'}`}
-                      onClick={() => setExpanded(!expanded)}
+                      onClick={() => {setExpanded(!expanded)
+                        setOpen(true)}
+                      }
                     >
                       <div>
                         {React.createElement(module?.icon, { size: '20' })}

@@ -1,6 +1,7 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import { useState } from "react";
 import { BsFilter } from "react-icons/bs";
+import ProcessConfigTable from "../Components/ProcessConfigTable";
 
 const words = `Process Configuration
 `;
@@ -18,9 +19,11 @@ const ProcessConfig = () => {
           <BsFilter size={20} />
           Filter
         </button>
-        </div>
+      </div>
 
-        </div>
+      <ProcessConfigTable />
+      
+    </div>
   )
 }
 

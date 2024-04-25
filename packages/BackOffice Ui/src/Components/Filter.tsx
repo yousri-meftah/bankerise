@@ -3,8 +3,8 @@ import { motion } from "framer-motion"
 const Filter = ({ close }: any) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.7, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.7, y: 20 }}
       transition={{ duration: 0.3 }}
       className="bg-[--filter] max-w-3xl mx-auto rounded-xl relative p-3">

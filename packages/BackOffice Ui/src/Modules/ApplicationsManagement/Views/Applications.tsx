@@ -1,10 +1,11 @@
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import AppCard from "../Components/AppCard"
 import { Button } from "../Components/Moving-border"
 import { Applications, tabs } from "../utils/constants"
 import { motion } from "framer-motion"
 import AddApplicationSlideOver from "../Components/AddApplicationSlideOver"
+import { Context } from "../utils/context"
 const APP_CUSTOMER = "customer"
 const APP_ADMIN = "administration"
 const TYPE_APP = "app"
@@ -12,7 +13,8 @@ const TYPE_GATE = "gateway"
 const Applicationss = () => {
 
   // state for the selected tab 
-  const [selectedTabId, setSelectedTabId] = useState(0)
+  const tabContext = useContext(Context)
+  console.log(tabContext)
   const [IsSlideOverOpen, setIsSlideOverOpen] = useState(false)
   return (
     <>
@@ -28,7 +30,7 @@ const Applicationss = () => {
               id="tabs"
               name="tabs"
               className="block w-full rounded-md border-none bg-white/5 py-2 pl-3 pr-10 text-base text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm"
-              defaultValue={tabs.find((tab) => tab.id == selectedTabId)?.name}
+              defaultValue={tabs.find((tab) => tab.id == tabContext.selectedTabId)?.name}
 
             >
               {tabs.map((tab) => (
@@ -44,7 +46,7 @@ const Applicationss = () => {
               >
                 {tabs.map((tab) => (
                   <li key={tab.name} className="hover:scale-105 duration-300" >
-                    <a href={tab.href} onClick={() => setSelectedTabId(tab.id)} className={tab.id == selectedTabId ? 'text-[--tabColorHover] shadow-xl' : ''}>
+                    <a href={tab.href} onClick={() => tabContext.setSelectedTabId(tab.id)} className={tab.id == tabContext.selectedTabId ? 'text-[--tabColorHover] shadow-xl' : ''}>
                       {tab.name}
                     </a>
                   </li>
@@ -68,7 +70,7 @@ const Applicationss = () => {
       </div>
       <AddApplicationSlideOver open={IsSlideOverOpen} setOpen={setIsSlideOverOpen} />
       {/* APPLICATIONS HERE */}
-      {selectedTabId == 0 ? <>
+      {tabContext.selectedTabId == 0 ? <>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16 mb-9">
 
           {Applications.filter(app => app.service === APP_ADMIN && app.type === TYPE_APP).map((app, index) => (
@@ -110,6 +112,7 @@ const Applicationss = () => {
         </div>
 
       }
+
     </>
   )
 }
