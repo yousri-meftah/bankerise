@@ -6,6 +6,8 @@ const Login = () => {
     const redirectToAnotherHost = () => {
         // Replace 'XXXX' with the URL of the other host
         window.location.href = '/start'; // Example URL
+
+
     };
     return (
         <LampContainer>

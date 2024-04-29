@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+  proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.2.1
+    container_name: oauth2-proxy
+    command: --config /oauth2-proxy.cfg
+    ports:      
+      - 4180:4180
+    environment:
+      OAUTH2_PROXY_COOKIE_SECRET: MTExMTExMTExMTExMTExMQ==
+    networks:
+      - proxy-network
+    volumes:
+      - ./config/oauth2-proxy.cfg:/oauth2-proxy.cfg
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - 9000:80
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx.conf
+    networks:
+      - proxy-network
+    depends_on:
+      - proxy
+
+networks:
+  proxy-network:
+    name: local
+
