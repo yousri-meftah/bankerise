@@ -11,10 +11,7 @@ const Index = () => {
       <Breadcrumb/>
         {/* MODULES ROUTES */}
         <PrivateRoutes />
-
-        {/* BACKGROUND FOR ALL MODULES */}
         <Background />
-
       </div>
     </div>
 

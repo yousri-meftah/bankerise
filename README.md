@@ -6,6 +6,30 @@ Welcome to the Bankerise BackOffice repository! This project is part of my inter
 
 The Bankerise BackOffice is a comprehensive platform that provides a central dashboard for managing and controlling various aspects of the Bankerise platform. It includes features such as Dashboard Access, Applications Management, Configuration Management, Message Center, User Management, Jobs Management, Cache Maintenance, Lookups Configuration, Audit, Forms Management, Content Management, and BPMN Configuration.
 
+# Starting the API Gateway
+
+To launch the API gateway, please follow these steps:
+
+## Start the Gateway:
+
+Run the command:
+
+```bash
+docker-compose up --build -d
+```
+
+## Verify the Services:
+
+```bash
+docker-compose ps
+```
+
+## View Logs (if necessary):
+
+```bash
+docker-compose up
+```
+
 ## Features
 
 - **Dashboard Access:** Users can view a central dashboard that presents key metrics and notifications relevant to their operations.
