@@ -3,24 +3,28 @@ import { motion } from "framer-motion"
 import SharedFilter  from "./SharedFilter"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-const feilds = [
-  {
-    type: 'text',
-    name: 'search',
-    label: 'Search'
-  },
-  {
-    type: 'select',
-    name: 'role',
-    label: 'Role',
-    options: [
-      { value: 'admin', label: 'Admin' },
-      { value: 'agent', label: 'Agent' }
-    ]
-  }
-];
+
+type Option = {
+    value: string | number;
+    label: string;
+};
+
+type FieldProps = {
+    type: 'select' | 'text' | 'date' | 'range' | 'checkbox' | 'radio';
+    name: string;
+    label: string;
+    options?: Option[];
+    min?: number;
+    max?: number;
+};
+
+type SharedFilterProps = {
+  fields: FieldProps[];
+  close: () => void;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Filter = ({ close }: any) => {
+const Filter: React.FC<SharedFilterProps>  = ({ fields,close }) => {
 
   return (
     <motion.div
@@ -30,7 +34,7 @@ const Filter = ({ close }: any) => {
       transition={{ duration: 0.3 }}
       className="bg-[--filter] max-w-3xl mx-auto rounded-xl relative p-3">
       <SharedFilter
-        fields={feilds}
+        fields={fields}
     />
       <button
         type="button"

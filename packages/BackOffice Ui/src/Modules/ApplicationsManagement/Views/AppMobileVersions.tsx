@@ -9,9 +9,9 @@ const AppMobileVersions = () => {
     <div className="space-y-12 mt-10 ">
     <span className="flex justify-center my-7 "><TextGenerateEffect words={words} /></span>
     <div className="mx-auto w-[80%]">
-      <AccordionCustomStyles />  
+      <AccordionCustomStyles />
     </div>
-    
+
     </div>
   )
 }

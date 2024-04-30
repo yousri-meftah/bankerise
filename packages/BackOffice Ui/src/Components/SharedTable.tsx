@@ -37,7 +37,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
           ))}
         </tr>
       </thead>
-      <tbody className="divide-y divide-[--border-Devide]">
+      <tbody className="divide-y divide-[--border-Devide] ">
         {data.map((item, index) => (
           <motion.tr
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -47,8 +47,8 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
           >
             {columns.map((column) => (
               <td key={column.accessor} className={`py-4 pl-4 sm:pl-6 lg:pl-8 `}>
-                <div className="flex items-center gap-x-4">
-                  <div className="truncate text-sm font-medium leading-6 text-[--txt]">{item[column.accessor]}</div>
+                <div className="flex gap-x-3">
+                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item[column.accessor]}</div>
                 </div>
               </td>
             ))}

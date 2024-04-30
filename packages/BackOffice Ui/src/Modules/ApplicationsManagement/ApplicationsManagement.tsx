@@ -6,7 +6,7 @@ import { Context } from "./utils/context"
 
 
 const ApplicationsManagement = () => {
-  const [selectedTabId, setSelectedTabId] = useState(0)
+  const [selectedTabId, setSelectedTabId] = useState(0);
   return (
     <>
       <Context.Provider  value={{selectedTabId, setSelectedTabId}}>

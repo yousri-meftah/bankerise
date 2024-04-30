@@ -5,9 +5,26 @@ import DictionaryTable from "../Components/DictionaryTable";
 import { useState } from "react";
 import AddDictionary from "../Components/AddDictionary";
 import Filter from "@components/Filter";
+const words = `Dictionary Management`;
 
-const words = `Dictionary Management
-`;
+const my_fields = [
+  {
+    type: 'text',
+    name: 'search',
+    label: 'Search'
+  },
+  {
+    type: 'select',
+    name: 'role',
+    label: 'Role',
+    options: [
+      { value: 'admin', label: 'Admin' },
+      { value: 'agent', label: 'Agent' }
+    ]
+  }
+];
+
+
 const Dictionary = () => {
   const [addDictionarySlideOver, setAddDictionarySlideOver] = useState(false);
   const [filter, setFilter] = useState(false)
@@ -25,10 +42,7 @@ const Dictionary = () => {
         </button>
         <PrimaryButton text="Add Dictionary" onClick={() => setAddDictionarySlideOver(true)} />
       </div>
-      {/* FILTER COMPONENT */}
-      {filter? <Filter close={()=>setFilter(false)} /> : null}
-    
-
+      {filter? <Filter fields={my_fields} close={()=>setFilter(false)} /> : null}
       <DictionaryTable />
       <AddDictionary open={addDictionarySlideOver} setOpen={() => setAddDictionarySlideOver(false)} />
     </div>

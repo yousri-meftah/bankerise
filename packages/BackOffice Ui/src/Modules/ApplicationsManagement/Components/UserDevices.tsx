@@ -28,6 +28,7 @@ const UserDevices = () => {
       <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10 w-full mx-8">
       <ConfirmationForDisableModal open={isConfirmationModalOpen} onClose={handleCloseConfirmationModal} msg={"Device has been Blocked"} title={"Reason for Blocking this device"} />
         {/* TABLE ITERATION LOGIC */}
+
         <table className="mt-6 w-full whitespace-nowrap text-left">
           <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
             <tr>
