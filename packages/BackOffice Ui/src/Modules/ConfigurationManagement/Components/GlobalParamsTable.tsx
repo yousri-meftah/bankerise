@@ -8,9 +8,6 @@ const GlobalParams = [
     // Add more entries as needed
 ];
 
-
-
-
 const GlobalParamsTable = () => {
     const [records, setRecords] = useState(GlobalParams)
   return (
