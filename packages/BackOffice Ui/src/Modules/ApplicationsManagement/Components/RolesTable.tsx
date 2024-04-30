@@ -5,7 +5,8 @@ import ConfirmationModal from "./ConfirmationModal";
 import PrimaryButton from "@components/Button";
 import Pagination from "@components/Pagination";
 import { originalRoles } from '@utils/constants'
-import SharedTable from "./SharedTable";
+import SharedTable from "../../../Components/SharedTable";
+import { FaEye } from "react-icons/fa";
 const userColumns = [
     { header: 'Role Name', accessor: 'name' },
 ];
@@ -29,7 +30,7 @@ const RolesTable = () => {
 
     ];
     const link = {
-    label: "edit",
+    label:  <FaEye size={19} />,
     to: "editRole/"
   }
     return (

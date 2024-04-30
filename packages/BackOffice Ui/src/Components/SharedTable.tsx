@@ -14,27 +14,20 @@ interface Action {
   className: string;
 }
 interface Link {
-    label: string;
+    label: JSX.Element;
     to: string;
 }
 interface SharedTableProps {
     columns: Column[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any[];
-    actions: Action[];
-    link: Link;
+    actions?: Action[];
+    link?: Link;
 }
 
 const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}) => {
   return (
     <table className="mt-6 w-full whitespace-nowrap text-left">
-      <colgroup>
-        <col className="w-full sm:w-4/12" />
-        <col className="lg:w-4/12" />
-        <col className="lg:w-2/12" />
-        <col className="lg:w-1/12" />
-        <col className="lg:w-1/12" />
-      </colgroup>
       <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
         <tr>
           {columns.map((column, index) => (
@@ -59,13 +52,15 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
                 </div>
               </td>
             ))}
-             {actions.length > 0 && (
+             {(actions || link) && (
               <td className="py-4 pl-6 pr-4 sm:pr-8">
                 <div className="flex gap-x-3 justify-end">
+                  {link  && (
                     <Link to={link.to} className="text-[--indigoText] hover:text-indigo-300">
-                        {link.label}
+                      {link.label}
                     </Link>
-                  {actions.map((action, index) => (
+                  )}
+                  {actions&&actions.map((action, index) => (
                     <button
                       key={index}
                       onClick={() => action.onClick(item.id)}

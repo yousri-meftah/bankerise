@@ -8,7 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import AddUser from "./AddUser";
 import Pagination from "@components/Pagination";
 import { Users } from '@utils/constants'
-import SharedTable from "./SharedTable";
+import SharedTable from "../../../Components/SharedTable";
+import { FaEye } from "react-icons/fa";
 
 const userColumns = [
     { header: 'UserName', accessor: 'UserName' },
@@ -50,7 +51,7 @@ export default function UsersTable() {
   }
   ];
   const link = {
-    label: "Details",
+    label: <FaEye size={19} />,
     to: "userDetails"
   }
   return (
