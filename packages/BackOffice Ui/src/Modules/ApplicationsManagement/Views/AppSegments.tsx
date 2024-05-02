@@ -4,10 +4,44 @@ import { BsFilter } from "react-icons/bs";
 import SegmentsTable from "../Components/SegmentsTable";
 import { useState } from "react";
 import AddSegment from "../Components/AddSegmentSlideOver";
+import Filter from "@components/Filter";
+const fieldsConfig = [
+  {
+    type: 'select',
+    name: 'status',
+    label: 'Status',
+    options: [
+      { value: 'active', label: 'Active' },
+      { value: 'inactive', label: 'Inactive' },
+      { value: 'pending', label: 'Pending' }
+    ]
+  },
+  {
+    type: 'select',
+    name: 'role',
+    label: 'Role',
+    options: [
+      { value: 'admin', label: 'Admin' },
+      { value: 'user', label: 'User' },
+      { value: 'guest', label: 'Guest' }
+    ]
+  },
+  {
+    type: 'select',
+    name: 'role',
+    label: 'Role',
+    options: [
+      { value: 'admin', label: 'Admin' },
+      { value: 'user', label: 'User' },
+      { value: 'guest', label: 'Guest' }
+    ]
+  },
+]
 
 const words = `Segments
 `;
 const AppSegments = () => {
+  const [filter, setFilter] = useState(false)
   const [addSegement,  setAddSegment] = useState(false)
   return (
     <div className="space-y-12 mt-10 ">
@@ -28,13 +62,15 @@ const AppSegments = () => {
           <button
           type="button"
           className=" rounded-md bg-[--disableButton] px-10 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-3"
+          onClick={()=>setFilter(!filter)}
         >
           <BsFilter size={20} />
           Filter
-        </button>
+      </button>
+            {filter? <Filter fields={fieldsConfig} close={()=>setFilter(false)} /> : null}
             <PrimaryButton text={"Add"} onClick={()=>setAddSegment(true)} />
           </div>
-          
+
         </div>
       </div>
 

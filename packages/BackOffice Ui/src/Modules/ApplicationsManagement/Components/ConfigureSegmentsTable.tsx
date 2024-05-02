@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import Pagination from "@components/Pagination";
 import { useState } from "react";
-import { HiOutlineTrash } from "react-icons/hi";
+
 import ExportButton from "@components/ExportButton";
 import { BsFilter } from "react-icons/bs";
 

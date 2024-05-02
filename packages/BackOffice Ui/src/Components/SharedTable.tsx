@@ -37,7 +37,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
           ))}
         </tr>
       </thead>
-      <tbody className="divide-y divide-[--border-Devide]">
+      <tbody className="divide-y divide-[--border-Devide] ">
         {data.map((item, index) => (
           <motion.tr
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
