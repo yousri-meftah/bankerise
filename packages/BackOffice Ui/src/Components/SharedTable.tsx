@@ -48,13 +48,13 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
             {columns.map((column) => (
               <td key={column.accessor} className={`py-4 pl-4 sm:pl-6 lg:pl-8 `}>
                 <div className="flex items-center gap-x-4">
-                  <div className="truncate text-sm font-medium leading-6 text-[--txt]">{item[column.accessor]}</div>
+                  <div className="truncate text-sm font-sm leading-6 text-[--textSeconday]">{item[column.accessor]}</div>
                 </div>
               </td>
             ))}
              {(actions || link) && (
               <td className="py-4 pl-6 pr-4 sm:pr-8">
-                <div className="flex gap-x-3 justify-end">
+                <div className="flex gap-x-3 justify-end items-center">
                   {link  && (
                     <Link to={link.to} className="text-[--indigoText] hover:text-indigo-300">
                       {link.label}
