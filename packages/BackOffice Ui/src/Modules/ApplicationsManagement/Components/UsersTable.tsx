@@ -1,5 +1,5 @@
 import { IoLockOpen } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmationForDisableModal from "./ConfirmationForDisableModal";
 import { HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
@@ -8,8 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import AddUser from "./AddUser";
 import Pagination from "@components/Pagination";
 import { Users } from '@utils/constants'
-import SharedTable from "../../../Components/SharedTable";
+import SharedTable  from "@components/SharedTable";
 import { FaEye } from "react-icons/fa";
+import ExportButton from "@components/ExportButton";
+
 
 const userColumns = [
     { header: 'UserName', accessor: 'UserName' },
@@ -24,6 +26,7 @@ const userColumns = [
 
 
 export default function UsersTable() {
+
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [records, setRecords] = useState<{ name: string; }[]>([]);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
@@ -65,12 +68,7 @@ export default function UsersTable() {
         <div className="flex gap-4 mr-4" >
           <Link to={"addUser/"}>
             <PrimaryButton text="Add User" onClick={() => setIsSlideOverOpen(true)} /></Link>
-          <button
-            type="button"
-            className=" rounded-md bg-[--disableButton] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-1"
-          >
-            Export
-          </button>
+          <ExportButton/>
         </div>
 
         {/* SLIDE OVER FOR ADDING USER */}

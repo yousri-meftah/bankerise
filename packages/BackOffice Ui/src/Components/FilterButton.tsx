@@ -1,9 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
+
 import { BsFilter } from 'react-icons/bs'
 import Filter from './Filter'
-function FilterButton() {
-    const [filter, setFilter] = useState(false)
+function FilterButton({filter,setFilter}) {
+    
 
   return (
       <>
@@ -17,6 +16,7 @@ function FilterButton() {
         </button>
 
       {filter? <Filter fields={my_fields} close={()=>setFilter(false)} /> : null}
+      
       </>
   )
 }

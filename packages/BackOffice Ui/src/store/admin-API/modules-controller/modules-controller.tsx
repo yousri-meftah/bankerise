@@ -1,18 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { application_controlle } from '../../../constants/store_constants';
+import { modules_controller } from '../../../constants/store_constants';
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const applications_controlle = createApi({
-    reducerPath: application_controlle.name,
+export const modules_controll = createApi({
+    reducerPath: modules_controller.name,
     baseQuery: fetchBaseQuery({
-        baseUrl: application_controlle.API_URL,
+        baseUrl: modules_controller.API_URL,
         prepareHeaders: (headers) => {  
             headers.set(
                 "X-APP-ID"  ,   "back-office"
             );
             headers.set(
-                application_controlle.header.CHANNEL, "WEB"
+                modules_controller.header.CHANNEL, "WEB"
             );
             return headers;
         },

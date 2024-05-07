@@ -14,7 +14,6 @@ const Applicationss = () => {
 
   // state for the selected tab 
   const tabContext = useContext(Context)
-  console.log(tabContext)
   const [IsSlideOverOpen, setIsSlideOverOpen] = useState(false)
   return (
     <>

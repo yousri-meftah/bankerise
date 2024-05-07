@@ -107,11 +107,10 @@ const fieldsConfig = [
 
 //<DynamicTable columns={userColumns} data={roleData} actions={userActions} />
 const AppUsers = () => {
-  const tabContext = useContext(Context)
-  console.log("yousri = ", tabContext)
+  const tabContext = useContext(Context)  
   const [filter, setFilter] = useState(false)
   return (
-    <div className="space-y-12 mt-10 ">
+    <div className="space-y-12 mt-10">
       <span className="flex justify-center my-7 pb-6"><TextGenerateEffect words={words} /></span>
       <button
           type="button"
@@ -122,7 +121,7 @@ const AppUsers = () => {
           Filter
       </button>
       {filter? <Filter fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig} close={()=>setFilter(false)} /> : null}
-      <UsersTable />fieldsConfigCotumer
+      <UsersTable />
     </div>
 
   )
