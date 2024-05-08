@@ -6,14 +6,16 @@ import { Link } from 'react-router-dom';
 interface CardDataStatsProps {
   description: string;
   title: string;
+  id: number;
 }
 const AppCard: React.FC<CardDataStatsProps> = ({
   description,
   title,
+  id,
 }) => {
 
   return (
-    <Link to="edit">
+    <Link to={`edit/${id}`}>
       <div className="rounded-lg border border-stroke py-6 px-7 shadow-default border-[#363a4a] backdrop-filter backdrop-blur-sm bg-[#464a5c]/10 hover:cursor-pointer relative aspect-auto size-full hover:scale-105 duration-300 h-32 xl:h-44 ">
         <EvervaultCard />
         <div className="mt-4 flex items-end justify-between ">

@@ -4,6 +4,7 @@ import { BsFilter } from "react-icons/bs";
 import { useContext, useState } from "react";
 import Filter from "@components/Filter";
 import { Context } from "../utils/context";
+import { useParams } from "react-router-dom";
 //import SharedTable from "../Components/SharedTable";
 const words = `User Management`;
 
@@ -105,11 +106,12 @@ const fieldsConfig = [
 ];
 
 
+
 //<DynamicTable columns={userColumns} data={roleData} actions={userActions} />
 const AppUsers = () => {
   const tabContext = useContext(Context)
-  console.log("yousri = ", tabContext)
   const [filter, setFilter] = useState(false)
+
   return (
     <div className="space-y-12 mt-10 ">
       <span className="flex justify-center my-7 pb-6"><TextGenerateEffect words={words} /></span>
@@ -122,7 +124,7 @@ const AppUsers = () => {
           Filter
       </button>
       {filter? <Filter fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig} close={()=>setFilter(false)} /> : null}
-      <UsersTable />fieldsConfigCotumer
+      <UsersTable />
     </div>
 
   )

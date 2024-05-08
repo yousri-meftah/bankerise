@@ -1,6 +1,6 @@
 //import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./Components/Auth/AuthProvider";
-
+import "react-toastify/dist/ReactToastify.css";
 import { AppRouter } from "./routes"
 
 

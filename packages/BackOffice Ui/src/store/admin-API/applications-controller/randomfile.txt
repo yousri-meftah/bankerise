@@ -1,0 +1,11 @@
+export interface TopLevel {
+    name:              string;
+    value:             string;
+    scopeId:           string;
+    scope:             string;
+    evaluationScope:   EvaluationScope;
+    evaluationScopeId: string;
+}
+
+export interface EvaluationScope {
+}

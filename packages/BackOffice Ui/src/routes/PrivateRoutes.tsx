@@ -4,8 +4,8 @@ import Layout  from '../Global/Layout';
 export const PrivateRoutes = () => {
     return (
         <Routes>
-            <Route path='/*' element={<Layout />} />
-            <Route path='*' element={<Navigate to='/' replace />} />
+            <Route path='/private/*' element={<Layout />} />
+            <Route path='*' element={<Navigate to='/private' replace />} />
         </Routes>
     );
 };

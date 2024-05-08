@@ -7,14 +7,16 @@ import { Context } from "./utils/context"
 
 const ApplicationsManagement = () => {
   const [selectedTabId, setSelectedTabId] = useState(0);
+
   return (
     <>
       <Context.Provider  value={{selectedTabId, setSelectedTabId}}>
-    <Routes>
-      <Route index element={<Applications />}/>
-      <Route path="edit/*" element={<ApplicationEdit/>}></Route>
-    </Routes>
-    </Context.Provider>
+        <Routes>
+          <Route index element={<Applications />}/>
+          <Route path="/edit/:id/*" element={<ApplicationEdit />}>
+          </Route>
+        </Routes>
+      </Context.Provider>
     </>
   )
 }

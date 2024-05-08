@@ -1,8 +1,30 @@
-import React from 'react'
 import { useState } from 'react'
 import { BsFilter } from 'react-icons/bs'
 import Filter from './Filter'
-function FilterButton() {
+
+
+type Option = {
+    value: string | number;
+    label: string;
+};
+
+type FieldProps = {
+    type: 'select' | 'text' | 'date' | 'range' | 'checkbox' | 'radio';
+    name: string;
+    label: string;
+    options?: Option[];
+    min?: number;
+    max?: number;
+};
+
+type SharedFilterProps = {
+  fields: FieldProps[];
+};
+
+
+
+
+const FilterButton: React.FC<SharedFilterProps>  = ({ fields }) => {
     const [filter, setFilter] = useState(false)
 
   return (
@@ -16,7 +38,7 @@ function FilterButton() {
           Filter
         </button>
 
-      {filter? <Filter fields={my_fields} close={()=>setFilter(false)} /> : null}
+      {filter? <Filter fields={fields} close={()=>setFilter(false)} /> : null}
       </>
   )
 }

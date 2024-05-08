@@ -26,7 +26,7 @@ const tabs = [
 const ApplicationEdit = () => {
     const [selectedTabId, setSelectedTabId] = useState(1);
     const tabContext = useContext(Context)
-    console.log(tabContext)
+    //const { id } = useParams();
     return (
         <>
             <div className="sm:hidden">

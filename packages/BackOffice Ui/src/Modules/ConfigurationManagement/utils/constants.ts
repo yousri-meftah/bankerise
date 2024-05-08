@@ -1,7 +1,15 @@
 export const GlobalParams = [
-    { name: "otp_challenge_template", helpText: "The one time password challenge template to use, should be available in the message center", value: "OTP message" },
-    { name: "email_verification_template", helpText: "The email verification template to use, should be available in the message center", value: "3" },
-    { name: "password_reset_template", helpText: "The password reset template to use, should be available in the message center", value: "2" },
+    {
+        name: "otp_challenge_template", helpText: "The one time password challenge template to use, should be available in the message center", value: {
+           value : "OTP message" , type: "text", flag: true
+        }
+    },
+    { name: "email_verification_template", helpText: "The email verification template to use, should be available in the message center", value: {
+           value : "3" , type: "number", flag: true
+        }},
+    { name: "password_reset_template", helpText: "The password reset template to use, should be available in the message center", value: {
+           value : "6" , type: "date", flag: true
+        }},
     // Add more entries as needed
 ];
 export const Dictionary = [

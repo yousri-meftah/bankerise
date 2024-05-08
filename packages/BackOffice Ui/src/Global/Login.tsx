@@ -4,10 +4,7 @@ import { Logos } from '../utils/constants'
 import { Link } from "react-router-dom";
 const Login = () => {
     const redirectToAnotherHost = () => {
-        // Replace 'XXXX' with the URL of the other host
-        window.location.href = '/start'; // Example URL
-
-
+        window.location.href = '/start';
     };
     return (
         <LampContainer>

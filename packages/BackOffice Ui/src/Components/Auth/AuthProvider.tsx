@@ -23,8 +23,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const checkAuthStatus = async () => {
     try {
-        const response = await fetch('/oauth2/auth');
-        console.log(response)
+      const response = await fetch('/oauth2/auth');
+      //const ok = true;
       if (response.ok) {
         // Assuming the API returns a status that can be directly used or mapped
         setStatus('authenticated');

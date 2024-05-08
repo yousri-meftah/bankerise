@@ -2,9 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+function classNames(s1 : string , s2 : string ) {
+  return s1+" "+s2;
+}
+const check = (status: string) => {
+  if (status === 'Active') {
+    return 'text-green-400 bg-green-400/10'
+  }
+  return 'text-rose-400 bg-rose-400/10'
+}
+
 interface Column {
   header: string;
-  accessor: string; // matches keys from the data array
+  accessor: string;
 }
 
 interface Action {
@@ -23,6 +33,7 @@ interface SharedTableProps {
     data: any[];
     actions?: Action[];
     link?: Link;
+
 }
 
 const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}) => {
@@ -48,7 +59,48 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
             {columns.map((column) => (
               <td key={column.accessor} className={`py-4 pl-4 sm:pl-6 lg:pl-8 `}>
                 <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-[--textSeconday]">{item[column.accessor]}</div>
+                  {column.accessor == 'Status' ?
+                    (
+                      <>
+                        <div className="flex items-center justify-end gap-x-2 sm:justify-start">
+                        <div className={classNames(check(item[column.accessor]) , 'flex-none rounded-full p-1')}>
+                          <div className="h-1.5 w-1.5 rounded-full bg-current" />
+                        </div>
+                          <div className="hidden text-[--txt] sm:block">{item[column.accessor]}</div>
+                          </div>
+                      </>
+                  ) : (
+                      <div className="font-mono text-sm leading-6 text-[--textSeconday]">
+                        {
+                          item[column.accessor]["flag"] ? (
+                            item[column.accessor]["type"] === "select" ? (
+                              <select
+                                value={item[column.accessor]["value"]}
+                                className="input-class"
+                              >
+                                {(item[column.accessor]["valueRanges"].length > 0
+                                  ? item[column.accessor]["valueRanges"]
+                                  : [item[column.accessor]["value"]]
+                                ).map((option , index : number) => (
+                                  <option key={index} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select>
+                            ) : (
+                              <input
+                                type={item[column.accessor]["type"]}  // Uses the type specified in the column definition
+                                value={item[column.accessor]["value"]}
+                                className="input-class"
+                              />
+                            )
+                          ) : (
+                            item[column.accessor]
+                          )
+                        }
+                      </div>
+
+                  )}
                 </div>
               </td>
             ))}
