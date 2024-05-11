@@ -92,4 +92,34 @@ export interface Sort {
     unsorted: boolean;
 }
 
+export interface TopLevel {
+    id:                     number;
+    user:                   User;
+    devices:                [];
+    role:                   Role;
+    active:                 boolean;
+    segmentAssignmentLevel: string;
+}
+
+export interface Role {
+    id:                  number;
+    name:                string;
+    applicationId:       number;
+    applicationAudience: string;
+    applicationName:     string;
+    features:            [];
+    composedPermissions: [];
+}
+
+export interface User {
+    id:          number;
+    name:        string;
+    firstName:   string;
+    lastName:    string;
+    email:       string;
+    phoneNumber: string;
+    audience:    string;
+    keycloakId:  string;
+    createdDate: number;
+}
 

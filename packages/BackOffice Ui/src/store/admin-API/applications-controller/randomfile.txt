@@ -1,11 +1,27 @@
-export interface TopLevel {
-    name:              string;
-    value:             string;
-    scopeId:           string;
-    scope:             string;
-    evaluationScope:   EvaluationScope;
-    evaluationScopeId: string;
-}
+{
+    "id": 1,
+    "user": {
+      "id": 1,
+      "name": "bkdev",
+      "firstName": "bkdev",
+      "lastName": "bkdev",
+      "email": "bkdev@yopmail.com",
+      "phoneNumber": "012345678",
+      "audience": "ADMINISTRATION",
+      "keycloakId": "ac84c027-ef1e-459c-bb95-e446581cbde0",
+      "createdDate": 1714992534048
+    },
+    "devices": [],
+    "role": {
+      "id": 1,
+      "name": "admin",
+      "applicationId": 1,
+      "applicationAudience": "ADMINISTRATION",
+      "applicationName": "backoffice",
+      "features": [],
+      "composedPermissions": []
+    },
+    "active": true,
+    "segmentAssignmentLevel": "NONE",
 
-export interface EvaluationScope {
 }

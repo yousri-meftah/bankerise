@@ -20,6 +20,7 @@ interface AppAuthConfigProps {
 }
 
 const AppAuthConfig: React.FC<AppAuthConfigProps> = ({ configItems }) => {
+    if (configItems.length === 0) return null;
     return (
         <div className="flex flex-col mx-6">
             <h2 className="text-lg font-semibold leading-7 text-white pb-6">

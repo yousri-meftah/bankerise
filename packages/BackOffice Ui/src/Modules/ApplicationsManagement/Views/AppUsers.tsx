@@ -1,10 +1,8 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import UsersTable from "../Components/UsersTable";
-import { BsFilter } from "react-icons/bs";
-import { useContext, useState } from "react";
-import Filter from "@components/Filter";
+import { useContext } from "react";
 import { Context } from "../utils/context";
-import { useParams } from "react-router-dom";
+import FilterButton from "@components/FilterButton";
 //import SharedTable from "../Components/SharedTable";
 const words = `User Management`;
 
@@ -110,21 +108,12 @@ const fieldsConfig = [
 //<DynamicTable columns={userColumns} data={roleData} actions={userActions} />
 const AppUsers = () => {
   const tabContext = useContext(Context)
-  const [filter, setFilter] = useState(false)
-
   return (
     <div className="space-y-12 mt-10 ">
       <span className="flex justify-center my-7 pb-6"><TextGenerateEffect words={words} /></span>
-      <button
-          type="button"
-          className=" rounded-md bg-[--disableButton] px-10 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-3"
-          onClick={()=>setFilter(!filter)}
-        >
-          <BsFilter size={20} />
-          Filter
-      </button>
-      {filter? <Filter fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig} close={()=>setFilter(false)} /> : null}
+      <FilterButton fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig}/>
       <UsersTable />
+
     </div>
 
   )

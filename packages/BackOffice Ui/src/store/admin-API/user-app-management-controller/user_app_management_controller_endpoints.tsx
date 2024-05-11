@@ -18,6 +18,14 @@ const applicationEndpoints = user_app_management.injectEndpoints({
       },
 
     }),
+    getuserbyid: builder.query({
+      query: (id: number ) => {
+        return {
+          url: `${user_app_management_controller_endpoints.getuserbyid}/${id}`,
+        };
+      },
+
+    }),
 
     }),
 });
@@ -25,5 +33,6 @@ const applicationEndpoints = user_app_management.injectEndpoints({
 
 export const {
   useGetuserbyapplicationidQuery,
+  useGetuserbyidQuery,
 } = applicationEndpoints;
 

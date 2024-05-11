@@ -5,7 +5,7 @@ import PrimaryButton from "@components/Button";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGetApplicationByIdQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
-import AuthenticationConfiguration from "../Components/authconfigapp";
+import AuthenticationConfiguration from "../Components/Authconfigapp";
 import { attribute } from "../../../store/admin-API/applications-controller/application_controller_schemas";
 const words = `Application Information`;
 

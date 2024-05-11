@@ -4,6 +4,10 @@ import { CiUser } from "react-icons/ci";
 import UserInfo from '../Components/UserInfo';
 import UserDevices from '../Components/UserDevices';
 import UserDocuments from '../Components/UserDocuments';
+import { useParams } from 'react-router-dom';
+import { TopLevel_foruser } from '../../../store/admin-API/user-app-management-controller/user_app_management_controller_schema';
+
+import { useGetuserbyidQuery } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_endpoints";
 
 const UserSections = [
   { label: 'Profile', id: 1 },
@@ -11,7 +15,17 @@ const UserSections = [
   { label: 'Documents', id: 3 },
 ]
 
+function GetApplication(data: [TopLevel_foruser], appid : number) : TopLevel_foruser {
+  const result = data.find((item) => item.role.applicationId === appid);
+  if (result) {
+    return result;
+  }
+  return {} as TopLevel_foruser;
+}
 export default function UserDetails() {
+
+  const {userid , id } = useParams();
+  const { data, isLoading } = useGetuserbyidQuery(Number(userid));
   const [selectedUserSection, setSelectedUserSection] = useState(1)
   const renderUserSection = () => {
     switch (selectedUserSection) {
@@ -25,8 +39,14 @@ export default function UserDetails() {
         return null;
     }
   };
-  return (
+  const my_data = GetApplication(data, Number(id))
+  const [enabled, setEnabled] = useState(!my_data?.active || false);
+  if (isLoading) return <div>Loading...</div>
 
+
+
+  console.log(my_data)
+  return (
     <div className='flex items-center '>
       {/* PROFILE NAV SECTION */}
       <div className='bg-gray-300/60 h-[750px] min-w-72 mt-9 ml-9 rounded-xl  backdrop:filter shadow-md sticky top-40'>
@@ -35,14 +55,14 @@ export default function UserDetails() {
         </div>
         <div className='flex justify-center pt-6 font-semibold'>
           <span  >
-            Laith Ferjeoui
+            {my_data.user.name}
           </span>
         </div>
         <div className='flex justify-center gap-3 mt-4'>
           <span>
             Blocked:
           </span>
-          <SwitchButton bg={true} />
+          <SwitchButton bg={true} state={enabled} setstate={setEnabled}  />
         </div>
         <div className='w-full mt-16'>
           {UserSections.map((section) => (
@@ -57,14 +77,8 @@ export default function UserDetails() {
           ))}
         </div>
       </div>
-      
       {/* USER TABULATION RENDERING FUNCTION */}
-     
         {renderUserSection()}
-      
-      
-
-    
     </div>
   )
 }
