@@ -2,19 +2,30 @@
 import { useContext, useState } from "react"
 import AppCard from "../Components/AppCard"
 import { Button } from "../Components/Moving-border"
-import { Applications, tabs } from "../utils/constants"
+import {  tabs } from "../utils/constants"
 import { motion } from "framer-motion"
 import AddApplicationSlideOver from "../Components/AddApplicationSlideOver"
 import { Context } from "../utils/context"
-const APP_CUSTOMER = "customer"
-const APP_ADMIN = "administration"
-const TYPE_APP = "app"
-const TYPE_GATE = "gateway"
+const APP_CUSTOMER = "FRONT"
+const APP_ADMIN = "ADMINISTRATION"
+const TYPE_APP = "REGULAR_APPLICATION"
+const TYPE_GATE = "GATEWAY_APPLICATION"
+import { ApplicationDto } from "../../../store/admin-API/applications-controller/application_controller_schemas"
+
+
+import { useGetConfigApplicationQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
+
+
 const Applicationss = () => {
 
-  // state for the selected tab 
+
+  // state for the selected tab
   const tabContext = useContext(Context)
   const [IsSlideOverOpen, setIsSlideOverOpen] = useState(false)
+  const { data : Applications, error, isLoading } = useGetConfigApplicationQuery({});
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
   return (
     <>
 
@@ -72,13 +83,13 @@ const Applicationss = () => {
       {tabContext.selectedTabId == 0 ? <>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16 mb-9">
 
-          {Applications.filter(app => app.service === APP_ADMIN && app.type === TYPE_APP).map((app, index) => (
+          {Applications?.filter((app: ApplicationDto)  => app.audience === APP_ADMIN && app.type === TYPE_APP).map((app : ApplicationDto, index : number) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.4 * index }}
             >
-              <AppCard key={index} title={app.title} description={app.description} />
+              <AppCard key={index} title={app.name} description={"desription here ? "} id={ app.id} />
             </motion.div>
 
           ))}
@@ -87,24 +98,24 @@ const Applicationss = () => {
         <span className='font-extrabold text-xl bg-gradient-to-r from-[--colorStart] to-[--colorEnd] bg-clip-text text-transparent ml-14'>Gateway Applications</span>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16 my-9">
 
-          {Applications.filter(app => app.service === APP_ADMIN && app.type === TYPE_GATE).map((app, index) => (<motion.div
+          {Applications?.filter((app: ApplicationDto)  => app.audience === APP_ADMIN && app.type === TYPE_GATE).map((app : ApplicationDto, index : number) => (<motion.div
             initial={{ opacity: 0, scale: 0.9, x: -20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.4 * index }}
           >
-            <AppCard key={index} title={app.title} description={app.description} />
+            <AppCard key={index} title={app.name} description={"no desc"} id={ app.id}  />
           </motion.div>
           ))}
         </div></>
         : <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16 mb-9">
 
-          {Applications.filter(app => app.service === APP_CUSTOMER && app.type === TYPE_APP).map((app, index) => (
+          {Applications?.filter((app: ApplicationDto) => app.audience === APP_CUSTOMER && app.type === TYPE_APP).map((app : ApplicationDto, index : number) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <AppCard key={index} title={app.title} description={app.description} />
+              <AppCard key={index} title={app.name} description={"no desc "} id={ app.id} />
             </motion.div>
           ))}
 

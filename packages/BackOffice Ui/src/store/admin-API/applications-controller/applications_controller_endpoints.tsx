@@ -1,15 +1,14 @@
 
-import {applications_controlle} from './applicatiobs_controll';
+import {applications_controlle} from './applications_controller';
 import { application_controlle_endpoints } from '../../../constants/store_constants';
-
+//import {ApplicationDto} from './application_controller_schemas';
 
 const applicationEndpoints = applications_controlle.injectEndpoints({
   endpoints: (builder) => ({
     getConfigApplication: builder.query({
-      query: (attr) => ({
+      query: () => ({
         url: application_controlle_endpoints.ConfigApplication,
-        params: attr
-      })
+      }),
     }),
     putConfigApplication: builder.mutation({
       query: (data) => ({
@@ -55,8 +54,8 @@ const applicationEndpoints = applications_controlle.injectEndpoints({
     }),
     getApplicationById: builder.query({
       query: ({ id, attr }) => ({
-        url: `/${id}`,
-        params: attr
+        url: `${application_controlle_endpoints.ConfigApplication}/${id}?includeAttributes=${attr}`,
+
       })
     }),
     getRegistrationMapping: builder.query({

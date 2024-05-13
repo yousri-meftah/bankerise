@@ -1,20 +1,28 @@
-import { useState } from "react"
-import SwitchButton from "@components/Switch"
 import { motion } from "framer-motion"
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
-import { PiLightbulbBold } from "react-icons/pi";
-import InfoModal from '../Components/InfoModal'
-import PrimaryButton from "@components/Button";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-const words = `Application Information
-`;
-const AppInformations = () => {
-    const [MobileSection, showMobileSection] = useState(false)
-    const [InfoModalOpened, setInfoModal] = useState(false)
-    const [Title, setTitle] = useState("")
-    const [Desc, setDesc] = useState("")
 
+import PrimaryButton from "@components/Button";
+import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useGetApplicationByIdQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
+import AuthenticationConfiguration from "../Components/authconfigapp";
+import { attribute } from "../../../store/admin-API/applications-controller/application_controller_schemas";
+const words = `Application Information`;
+
+
+const AppInformations  = () => {
+    const { id } = useParams();
+    //console.log(id)
+
+    const { data, error, isLoading } = useGetApplicationByIdQuery({id,attr : true});
+    if (isLoading) {
+    return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: </p>;
+    }
+    const myconfig = data.attributes.filter((item: attribute) => Object.prototype.hasOwnProperty.call(item, 'id'));
     return (
         <form>
             <div className="space-y-12 mt-10 mx-10">
@@ -40,7 +48,9 @@ const AppInformations = () => {
                                             autoComplete="name"
                                             className=" flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
                                             disabled
-                                            placeholder="app name"
+                                            readOnly
+
+                                            placeholder={data.name}
                                         />
                                     </div>
                                 </div>
@@ -63,7 +73,9 @@ const AppInformations = () => {
                                             autoComplete="target"
                                             className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
                                             disabled
-                                            placeholder="ADMINISTRATION"
+
+                                            readOnly
+                                            placeholder={data.audience}
                                         />
                                     </div>
                                 </div>
@@ -86,7 +98,9 @@ const AppInformations = () => {
                                             autoComplete="type"
                                             className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
                                             disabled
-                                            placeholder="REGULAR_APPLICATION"
+
+                                            readOnly
+                                            placeholder={data.type}
                                         />
                                     </div>
                                 </div>
@@ -138,157 +152,8 @@ const AppInformations = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col mx-6 ">
-                <h2 className="text-lg font-semibold leading-7 text-white pb-6">Application Authentication Configuration</h2>
+<AuthenticationConfiguration configItems={myconfig} />
 
-                <div className="flex flex-col  border border-gray-500 rounded-lg p-4 mx-20">
-                    <div className="flex justify-around">
-                        <div className=" flex justify-center">
-                            <p className="block text-sm font-medium leading-6 text-[--textPrimary] border-b border-[--colorStart] mb-3">Name</p>
-                        </div>
-
-                        <div className="flex justify-center">
-                            <p className="block text-sm font-medium leading-6 text-[--textPrimary] border-b border-[--colorStart] mb-3">Value</p>
-                        </div>
-
-                    </div>
-                    <div className="flex">
-
-{/* Redirect WEB URL */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: -30 }}
-                            animate={{ opacity: 1, scale: 1, x: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="flex-col flex-1">
-                            <div className="flex items-center mx30 pt-2 justify-center gap-5">
-                                <div className="bg-yellow-200/70 rounded-md size-6 flex justify-center items-center hover:cursor-pointer hover:scale-105 duration-200 hover:bg-yellow-200 border border-gray-300" onClick={() => {
-                                    setTitle("Redirect WEB URL");
-                                    setDesc("Allows configuring the URL to which the user will be redirected after logging in against the identity provider (Keycloak). For the web environment, we can leave the default value which is {'{baseUrl}/{action}/oauth2/code/{registrationId}'}. The Gateway is able to convert these parameters to the correct URL. {'{baseUrl}'} takes in consideration X-Forwarded headers in case it's running behind a reverse proxy. Don't forget to register this redirect uri in the identity provider client configuration.");
-                                    setInfoModal(true)
-
-                                }}><PiLightbulbBold size={20} color="white" /></div>
-                                <span className="block text-md font-medium leading-6 text-[--textPrimary]">Redirect WEB URL :</span>
-                            </div>
-                        </motion.div>
-                        <div className="flex-1 my-auto">
-                            <div className="sm:col-span-4">
-
-                                <div className="mt-2">
-                                    <div className="flex rounded-md bg-[--inputBg] ring-1 ring-inset ring-[--inputBg] focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            autoComplete="name"
-                                            value="{baseUrl}/{action}/oauth2/code/{registrationId}"
-                                            className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="{baseUrl}/{action}/oauth2/code/{registrationId}"
-                                        />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex mt-6">
-
-{/* Mapping WEB Referer */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: -30 }}
-                            animate={{ opacity: 1, scale: 1, x: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="flex-col flex-1">
-                            <div className="flex items-center mx-3 pt-2 justify-center gap-5">
-                                <div className="bg-yellow-200/70 rounded-md size-6 flex justify-center items-center hover:cursor-pointer hover:scale-105 duration-200 hover:bg-yellow-200 border border-gray-300" onClick={() => {
-                                    setTitle("Mapping WEB Referer");
-                                    setDesc("This parameter is used to map the web application to the gateway in case we have multiple applications served by the same gateway. It can be a referer or a host. It follows Ant path matcher syntax: https://bits.netbeans.org/11.1/javadoc/org-netbeans-modules-project-ant/index.html?org/netbeans/spi/project/support/ant/PathMatcher.html");
-                                    setInfoModal(true)
-
-                                }}><PiLightbulbBold size={20} color="white" /></div>
-                                <span className="block text-md font-medium leading-6 text-[--textPrimary]">Mapping WEB Referer :</span>
-
-                            </div>
-
-                        </motion.div>
-                        <div className="flex-1 my-auto">
-                            <div className="sm:col-span-4">
-
-                                <div className="mt-2">
-                                    <div className="flex rounded-md bg-[--inputBg] ring-1 ring-inset ring-[--inputBg] focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            autoComplete="name"
-                                            value="http://studio.platform.test.proxym-it.tn/**"
-                                            className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="Authorized redirect URIs"
-                                        />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    {InfoModalOpened ? <InfoModal open={InfoModalOpened} setOpen={setInfoModal} title={Title} desc={Desc} /> : null}
-                    
-{/* Enable Mobile Version */}
-                    <div className="flex mt-6">
-                        <div className="flex-col flex-1">
-                            <span className="flex justify-center text-sm font-medium leading-6 text-[--txt]">Enable Mobile Version</span>
-                            <p className="text-[--textPrimary] flex justify-center text-center">Does this application serve mobile channels ?</p>
-                        </div>
-                        <div className="flex-1 my-auto">
-                            <div className="sm:col-span-4">
-                                <SwitchButton onClick={() => showMobileSection(!MobileSection)} />
-                            </div>
-                        </div>
-                    </div>
-                    {MobileSection ?
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="flex mt-6">
-                            <div className="flex-col flex-1">
-                                <div className="flex items-center mx30 pt-2 justify-center gap-5">
-                                    <div className="bg-yellow-200/70 rounded-md size-6 flex justify-center items-center hover:cursor-pointer hover:scale-105 duration-200 hover:bg-yellow-200 border border-gray-300" onClick={() => {
-                                        setTitle("Redirect Mobile Scheme");
-                                        setDesc("Allows configuring the URL to which the user will be redirected after logging in against the identity provider (Keycloak). It should be a mobile url scheme such as bankerise://callback or bankerise://login. Don't forget to register this redirect uri in the identity provider client configuration.");
-                                        setInfoModal(true)
-
-                                    }}><PiLightbulbBold size={20} color="white" /></div>
-                                    <span className="block text-md font-medium leading-6 text-[--textPrimary]">Redirect Mobile Scheme :</span>
-                                </div>
-
-                            </div>
-                            <div className="flex-1 my-auto">
-                                <div className="sm:col-span-4">
-
-                                    <div className="mt-2">
-                                        <div className="flex rounded-md bg-[--inputBg] ring-1 ring-inset ring-[--inputBg] focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                id="name"
-                                                autoComplete="name"
-                                                className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
-                                                placeholder="Redirection URL"
-                                            />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </motion.div> : null}
-
-                </div>
-            </div>
-
-{/* BUTTONS */}
             <div className="mt-6 flex items-center justify-center gap-x-6">
                 <Link to={"/private/applications-management"}>
                     <button type="button" className="text-sm font-semibold leading-6 text-[--textPrimary]">

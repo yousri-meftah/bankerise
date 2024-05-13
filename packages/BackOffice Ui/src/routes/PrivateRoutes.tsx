@@ -5,7 +5,7 @@ export const PrivateRoutes = () => {
     return (
         <Routes>
             <Route path='/private/*' element={<Layout />} />
-            <Route path='*' element={<Navigate to='/private/dashboard' replace />} />
+            <Route path='*' element={<Navigate to='/private' replace />} />
         </Routes>
     );
 };

@@ -4,14 +4,14 @@ import ConfirmationForDisableModal from "./ConfirmationForDisableModal";
 import { HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
 import PrimaryButton from "@components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AddUser from "./AddUser";
 import Pagination from "@components/Pagination";
-import { Users } from '@utils/constants'
-import SharedTable  from "@components/SharedTable";
+//import { Users } from '@utils/constants'
+import SharedTable from "../../../Components/SharedTable";
 import { FaEye } from "react-icons/fa";
-import ExportButton from "@components/ExportButton";
-
+import { useGetuserbyapplicationidQuery } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_endpoints";
+import { user_response } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_schema";
 
 const userColumns = [
     { header: 'UserName', accessor: 'UserName' },
@@ -22,10 +22,36 @@ const userColumns = [
     { header: 'Role', accessor: 'Role' },
     { header: 'Creation Date', accessor: 'CreationDate' }
 ];
+interface User {
+  UserName: string;
+  Email: string;
+  FirstName: string;
+  LastName: string;
+  Status: string;
+  Role: string;
+  CreationDate: string;
+}
 
-
+function formatUserResponse(response: user_response): User[] {
+  return response.content.map((item) => ({
+    UserName: item.user.name,
+    Email: item.user.email,
+    FirstName: item.user.firstName,
+    LastName: item.user.lastName,
+    Status: item.active ? 'Active' : 'Inactive',
+    Role: item.role.name,
+    CreationDate: new Date(item.user.createdDate).toISOString(),
+  }));
+}
 
 export default function UsersTable() {
+  const { id } = useParams();
+  //console.log("idd = ", id)
+  const { data, error, isLoading} = useGetuserbyapplicationidQuery({
+    appId: Number(id),
+    params: { pageable: "1" }
+  });
+
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [records, setRecords] = useState<{ name: string; }[]>([]);
@@ -39,6 +65,18 @@ export default function UsersTable() {
   const handleCloseConfirmationModal = () => {
     setIsConfirmationModalOpen(false);
   };
+  if (isLoading) {
+    console.log('Loading user data...');
+    return null; // You can return a loading indicator or null here
+  }
+
+  if (error) {
+    console.error('Error fetching user data:', error);
+    return null;
+  }
+  const Users = formatUserResponse(data as user_response)
+  console.log("daa = ", Users)
+
   const actions = [
   {
     label: 'Lock',

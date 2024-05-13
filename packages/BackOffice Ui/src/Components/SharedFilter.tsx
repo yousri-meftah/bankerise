@@ -72,7 +72,7 @@ const SharedFilter: React.FC<SharedFilterProps> = ({ fields }) => {
         <>
             {fields.map((field, index) => (
                 <div key={index} className="flex justify-center items-center mb-4">
-                    <div className="flex justify-center items-center flex-1">
+                    <div className="flex  justify-center items-center flex-1">
                         <div className="relative flex justify-center items-center gap-4">
                             <label htmlFor={field.name} className="block text-sm font-semibold leading-6 text-gray-900">
                                 {field.label}:
