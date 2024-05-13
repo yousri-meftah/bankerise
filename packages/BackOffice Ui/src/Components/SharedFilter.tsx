@@ -70,10 +70,10 @@ const SharedFilter: React.FC<SharedFilterProps> = ({ fields }) => {
 
     return (
         <>
+            <div  className="flex flex-wrap items-start gap-y-3">
             {fields.map((field, index) => (
-                <div key={index} className="flex justify-center items-center mb-4">
-                    <div className="flex  justify-center items-center flex-1">
-                        <div className="relative flex justify-center items-center gap-4">
+
+                        <div key={index} className="relative w-1/2 flex justify-center items-center gap-4">
                             <label htmlFor={field.name} className="block text-sm font-semibold leading-6 text-gray-900">
                                 {field.label}:
                             </label>
@@ -81,9 +81,8 @@ const SharedFilter: React.FC<SharedFilterProps> = ({ fields }) => {
                                 {renderInput(field)}
                             </div>
                         </div>
-                    </div>
-                </div>
             ))}
+                </div>
        </>
     );
 };

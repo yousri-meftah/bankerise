@@ -24,9 +24,10 @@ const tabs = [
 
 
 const ApplicationEdit = () => {
+
     const [selectedTabId, setSelectedTabId] = useState(1);
     const tabContext = useContext(Context)
-    //const { id } = useParams();
+
     return (
         <>
             <div className="sm:hidden">
@@ -76,7 +77,7 @@ const ApplicationEdit = () => {
                 <Route path="users/*" element={<AppUsers />} >
                     <Route path="addUser/*" />
                 </Route>
-                <Route path="users/userDetails/*" element={<UserDetails />} />
+                <Route path="users/userDetails/:userid/*" element={<UserDetails />} />
                 <Route path="users/userDetails/*" element={<AppUsers />} />
             </Routes>
         </>

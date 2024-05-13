@@ -36,7 +36,8 @@ interface SharedTableProps {
 
 }
 
-const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}) => {
+const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link }) => {
+  //console.log("yo = ",data)
   return (
     <table className="mt-6 w-full whitespace-nowrap text-left">
       <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
@@ -108,7 +109,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions ,link}
               <td className="py-4 pl-6 pr-4 sm:pr-8">
                 <div className="flex gap-x-3 justify-end items-center">
                   {link  && (
-                    <Link to={link.to} className="text-[--indigoText] hover:text-indigo-300">
+                    <Link to={`${link.to}/${item["id"]}`} className="text-[--indigoText] hover:text-indigo-300">
                       {link.label}
                     </Link>
                   )}

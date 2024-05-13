@@ -28,7 +28,7 @@ export default defineConfig({
       changeOrigin: true,
       xfwd: true,
       },
-      '/bankerise-platform': {
+      '/configuration': {
       target: 'http://nginx.127.0.0.1.nip.io:9000/',
       changeOrigin: true,
       xfwd: true,
