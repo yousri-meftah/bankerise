@@ -10,7 +10,7 @@ export const application_controlle = {
     }
 }
 export const application_controlle_endpoints = {
-    ConfigApplication: '/bankerise-platform/configuration/applications',
+    ConfigApplication: '/configuration/applications',
     Features: "/features",
     ComposedPermissions: "/composed-permissions",
     RegistrationMapping : "/registration-mapping"
@@ -35,13 +35,11 @@ export const global_parameter_controlle = {
     }
 }
 export const global_parameter_controlle_endpoints = {
-    global_param: '/bankerise-platform/configuration/global-param',
+    global_param: '/configuration/global-param',
 
 }
 
 export const user_app_management_controller_endpoints = {
-    ConfigApplication: '/bankerise-platform/configuration/application',
-    Features: "/features",
-    ComposedPermissions: "/composed-permissions",
-    RegistrationMapping : "/registration-mapping"
+    ConfigApplication: '/configuration/application',
+    getuserbyid : '/configuration/users'
 }

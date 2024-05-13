@@ -23,6 +23,7 @@ const userColumns = [
     { header: 'Creation Date', accessor: 'CreationDate' }
 ];
 interface User {
+  id: number;
   UserName: string;
   Email: string;
   FirstName: string;
@@ -34,6 +35,7 @@ interface User {
 
 function formatUserResponse(response: user_response): User[] {
   return response.content.map((item) => ({
+    id: item.id,
     UserName: item.user.name,
     Email: item.user.email,
     FirstName: item.user.firstName,
@@ -46,11 +48,11 @@ function formatUserResponse(response: user_response): User[] {
 
 export default function UsersTable() {
   const { id } = useParams();
-  //console.log("idd = ", id)
   const { data, error, isLoading} = useGetuserbyapplicationidQuery({
     appId: Number(id),
     params: { pageable: "1" }
   });
+  //console.log("true data = ", data)
 
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -75,7 +77,7 @@ export default function UsersTable() {
     return null;
   }
   const Users = formatUserResponse(data as user_response)
-  console.log("daa = ", Users)
+  //console.log("daa = ", Users)
 
   const actions = [
   {
