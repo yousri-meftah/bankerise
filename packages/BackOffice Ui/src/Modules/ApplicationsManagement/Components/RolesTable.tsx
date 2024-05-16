@@ -10,7 +10,6 @@ import { FaEye } from "react-icons/fa";
 const userColumns = [
     { header: 'Role Name', accessor: 'name' },
 ];
-
 const RolesTable = () => {
     const [open, setOpen] = useState(false);
     const [records, setRecords] = useState<{ name: string; }[]>([]);
@@ -34,10 +33,10 @@ const RolesTable = () => {
     to: "editRole/"
   }
     return (
-        <div className=" backdrop-filter backdrop-blur-sm ">
+        <div className=" backdrop-filter backdrop-blur-sm">
             <div className="mx-auto max-w-7xl">
-                <div className=" py-3">
-                    <div className="px-4 sm:px-6 lg:px-8">
+                <div className=" py-3 ">
+                    <div className="px-4 sm:px-6 lg:px-8 ">
                         <div className="sm:flex sm:items-center">
                             <div className="sm:flex-auto">
                                 <h1 className="text-base font-semibold leading-6 text-[--txt]">Roles</h1>

@@ -39,7 +39,7 @@ interface SharedTableProps {
 const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link }) => {
   //console.log("yo = ",data)
   return (
-    <table className="mt-6 w-full whitespace-nowrap text-left">
+    <table className="mt-6 w-full whitespace-nowrap text-left overflow-hidden">
       <thead className="border-b border-[--border-color] text-sm leading-6 text-[--txt]">
         <tr>
           {columns.map((column, index) => (
@@ -77,7 +77,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
                             item[column.accessor]["type"] === "select" ? (
                               <select
                                 value={item[column.accessor]["value"]}
-                                className="input-class"
+                                className="block w-full rounded-md border-0 bg-[--inputBg] py-1.5 text-[--textPrimary] shadow-sm ring-1 ring-inset ring-[--inputBg] focus:ring-2 focus:ring-inset focus:bg-[--inputBg] focus:text-[--textPrimary] focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                               >
                                 {(item[column.accessor]["valueRanges"].length > 0
                                   ? item[column.accessor]["valueRanges"]
@@ -92,7 +92,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
                               <input
                                 type={item[column.accessor]["type"]}  // Uses the type specified in the column definition
                                 value={item[column.accessor]["value"]}
-                                className="input-class"
+                                className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-[--textPrimary] focus:ring-0 sm:text-sm sm:leading-6"
                               />
                             )
                           ) : (
