@@ -10,8 +10,8 @@ export const applications_controlle = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: application_controlle.API_URL,
         prepareHeaders: (headers) => {
-            headers.set('X-APP-ID', application_controlle.header.X_APP_ID);
-            headers.set('CHANNEL', application_controlle.header.CHANNEL);
+            headers.set('X-APP-ID', "back-office");
+            headers.set('CHANNEL', "WEB");
             return headers;
         }
         }),

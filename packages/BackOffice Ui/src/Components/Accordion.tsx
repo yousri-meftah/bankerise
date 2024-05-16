@@ -7,7 +7,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Accordion: React.FC = ({ feature }: any) => {
   const [openSectionId, setOpenSectionId] = useState<number | null>(null);
+  const [openSwitch, setOpenSwitch] = useState(false)
+  const [openSubSwitches, setOpenSubSwitches] = useState(
+    feature.features.map(() => false)
+  );
 
+  const handleToggle = (index) => {
+    // Create a new array to avoid mutating the state directly
+    const newOpenSubSwitches = [...openSubSwitches];
+    newOpenSubSwitches[index] = !newOpenSubSwitches[index];
+    setOpenSubSwitches(newOpenSubSwitches);
+  };
   const toggleSection = (id: number) => {
     setOpenSectionId((prevId) => (prevId === id ? null : id));
   };
@@ -25,9 +35,9 @@ const Accordion: React.FC = ({ feature }: any) => {
         <div
           className="w-full flex items-center justify-between px-4 py-3 text-lg font-medium text-[--txt] focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 transition duration-150 "
         >
-          <div className="flex items-center gap-5">
+          <div className="flex justify-between w-full items-center gap-5">
             {feature?.name}
-            <Switch />
+            <Switch state={openSwitch} setstate={setOpenSwitch} />
           </div>
           <span className="ml-6 flex items-center cursor-pointer duration-300" onClick={() => toggleSection(feature?.id)}>
             {openSectionId === feature?.id ? (
@@ -49,11 +59,14 @@ const Accordion: React.FC = ({ feature }: any) => {
             >
               <div className="space-y-2">
                 {feature.features.map((option, optionIdx) => (
-                  <div key={option.value} className="flex items-center gap-7 pl-6">
+                  <div key={option?.value} className="flex justify-between items-center gap-12pl-6">
                     <label htmlFor={`filter-${feature?.id}-${optionIdx}`} className="ml-3 text-[--txt]">
                       {option.name}
                     </label>
-                    <Switch />
+                    <Switch
+                  state={openSubSwitches[optionIdx]}
+                  setstate={() => handleToggle(optionIdx)}
+                />
                   </div>
                 ))}
               </div>

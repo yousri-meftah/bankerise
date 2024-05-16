@@ -12,14 +12,15 @@ import { Features } from "../utils/Types";
 import { Puff } from 'react-loader-spinner'
 import { TextGenerateEffect } from '@components/Text-Generate-Effect';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 const words = `Application Features Catalogue`;
 
 const AppFeatures = () => {
-  const [featuresArray, setFeaturesArray] = useState<Features[]>([]);
   const [leftFeatures, setLeftFeatures] = useState<Features[]>([]);
   const [rightFeatures, setRightFeatures] = useState<Features[]>([]);
-  const { data: feature, error, isLoading } = useGetAllFeaturesbyIdQuery(51);
+  const { id } = useParams();
+  const { data: feature, error, isLoading } = useGetAllFeaturesbyIdQuery(id);
 
   useEffect(() => {
     if (feature) {
@@ -104,7 +105,7 @@ const AppFeatures = () => {
           )}
         </Swiper>
         {
-          error? toast.error("Failed Fetching data"):  null 
+          error? toast.error(error.error):  null 
         }
       </div>
     </>

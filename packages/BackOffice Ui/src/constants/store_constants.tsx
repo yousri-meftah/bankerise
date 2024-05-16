@@ -23,7 +23,7 @@ export const roles_controller = {
     API_URL: "/",
     header: {
         X_APP_ID: "back-office",
-        X_Device_Id: "",
+        X_Device_Id: "X-Device-Id",
         CHANNEL : "WEB"
     }
 }
@@ -58,11 +58,15 @@ export const global_parameter_controlle_endpoints = {
 }
 
 export const user_app_management_controller_endpoints = {
-    ConfigApplication: '/bankerise-platform/configuration/application',
+    ConfigApplication: '/configuration/application',
     Features: "/features",
     ComposedPermissions: "/composed-permissions",
     RegistrationMapping : "/registration-mapping"
 }
 export const modules_controller_endpoints = {
-    getAllFeaturesbyId: '/bankerise-platform/configuration/modules/available-for-app',
+    getAllFeaturesbyId: '/configuration/modules/available-for-app',
 }
+
+export const roles_controller_endpoints = {
+    GetAllRoles: '/configuration',  // Updated base endpoint and adding /roles in the query
+  }
