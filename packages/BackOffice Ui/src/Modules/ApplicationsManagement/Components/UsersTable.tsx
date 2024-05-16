@@ -15,6 +15,8 @@ import { user_response } from "../../../store/admin-API/user-app-management-cont
 import FilterButton from "@components/FilterButton";
 import { useContext } from "react";
 import { Context } from "../utils/context";
+import ExportButton from "@components/ExportButton";
+
 const fieldsConfigCotumer = [
   {
     type: 'text',
@@ -210,12 +212,8 @@ export default function UsersTable() {
 
           <Link to={"addUser/"}>
             <PrimaryButton text="Add User" onClick={() => setIsSlideOverOpen(true)} /></Link>
-          <button
-            type="button"
-            className=" rounded-md bg-[--disableButton] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-1"
-          >
-            Export
-          </button>
+                    <ExportButton/>
+
 
         </div>
 
