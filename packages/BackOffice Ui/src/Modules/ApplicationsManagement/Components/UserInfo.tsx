@@ -2,7 +2,67 @@ import PrimaryButton from "@components/Button"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { motion } from "framer-motion"
-const UserInfo = () => {
+import { User } from "../../../store/admin-API/applications-controller/application_controller_schemas"
+
+/*
+interface switchProps {
+  bg: boolean,
+  state: boolean,
+  setstate: (value : boolean)=>void
+}
+//const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link }) =>
+const UserInfo: React.FC<switchProps> = ({ bg , state , setstate }) => {
+
+
+
+
+*/
+
+function convertTimestampToDateString(timestamp) {
+  // Create a new Date object using the timestamp
+  const date = new Date(timestamp);
+
+  // Extract the components of the date
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based, so we add 1
+  const day = ('0' + date.getDate()).slice(-2);
+  const hours = ('0' + date.getHours()).slice(-2);
+  const minutes = ('0' + date.getMinutes()).slice(-2);
+  const seconds = ('0' + date.getSeconds()).slice(-2);
+
+  // Format the date string as "YYYY-MM-DD HH:MM:SS"
+  const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  return dateString;
+}
+
+interface userinfoprops {
+  user : User
+}
+
+
+const UserInfo: React.FC<userinfoprops> = ({ user }) => {
+const dummyUser: User = {
+  id: 1,
+  name: "John Doe",
+  firstName: "John",
+  lastName: "Doe",
+  email: "john.doe@example.com",
+  phoneNumber: "123-456-7890",
+  audience: "customers",
+  keycloakId: "abc123xyz",
+  createdDate: Date.now(),
+  gender: "Male",
+  country: "USA",
+  city: "New York",
+  address: "123 Main St",
+  homePhone: "098-765-4321",
+  identityNumber: "987654321"
+};
+
+  //console.log("user info ", user)
+  if (Object.keys(user).length === 0) user = dummyUser;
+  //console.log("user = ", user)
   return (
     <>
       {/* INFO SECTION */}
@@ -18,16 +78,16 @@ const UserInfo = () => {
               <div className="relative flex-1">
                 <label
                   htmlFor="name"
-                  className="absolute -top-2 left-2 inline-block  px-1 text-xs font-medium text-[--txt]"
+                  className="absolute -top-2 left-2 inline-block  px-1 text-xs font-medium text-[--txt] mb-6  "
                 >
-                  First Name
+                  {user.name}
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name"
                   className="block w-full bg-white/10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300/30 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="John"
+                  placeholder={user.name}
                 />
               </div>
 
@@ -36,14 +96,14 @@ const UserInfo = () => {
                   htmlFor="name"
                   className="absolute -top-2 left-2 inline-block  px-1 text-xs font-medium text-[--txt]"
                 >
-                  Last Name
+                  {user?.lastName}
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name"
                   className="block w-full bg-white/10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300/30 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Doe"
+                  placeholder={user?.lastName}
                 />
               </div>
             </div>
@@ -135,12 +195,14 @@ const UserInfo = () => {
                   Expiration Date
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="exp-date"
                   id="exp-date"
+
                   className="block w-full bg-white/10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300/30 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 
                 />
+
               </div>
             </div>
 
@@ -166,7 +228,7 @@ const UserInfo = () => {
                   name="email"
                   id="email"
                   className="block w-full bg-white/10 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300/30 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="John"
+                  placeholder={user?.email}
                 />
               </div>
 

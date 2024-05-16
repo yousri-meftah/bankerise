@@ -1,13 +1,50 @@
 import SwitchButton from '@components/Switch';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { CiUser } from "react-icons/ci";
 import UserInfo from '../Components/UserInfo';
 import UserDevices from '../Components/UserDevices';
 import UserDocuments from '../Components/UserDocuments';
 import { useParams } from 'react-router-dom';
-import { TopLevel_foruser } from '../../../store/admin-API/user-app-management-controller/user_app_management_controller_schema';
+import { TopLevel_foruser , User , Role} from '../../../store/admin-API/user-app-management-controller/user_app_management_controller_schema';
 
-import { useGetuserbyidQuery } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_endpoints";
+import { useGetuserbyidQuery} from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_endpoints";
+
+const dummyUser: User = {
+  id: 1,
+  name: "John Doe",
+  firstName: "John",
+  lastName: "Doe",
+  email: "john.doe@example.com",
+  phoneNumber: "123-456-7890",
+  audience: "customers",
+  keycloakId: "abc123xyz",
+  createdDate: Date.now(),
+  gender: "Male",
+  country: "USA",
+  city: "New York",
+  address: "123 Main St",
+  homePhone: "098-765-4321",
+  identityNumber: "987654321"
+};
+
+const dummyRole: Role = {
+  id: 1,
+  name: "Admin",
+  applicationId: 1,
+  applicationAudience: "general",
+  applicationName: "MyApp",
+  features: [],
+  composedPermissions: []
+};
+
+export const dummyTopLevel_foruser: TopLevel_foruser = {
+  id: 1,
+  user: dummyUser,
+  devices: [],
+  role: dummyRole,
+  active: true,
+  segmentAssignmentLevel: "Level 1"
+};
 
 const UserSections = [
   { label: 'Profile', id: 1 },
@@ -15,7 +52,8 @@ const UserSections = [
   { label: 'Documents', id: 3 },
 ]
 
-function GetApplication(data: [TopLevel_foruser], appid : number) : TopLevel_foruser {
+function GetApplication(data: [TopLevel_foruser], appid: number): TopLevel_foruser {
+  if (Object.keys(data).length === 0) { return dummyTopLevel_foruser; }
   const result = data.find((item) => item.role.applicationId === appid);
   if (result) {
     return result;
@@ -25,12 +63,29 @@ function GetApplication(data: [TopLevel_foruser], appid : number) : TopLevel_for
 export default function UserDetails() {
 
   const {userid , id } = useParams();
-  const { data, isLoading } = useGetuserbyidQuery(Number(userid));
+  // eslint-disable-next-line prefer-const
+  let { data, isLoading } = useGetuserbyidQuery(Number(userid));
   const [selectedUserSection, setSelectedUserSection] = useState(1)
-  const renderUserSection = () => {
+  const [enabled, setEnabled] = useState(false);
+  const [myData, setMyData] = useState<TopLevel_foruser | null>(null);
+
+  useEffect(() => {
+    if (data) {
+      //if (Object.keys(data).length === 0) { data = dummyTopLevel_foruser; return; }
+      const applicationData = GetApplication(data, Number(id));
+      setMyData(applicationData);
+      setEnabled(!applicationData.active);
+    }
+  }, [data, id]);
+
+
+
+
+  if (isLoading) return <div>Loading...</div>;
+  const renderUserSection = (user : User) => {
     switch (selectedUserSection) {
       case 1:
-        return <UserInfo />;
+        return <UserInfo user={ user || {} } />;
       case 2:
         return <UserDevices />;
       case 3:
@@ -39,13 +94,9 @@ export default function UserDetails() {
         return null;
     }
   };
-  const my_data = GetApplication(data, Number(id))
-  const [enabled, setEnabled] = useState(!my_data?.active || false);
-  if (isLoading) return <div>Loading...</div>
 
 
-
-  console.log(my_data)
+  //console.log(data)
   return (
     <div className='flex items-center '>
       {/* PROFILE NAV SECTION */}
@@ -55,7 +106,7 @@ export default function UserDetails() {
         </div>
         <div className='flex justify-center pt-6 font-semibold'>
           <span  >
-            {my_data.user.name}
+            {myData?.user.name}
           </span>
         </div>
         <div className='flex justify-center gap-3 mt-4'>
@@ -78,7 +129,8 @@ export default function UserDetails() {
         </div>
       </div>
       {/* USER TABULATION RENDERING FUNCTION */}
-        {renderUserSection()}
+      {
+        myData ? renderUserSection(myData?.user ?? {} as User) : <div>Loading...</div>}
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { FaEye } from "react-icons/fa";
 import SharedTable from "../../../Components/SharedTable";
-import { Dictionary } from "../utils/constants";
+import { Dictionary, GlobalParams } from "../utils/constants";
+import { useState } from "react";
+import Pagination from "@components/Pagination";
 
 
 const userColumns = [
@@ -10,6 +12,7 @@ const userColumns = [
 ];
 
 export default function DictionaryTable() {
+  const [, setRecords] = useState(GlobalParams)
 
   const link = {
     label: <FaEye size={19} />,
@@ -17,7 +20,8 @@ export default function DictionaryTable() {
   }
     return (
         <div className="px-16">
-            <SharedTable data={Dictionary} columns={userColumns} link={link} />
+        <SharedTable data={Dictionary} columns={userColumns} link={link} />
+        <Pagination setRecords={setRecords} array={GlobalParams} pages={9} />
         </div>
     )
 }

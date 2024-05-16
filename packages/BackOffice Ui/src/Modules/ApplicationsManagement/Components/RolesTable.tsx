@@ -13,12 +13,11 @@ import { toast } from "react-toastify";
 const userColumns = [
     { header: 'Role Name', accessor: 'name' },
 ];
-
 const RolesTable = () => {
     const { id } = useParams();
     const { data: roles, error, isLoading } = useGetAllRolesQuery(id);
     console.log(roles)
-    
+
     const [open, setOpen] = useState(false);
     const [records, setRecords] = useState<{ name: string; }[]>([]);
     const actions = [

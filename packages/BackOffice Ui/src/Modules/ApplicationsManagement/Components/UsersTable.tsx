@@ -12,7 +12,108 @@ import SharedTable from "../../../Components/SharedTable";
 import { FaEye } from "react-icons/fa";
 import { useGetuserbyapplicationidQuery } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_endpoints";
 import { user_response } from "../../../store/admin-API/user-app-management-controller/user_app_management_controller_schema";
+import FilterButton from "@components/FilterButton";
+import { useContext } from "react";
+import { Context } from "../utils/context";
 import ExportButton from "@components/ExportButton";
+
+const fieldsConfigCotumer = [
+  {
+    type: 'text',
+    name: 'userName',
+    label: 'User Name'
+  },
+  {
+    type: 'text',
+    name: 'email',
+    label: 'Email'
+  },
+  {
+    type: 'text',
+    name: 'firstName',
+    label: 'First Name'
+  },
+  {
+    type: 'text',
+    name: 'lastName',
+    label: 'Last Name'
+  },
+  {
+    type: 'text',
+    name: 'lastName',
+    label: 'Last Name'
+  },
+  {
+    type: 'text',
+    name: 'lastName',
+    label: 'Last Name'
+  },
+  {
+    type: 'date',
+    name: 'from',
+    label: 'From'
+  },
+  {
+    type: 'date',
+    name: 'to',
+    label: 'To'
+  }
+];
+
+
+const fieldsConfig = [
+  {
+    type: 'text',
+    name: 'userName',
+    label: 'User Name'
+  },
+  {
+    type: 'text',
+    name: 'email',
+    label: 'Email'
+  },
+  {
+    type: 'text',
+    name: 'firstName',
+    label: 'First Name'
+  },
+  {
+    type: 'text',
+    name: 'lastName',
+    label: 'Last Name'
+  },
+  {
+    type: 'select',
+    name: 'status',
+    label: 'Status',
+    options: [
+      { value: 'active', label: 'Active' },
+      { value: 'inactive', label: 'Inactive' },
+      { value: 'pending', label: 'Pending' }
+    ]
+  },
+  {
+    type: 'select',
+    name: 'role',
+    label: 'Role',
+    options: [
+      { value: 'admin', label: 'Admin' },
+      { value: 'user', label: 'User' },
+      { value: 'guest', label: 'Guest' }
+    ]
+  },
+  {
+    type: 'date',
+    name: 'from',
+    label: 'From'
+  },
+  {
+    type: 'date',
+    name: 'to',
+    label: 'To'
+  }
+];
+
 
 const userColumns = [
     { header: 'UserName', accessor: 'UserName' },
@@ -55,7 +156,7 @@ export default function UsersTable() {
   });
   //console.log("true data = ", data)
 
-
+  const tabContext = useContext(Context)
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [records, setRecords] = useState<{ name: string; }[]>([]);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
@@ -104,18 +205,23 @@ export default function UsersTable() {
       <ConfirmationModal open={IsDeletionopen} setOpen={() => setIsDeletionOpen(false)} msg={"User has been Deleted Successfully"} title={"Delete User"} desc={"Are you sure you want to delete this User?"} />
       {/* CONFIRMATION MODAL FOR DISABLING A USER */}
       <ConfirmationForDisableModal open={isConfirmationModalOpen} onClose={handleCloseConfirmationModal} msg={"User has been Disabled Successfully"} title ="" />
+      <FilterButton fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig}/>
       <div className="flex justify-between">
         <h2 className="px-4 text-base font-semibold leading-7 text-[--txt] sm:px-6 lg:px-8" >Users</h2>
         <div className="flex gap-4 mr-4" >
+
           <Link to={"addUser/"}>
             <PrimaryButton text="Add User" onClick={() => setIsSlideOverOpen(true)} /></Link>
-          <ExportButton/>
+                    <ExportButton/>
+
+
         </div>
+
 
         {/* SLIDE OVER FOR ADDING USER */}
         <AddUser open={isSlideOverOpen} setOpen={() => {
           setIsSlideOverOpen(false)
-          navigate("/private/applications-management/edit/users")
+          navigate("/private/applications-management/edit/"+id+"/users")
         }
         } />
       </div>

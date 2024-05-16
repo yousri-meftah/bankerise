@@ -92,7 +92,7 @@ export interface Sort {
     unsorted: boolean;
 }
 
-export interface TopLevel {
+export interface TopLevel_foruser {
     id:                     number;
     user:                   User;
     devices:                [];

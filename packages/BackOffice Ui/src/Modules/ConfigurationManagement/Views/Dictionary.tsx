@@ -31,8 +31,9 @@ const Dictionary = () => {
   return (
     <div className="space-y-12 mt-10 ">
       <span className="flex justify-center my-7 "><TextGenerateEffect words={words} /></span>
-      <div className="flex justify-center items-center gap-4">
-        <FilterButton fields={my_fields} />
+      <FilterButton fields={my_fields} />
+      <div className="flex justify-center items-start gap-4">
+
         <PrimaryButton text="Add Dictionary" onClick={() => setAddDictionarySlideOver(true)} />
       </div>
       <DictionaryTable />

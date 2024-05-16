@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { BsFilter } from 'react-icons/bs'
 import Filter from './Filter'
 
-
 type Option = {
     value: string | number;
     label: string;
@@ -28,18 +27,24 @@ const FilterButton: React.FC<SharedFilterProps>  = ({ fields }) => {
     const [filter, setFilter] = useState(false)
 
   return (
-      <>
+      <div className="space-y-12 ">
+      <div className="flex justify-center items-center gap-4">
         <button
           type="button"
-          className=" rounded-md bg-[--disableButton] px-10 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-3"
-          onClick={()=>setFilter(!filter)}
+          className="rounded-md bg-[--disableButton] px-10 py-2 text-sm font-semibold text-white shadow-sm hover:text-[--txt] hover:bg-[--disableHover] duration-300 flex items-center gap-3"
+          onClick={() => setFilter(!filter)}
         >
           <BsFilter size={20} />
           Filter
         </button>
+      </div>
 
-      {filter? <Filter fields={fields} close={()=>setFilter(false)} /> : null}
-      </>
+
+        {filter && <div>
+          <Filter fields={fields} close={() => setFilter(false)} />
+        </div>}
+
+    </div>
   )
 }
 
