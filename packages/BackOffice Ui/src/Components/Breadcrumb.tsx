@@ -6,7 +6,7 @@ export default function Breadcrumb() {
   const location = useLocation();
   let currentLink = '';
   const crumbs = location.pathname.split('/')
-    .filter(crumb => crumb !== '') // remove empty strings caused by leading or trailing
+    .filter(crumb => crumb !== '' && isNaN(crumb)) // remove empty strings and numeric segments
     .map((link, i, array) => {
       currentLink += `/${link}`;
       return {

@@ -109,7 +109,7 @@ const fieldsConfig = [
 const AppUsers = () => {
   const tabContext = useContext(Context)
   return (
-    <div className="space-y-12 mt-10 ">
+    <div className="space-y-12 mt-10">
       <span className="flex justify-center my-7 pb-6"><TextGenerateEffect words={words} /></span>
       <FilterButton fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig}/>
       <UsersTable />

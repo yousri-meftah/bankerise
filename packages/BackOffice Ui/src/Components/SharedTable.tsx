@@ -107,7 +107,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
             ))}
              {(actions || link) && (
               <td className="py-4 pl-6 pr-4 sm:pr-8">
-                <div className="flex gap-x-3 justify-end">
+                <div className="flex gap-x-3 justify-end items-center">
                   {link  && (
                     <Link to={`${link.to}/${item["id"]}`} className="text-[--indigoText] hover:text-indigo-300">
                       {link.label}
