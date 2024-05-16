@@ -7,7 +7,7 @@ function classNames(...classes : any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function ExportButton() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

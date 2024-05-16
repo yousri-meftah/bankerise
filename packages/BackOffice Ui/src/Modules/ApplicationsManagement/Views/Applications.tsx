@@ -89,7 +89,7 @@ const Applicationss = () => {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.4 * index }}
             >
-              <AppCard key={index} title={app.name} description={"desription here ? "} id={ app.id} />
+              <AppCard key={index} title={app.name} description={"desription here ? "} id={app.id} />
             </motion.div>
 
           ))}

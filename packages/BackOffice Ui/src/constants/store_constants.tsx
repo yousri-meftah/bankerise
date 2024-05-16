@@ -1,11 +1,29 @@
 export const application_controlle = {
-    name: "application_controlle_api",
-    //API_URL: "http://platform-backend-api.dev.proxym-it.tn/bankerise-platform/configuration/applications",
-    //API_URL: "http://localhost:5173/bankerise-platform/configuration/applications",
+    name: "api",
+    API_URL: "/",
+    header: {
+        X_APP_ID: "X-APP-ID",
+        X_Device_Id: "X-Device-Id",
+        CHANNEL : "CHANNEL"
+
+    }
+}
+export const modules_controller = {
+    name: "modules_controller_api",
+    API_URL: "/",
+    header: {
+        X_APP_ID: "X-APP-ID",
+        X_Device_Id: "X-Device-Id",
+        CHANNEL : "CHANNEL"
+
+    }
+}
+export const roles_controller = {
+    name: "roles_controller_api",
     API_URL: "/",
     header: {
         X_APP_ID: "back-office",
-        X_Device_Id: "",
+        X_Device_Id: "X-Device-Id",
         CHANNEL : "WEB"
     }
 }
@@ -41,5 +59,14 @@ export const global_parameter_controlle_endpoints = {
 
 export const user_app_management_controller_endpoints = {
     ConfigApplication: '/configuration/application',
-    getuserbyid : '/configuration/users'
+    Features: "/features",
+    ComposedPermissions: "/composed-permissions",
+    RegistrationMapping : "/registration-mapping"
 }
+export const modules_controller_endpoints = {
+    getAllFeaturesbyId: '/configuration/modules/available-for-app',
+}
+
+export const roles_controller_endpoints = {
+    GetAllRoles: '/configuration',  // Updated base endpoint and adding /roles in the query
+  }
