@@ -1,30 +1,38 @@
 export interface TopLevel {
-    id:                     number;
+    id:                     null;
     user:                   User;
     devices:                any[];
     role:                   Role;
     active:                 boolean;
-    segmentAssignmentLevel: string;
+    preferredLanguage:      null;
+    segmentAssignmentLevel: null;
+    segmentAssignmentId:    null;
+    segmentId:              null;
+    blockingReason:         null;
+    attributes:             null;
 }
 
 export interface Role {
-    id:                  number;
-    name:                string;
-    applicationId:       number;
-    applicationAudience: string;
-    applicationName:     string;
-    features:            any[];
-    composedPermissions: any[];
 }
 
 export interface User {
-    id:          number;
-    name:        string;
-    firstName:   string;
-    lastName:    string;
-    email:       string;
-    phoneNumber: string;
-    audience:    string;
-    keycloakId:  string;
-    createdDate: number;
+    id:                      null;
+    name:                    string;
+    firstName:               string;
+    lastName:                string;
+    email:                   string;
+    phoneNumber:             string;
+    audience:                string;
+    keycloakId:              string;
+    createdDate:             null;
+    gender:                  null;
+    country:                 null;
+    city:                    null;
+    address:                 null;
+    homePhone:               null;
+    identityNumber:          null;
+    passportNumber:          null;
+    identityCarteExpiryDate: null;
+    passportExpiryDate:      null;
+    attributes:              null;
 }

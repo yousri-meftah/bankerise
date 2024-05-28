@@ -1,9 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import AddUser from '../Modules/ApplicationsManagement/Components/AddUser';
 
 function classNames(s1 : string , s2 : string ) {
   return s1+" "+s2;
+}
+export interface TransformedUserData {
+    username: string;
+    email: string;
+    firstname: string;
+    lastname: string;
+    id: number;
+    role?: string;
 }
 const check = (status: string) => {
   if (status === 'Active') {
@@ -27,16 +36,23 @@ interface Link {
     label: JSX.Element;
     to: string;
 }
+
+
+
 interface SharedTableProps {
     columns: Column[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any[];
     actions?: Action[];
-    link?: Link;
-
+  link?: Link;
+  component?: boolean;
 }
 
-const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link }) => {
+const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link, component }) => {
+  //console.log("data = ",data)
+  const { id } = useParams();
+  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+
   //console.log("yo = ",data)
   return (
     <table className="mt-6 w-full whitespace-nowrap text-left overflow-hidden">
@@ -49,16 +65,29 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
           ))}
         </tr>
       </thead>
+      {component && <AddUser
+                    open={isSlideOverOpen}
+                    setOpen={() => {
+                    setIsSlideOverOpen(false);
+                    Navigate({ to: `/private/applications-management/edit/${id}/users/available-users/` });
+                    }}
+                    content={data} // Provide data as content prop
+      />
+      }
       <tbody className="divide-y divide-[--border-Devide] ">
-        {data.map((item, index) => (
+        {data.map((item, realindex) => (
+          <>
           <motion.tr
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.1 * index }}
+            transition={{ duration: 0.1 * realindex }}
             key={item.Email}
           >
+
             {columns.map((column) => (
+
               <td key={column.accessor} className={`py-4 pl-4 sm:pl-6 lg:pl-8 `}>
+
                 <div className="flex gap-x-3">
                   {column.accessor == 'Status' ?
                     (
@@ -82,7 +111,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
                                 {(item[column.accessor]["valueRanges"].length > 0
                                   ? item[column.accessor]["valueRanges"]
                                   : [item[column.accessor]["value"]]
-                                ).map((option , index : number) => (
+                                ).map((option:string , index : number) => (
                                   <option key={index} value={option}>
                                     {option}
                                   </option>
@@ -101,6 +130,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
                         }
                       </div>
 
+
                   )}
                 </div>
               </td>
@@ -109,7 +139,7 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
               <td className="py-4 pl-6 pr-4 sm:pr-8">
                 <div className="flex gap-x-3 justify-end items-center">
                   {link  && (
-                    <Link to={`${link.to}/${item["id"]}`} className="text-[--indigoText] hover:text-indigo-300">
+                    <Link to={`${link.to}/${item["id"]?item["id"]:realindex}`}  onClick={() => setIsSlideOverOpen(true)}  className="text-[--indigoText] hover:text-indigo-300">
                       {link.label}
                     </Link>
                   )}
@@ -122,11 +152,20 @@ const SharedTable: React.FC<SharedTableProps> = ({ columns, data, actions, link 
                       {action.icon}
                     </button>
                   ))}
+
+
                 </div>
               </td>
+
             )}
-          </motion.tr>
+
+            </motion.tr>
+
+            </>
+
         ))}
+
+
       </tbody>
     </table>
   );

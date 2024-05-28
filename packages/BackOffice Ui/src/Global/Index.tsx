@@ -9,7 +9,7 @@ const Index = () => {
       <Topbar />
       <div className='relative isolate'>
       <Breadcrumb/>
-        {/* MODULES ROUTES */}
+
         <PrivateRoutes />
         <Background />
       </div>

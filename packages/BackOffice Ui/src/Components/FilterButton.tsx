@@ -18,12 +18,13 @@ type FieldProps = {
 
 type SharedFilterProps = {
   fields: FieldProps[];
+  onFilter: (filterState: { [key: string]: string }) => void;
 };
 
 
 
 
-const FilterButton: React.FC<SharedFilterProps>  = ({ fields }) => {
+const FilterButton: React.FC<SharedFilterProps>  = ({ fields , onFilter }) => {
     const [filter, setFilter] = useState(false)
 
   return (
@@ -41,7 +42,7 @@ const FilterButton: React.FC<SharedFilterProps>  = ({ fields }) => {
 
 
         {filter && <div>
-          <Filter fields={fields} close={() => setFilter(false)} />
+          <Filter fields={fields} onFilter={onFilter} close={() => setFilter(false)} />
         </div>}
 
     </div>

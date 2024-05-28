@@ -18,7 +18,7 @@ const UserInfo: React.FC<switchProps> = ({ bg , state , setstate }) => {
 
 */
 
-function convertTimestampToDateString(timestamp) {
+/*function convertTimestampToDateString(timestamp) {
   // Create a new Date object using the timestamp
   const date = new Date(timestamp);
 
@@ -34,7 +34,7 @@ function convertTimestampToDateString(timestamp) {
   const dateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
   return dateString;
-}
+}*/
 
 interface userinfoprops {
   user : User

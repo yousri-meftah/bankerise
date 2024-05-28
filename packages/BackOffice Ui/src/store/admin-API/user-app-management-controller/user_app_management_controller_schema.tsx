@@ -123,3 +123,46 @@ export interface User {
     createdDate: number;
 }
 
+
+//==============================begin Add User================================
+
+
+export interface AddUser {
+    id:                     null;
+    user:                   User;
+    devices:                [];
+    role:                   Role;
+    active:                 boolean;
+    preferredLanguage:      null;
+    segmentAssignmentLevel: null;
+    segmentAssignmentId:    null;
+    segmentId:              null;
+    blockingReason:         null;
+    attributes:             null;
+}
+
+
+export interface User {
+    id:             number;
+    name:           string;
+    firstName:      string;
+    lastName:       string;
+    email:          string;
+    phoneNumber:    string;
+    audience:       string;
+    keycloakId:     string;
+    createdDate:    number;
+    gender:         string;
+    country:        string;
+    city:           string;
+    address:        string;
+    homePhone:      string;
+    identityNumber: string;
+    passportNumber:          null;
+    identityCarteExpiryDate: null;
+    passportExpiryDate:      null;
+    attributes:              null;
+}
+
+
+//=================================end Add User================================

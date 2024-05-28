@@ -14,6 +14,7 @@ import { ApplicationDto } from "../../../store/admin-API/applications-controller
 
 
 import { useGetConfigApplicationQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
+import { Puff } from "react-loader-spinner"
 
 
 const Applicationss = () => {
@@ -24,8 +25,31 @@ const Applicationss = () => {
   const [IsSlideOverOpen, setIsSlideOverOpen] = useState(false)
   const { data : Applications, error, isLoading } = useGetConfigApplicationQuery({});
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error</div>;
+  if (isLoading) {
+    return <div className="m-auto flex justify-center pt-[150px]">
+                    <Puff
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#9aa1ad"
+                        ariaLabel="puff-loading"
+                        wrapperClass=""
+                    />
+                </div>
+  }
+
+  if (error) {
+    return <div className="m-auto flex justify-center pt-[150px]">
+                    <Puff
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#9aa1ad"
+                        ariaLabel="puff-loading"
+                        wrapperClass=""
+                    />
+                </div>
+  }
   return (
     <>
 

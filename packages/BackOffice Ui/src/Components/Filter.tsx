@@ -19,12 +19,13 @@ type FieldProps = {
 };
 
 type SharedFilterProps = {
+  onFilter: (filterState: { [key: string]: string }) => void;
   fields: FieldProps[];
   close: () => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Filter: React.FC<SharedFilterProps>  = ({ fields,close }) => {
+const Filter: React.FC<SharedFilterProps>  = ({ fields,close , onFilter }) => {
 
   return (
     <motion.div
@@ -34,7 +35,7 @@ const Filter: React.FC<SharedFilterProps>  = ({ fields,close }) => {
       transition={{ duration: 0.3 }}
       className="bg-[--filter] max-w-3xl mx-auto rounded-xl relative p-3">
       <SharedFilter
-        fields={fields}
+        fields={fields}  onFilter={onFilter}
     />
       <button
         type="button"

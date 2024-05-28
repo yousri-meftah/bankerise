@@ -55,6 +55,7 @@ export const global_parameter_controlle = {
 }
 export const global_parameter_controlle_endpoints = {
     global_param: '/configuration/global-param',
+    global_param_byname: '/configuration/global-param/search',
 
 }
 

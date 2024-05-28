@@ -7,21 +7,37 @@ import { toast } from "react-toastify";
 import { useGetApplicationByIdQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
 import AuthenticationConfiguration from "../Components/Authconfigapp";
 import { attribute } from "../../../store/admin-API/applications-controller/application_controller_schemas";
+import { Puff } from "react-loader-spinner";
 const words = `Application Information`;
 
 
 const AppInformations  = () => {
     const { id } = useParams();
-    //console.log(id)
-
     const { data, error, isLoading } = useGetApplicationByIdQuery({id,attr : true});
     if (isLoading) {
-    return <p>Loading...</p>;
-    }
+    return <div className="m-auto flex justify-center pt-[150px]">
+                    <Puff
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#9aa1ad"
+                        ariaLabel="puff-loading"
+                        wrapperClass=""
+                    /></div>
+  }
 
-    if (error) {
-        return <p>Error: </p>;
-    }
+  if (error) {
+    return <div className="m-auto flex justify-center pt-[150px]">
+                    <Puff
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#9aa1ad"
+                        ariaLabel="puff-loading"
+                        wrapperClass=""
+                    />
+                </div>
+  }
     const myconfig = data.attributes.filter((item: attribute) => Object.prototype.hasOwnProperty.call(item, 'id'));
     return (
         <form>

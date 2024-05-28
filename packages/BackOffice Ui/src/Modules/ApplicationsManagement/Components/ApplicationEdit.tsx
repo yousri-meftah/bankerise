@@ -7,6 +7,7 @@ import AppUsers from "../Views/AppUsers";
 import EditRole from "../Views/EditRole";
 import UserDetails from "../Views/UserDetails";
 import AppSegments from "../Views/AppSegments";
+import AvailableUsers from "../Views/AvailableUsers";
 import { Context } from "../utils/context";
 import AppMobileVersions from "../Views/AppMobileVersions";
 import ConfigureSegmentsTable from "./ConfigureSegmentsTable";
@@ -74,8 +75,9 @@ const ApplicationEdit = () => {
                 <Route path="mobile-versions/*" element={<AppMobileVersions />} />
                 <Route path="roles/*" element={<AppRoles />} />
                 <Route path="roles/editRole/*" element={<EditRole />} />
-                <Route path="users/*" element={<AppUsers />} >
-                    <Route path="addUser/*" />
+                <Route path="users/*" element={<AppUsers />} />
+                <Route path="users/available-users/*" element={<AvailableUsers />} >
+                        <Route path="addUser/:index" />
                 </Route>
                 <Route path="users/userDetails/:userid/*" element={<UserDetails />} />
                 <Route path="users/userDetails/*" element={<AppUsers />} />

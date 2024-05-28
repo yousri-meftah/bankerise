@@ -4,8 +4,7 @@ import ConfirmationForDisableModal from "./ConfirmationForDisableModal";
 import { HiOutlineTrash } from "react-icons/hi";
 import ConfirmationModal from "./ConfirmationModal";
 import PrimaryButton from "@components/Button";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import AddUser from "./AddUser";
+import { Link, useParams } from "react-router-dom";
 import Pagination from "@components/Pagination";
 //import { Users } from '@utils/constants'
 import SharedTable from "../../../Components/SharedTable";
@@ -16,6 +15,7 @@ import FilterButton from "@components/FilterButton";
 import { useContext } from "react";
 import { Context } from "../utils/context";
 import ExportButton from "@components/ExportButton";
+import { Puff } from "react-loader-spinner";
 
 const fieldsConfigCotumer = [
   {
@@ -114,6 +114,25 @@ const fieldsConfig = [
   }
 ];
 
+const getFilteredParams = (filters: { [key: string]: string }) => {
+  const filteredParams: { [key: string]: string | boolean } = {};
+
+  Object.keys(filters).forEach((key) => {
+    if (filters[key] !== '') {
+      // Convert status to boolean for the 'active' field
+      if (key === 'status') {
+        filteredParams['active'] = filters[key] === 'active';
+      } else {
+        filteredParams[key] = filters[key];
+      }
+    }
+  });
+
+  return filteredParams;
+};
+
+
+
 
 const userColumns = [
     { header: 'UserName', accessor: 'UserName' },
@@ -124,6 +143,9 @@ const userColumns = [
     { header: 'Role', accessor: 'Role' },
     { header: 'Creation Date', accessor: 'CreationDate' }
 ];
+
+
+
 interface User {
   id: number;
   UserName: string;
@@ -149,69 +171,110 @@ function formatUserResponse(response: user_response): User[] {
 }
 
 export default function UsersTable() {
-  const { id } = useParams();
-  const { data, error, isLoading} = useGetuserbyapplicationidQuery({
+  const { id } = useParams<{ id: string }>();
+  const [, setFilterState] = useState<{ [key: string]: string }>({});
+  const [queryParams, setQueryParams] = useState<{ appId: number; params: { [key: string]: string | boolean } }>({
     appId: Number(id),
-    params: { pageable: "1" }
+    params: { pageable: "1" },
   });
-  //console.log("true data = ", data)
+  const [renderData, setRenderData] = useState<User[]>([]);
 
-  const tabContext = useContext(Context)
-  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [records, setRecords] = useState<{ name: string; }[]>([]);
-  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const [IsDeletionopen, setIsDeletionOpen] = useState(false);
-  const navigate = useNavigate();
-  const handleOpenConfirmationModal = () => {
-    setIsConfirmationModalOpen(true);
+  const { data, error, isLoading } = useGetuserbyapplicationidQuery(queryParams);
+
+  const handleFilter = (filterState: { [key: string]: string }) => {
+    setFilterState(filterState);
+    setQueryParams({
+      appId: Number(id),
+      params: {
+        pageable: "1",
+        ...getFilteredParams(filterState),
+      },
+    });
   };
 
-  const handleCloseConfirmationModal = () => {
-    setIsConfirmationModalOpen(false);
-  };
-  if (isLoading) {
-    console.log('Loading user data...');
-    return null; // You can return a loading indicator or null here
-  }
+  useEffect(() => {
+    if (data) {
+      setRenderData(formatUserResponse(data as user_response));
+    }
+  }, [data]);
 
-  if (error) {
-    console.error('Error fetching user data:', error);
-    return null;
-  }
-  const Users = formatUserResponse(data as user_response)
-  //console.log("daa = ", Users)
 
-  const actions = [
-  {
-    label: 'Lock',
-    onClick: handleOpenConfirmationModal,
-    icon: <IoLockOpen size={19} color="white" />,
-    className: 'rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300'
-  },
-  {
-    label: 'Delete',
-    onClick: () => setIsDeletionOpen(true),
-    icon: <HiOutlineTrash size={19} color="white" />,
-    className: 'rounded bg-[--deleteButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/50 duration-300'
-  }
-  ];
-  const link = {
-    label: <FaEye size={19} />,
-    to: "userDetails"
-  }
+    const tabContext = useContext(Context);
+    const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+    const [, setRecords] = useState<{ name: string }[]>([]);
+    const [IsDeletionopen, setIsDeletionOpen] = useState(false);
+
+    const handleOpenConfirmationModal = () => {
+        setIsConfirmationModalOpen(true);
+    };
+
+    const handleCloseConfirmationModal = () => {
+        setIsConfirmationModalOpen(false);
+    };
+
+    if (isLoading) {
+        return (
+            <div className="m-auto flex justify-center pt-[150px]">
+                <Puff
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#9aa1ad"
+                    ariaLabel="puff-loading"
+                    wrapperClass=""
+                />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="m-auto flex justify-center pt-[150px]">
+                <Puff
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#9aa1ad"
+                    ariaLabel="puff-loading"
+                    wrapperClass=""
+                />
+            </div>
+        );
+    }
+
+    //const Users = formatUserResponse(data as user_response);
+    const actions = [
+        {
+            label: 'Lock',
+            onClick: handleOpenConfirmationModal,
+            icon: <IoLockOpen size={19} color="white" />,
+            className: 'rounded bg-[--disableButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-[--disableHover] duration-300',
+        },
+        {
+            label: 'Delete',
+            onClick: () => setIsDeletionOpen(true),
+            icon: <HiOutlineTrash size={19} color="white" />,
+            className: 'rounded bg-[--deleteButton] px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-600/50 duration-300',
+        },
+    ];
+    const link = {
+        label: <FaEye size={19} />,
+        to: 'userDetails',
+    };
+
   return (
     <div className="bg-[--tableBg] backdrop-blur-sm backdrop:filter px-10">
       {/* CONFIRMATION MODAL FOR DELETION OF USER */}
       <ConfirmationModal open={IsDeletionopen} setOpen={() => setIsDeletionOpen(false)} msg={"User has been Deleted Successfully"} title={"Delete User"} desc={"Are you sure you want to delete this User?"} />
       {/* CONFIRMATION MODAL FOR DISABLING A USER */}
       <ConfirmationForDisableModal open={isConfirmationModalOpen} onClose={handleCloseConfirmationModal} msg={"User has been Disabled Successfully"} title ="" />
-      <FilterButton fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig}/>
+      <FilterButton fields={tabContext.selectedTabId?fieldsConfigCotumer:fieldsConfig} onFilter={handleFilter}/>
       <div className="flex justify-between">
         <h2 className="px-4 text-base font-semibold leading-7 text-[--txt] sm:px-6 lg:px-8" >Users</h2>
         <div className="flex gap-4 mr-4" >
 
-          <Link to={"addUser/"}>
-            <PrimaryButton text="Add User" onClick={() => setIsSlideOverOpen(true)} /></Link>
+          <Link to={"available-users/"}>
+            <PrimaryButton text="Add User" /></Link>
                     <ExportButton/>
 
 
@@ -219,14 +282,10 @@ export default function UsersTable() {
 
 
         {/* SLIDE OVER FOR ADDING USER */}
-        <AddUser open={isSlideOverOpen} setOpen={() => {
-          setIsSlideOverOpen(false)
-          navigate("/private/applications-management/edit/"+id+"/users")
-        }
-        } />
+
       </div>
-      <SharedTable columns={userColumns} data={records} actions={actions} link = {link} />
-      <Pagination setRecords={setRecords} array={Users} pages={9} />
+      <SharedTable columns={userColumns} data={renderData} actions={actions} link = {link} />
+      <Pagination setRecords={setRecords} array={renderData} pages={9} />
     </div >
   )
 }

@@ -10,9 +10,20 @@ const rolesEndpoints = roles_controll.injectEndpoints({
             params: attr
           })
         }),
+      getrolebyid: builder.query({
+      query: (arg) => {
+        const { appId, data } = arg;
+        return {
+          url: `${user_app_management_controller_endpoints.ConfigApplication}/${appId}/users`,
+          method: 'POST',
+          body: data
+        };
+      },
+
+    }),
       }),
     });
 export const {
   useGetAllRolesQuery,
-  
+
 } = rolesEndpoints;

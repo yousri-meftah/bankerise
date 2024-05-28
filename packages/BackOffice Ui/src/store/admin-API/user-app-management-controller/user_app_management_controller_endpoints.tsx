@@ -26,6 +26,28 @@ const applicationEndpoints = user_app_management.injectEndpoints({
       },
 
     }),
+    getavailableusersid: builder.query({
+      query: (arg) => {
+        const { appId, param } = arg;
+        return {
+          url: `${user_app_management_controller_endpoints.ConfigApplication}/${appId}/users/keycloak-available?params=${param}`,
+        };
+      },
+
+    }),
+    addUser: builder.mutation({
+      query: (arg) => {
+        //console.log("argaaaa = ",arg)
+        const { appId, data } = arg;
+        //console.log("data = ",data)
+        return {
+          url: `${user_app_management_controller_endpoints.ConfigApplication}/${appId}/users`,
+          method: 'POST',
+          data: data,
+        };
+      },
+
+    }),
 
     }),
 });
@@ -34,5 +56,8 @@ const applicationEndpoints = user_app_management.injectEndpoints({
 export const {
   useGetuserbyapplicationidQuery,
   useGetuserbyidQuery,
+  useGetavailableusersidQuery,
+  useAddUserMutation,
+
 } = applicationEndpoints;
 

@@ -12,6 +12,13 @@ const applicationEndpoints = global_parameter_controller.injectEndpoints({
       }),
 
     }),
+    getglobalparamsbyname: builder.query({
+      query: (name:string) => ({
+        url: `${global_parameter_controlle_endpoints.global_param_byname}?pageable=1&name=${name}`,
+
+      }),
+
+    }),
 
     }),
 });
@@ -19,5 +26,6 @@ const applicationEndpoints = global_parameter_controller.injectEndpoints({
 
 export const {
   useGetglobalparamsQuery,
+  useGetglobalparamsbynameQuery
 } = applicationEndpoints;
 

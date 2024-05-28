@@ -1,8 +1,6 @@
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import RolesTable from "../Components/RolesTable";
-import { BsFilter } from "react-icons/bs";
-import { useState } from "react";
-import Filter from "@components/Filter";
+
 const words = `Application Role Management`;
 import FilterButton from "@components/FilterButton";
 const fieldsConfig = [
