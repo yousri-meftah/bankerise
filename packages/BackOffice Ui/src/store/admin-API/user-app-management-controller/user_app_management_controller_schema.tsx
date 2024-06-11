@@ -1,30 +1,31 @@
 export interface ApplicationUser_query {
     pageable: string;
-    metaData: string;
-    preferredLanguage: {
-            language: string;
-            script: string;
-            variant: string;
-            country: string;
-            displayLanguage: string;
-            displayScript: string;
-            displayCountry: string;
-            displayVariant: string;
-            iso3Language: string;
-            iso3Country: string;
-            extensionKeys: [string]
-            unicodeLocaleKeys: [string]
-            unicodeLocaleAttributes : [string]
-        };
-    role: string;
-    segmentAssignmentId: number;
-    segmentAssignmentLevel: "SEGMENT" | "NONE"| "SUB_SEGMENT";
-    segmentId: number;
-    active: boolean;
-    id: number;
-    user: string;
-    blockingReason : string
+    metaData?: string;
+    preferredLanguage?: {
+        language?: string;
+        script?: string;
+        variant?: string;
+        country?: string;
+        displayLanguage?: string;
+        displayScript?: string;
+        displayCountry?: string;
+        displayVariant?: string;
+        iso3Language?: string;
+        iso3Country?: string;
+        extensionKeys?: string[];
+        unicodeLocaleKeys?: string[];
+        unicodeLocaleAttributes?: string[];
+    };
+    role?: string;
+    segmentAssignmentId?: number;
+    segmentAssignmentLevel?: "SEGMENT" | "NONE" | "SUB_SEGMENT";
+    segmentId?: number;
+    active?: boolean;
+    id?: number;
+    user?: string;
+    blockingReason?: string;
 }
+
 
 export interface user_response {
     content:          Content[];

@@ -3,8 +3,11 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { toast } from 'react-toastify'
 import { Button } from './Moving-border'
+import { useTranslation } from 'react-i18next'
 
 export default function AddApplicationSlideOver({ open, setOpen }) {
+      const { t } = useTranslation();
+
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -39,7 +42,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
                                         <div className="px-4 sm:px-6">
                                             <div className="flex items-start justify-between">
                                                 <Dialog.Title className="text-lg font-semibold leading-6 text-gray-900 border-b border-black">
-                                                    Add Application
+                                                    { t("add_application")}
                                                 </Dialog.Title>
                                                 <div className="ml-3 flex h-7 items-center">
                                                     <button
@@ -47,7 +50,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
                                                         className="rounded-md  text-gray-900 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 duration-200"
                                                         onClick={() => setOpen(false)}
                                                     >
-                                                        <span className="sr-only">Close panel</span>
+                                                        <span className="sr-only">{ t("close_panel")}</span>
                                                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                                     </button>
                                                 </div>
@@ -58,7 +61,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
                                             <div className='relative'>
                                                 <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                                                     <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                                                        Name
+                                                        { t("name")}
                                                     </label>
                                                     <div className="mt-2 sm:col-span-2 sm:mt-0">
                                                         <input
@@ -72,7 +75,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
                                                 </div>
                                                 <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                                                     <label htmlFor="oauth" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                                                        Oauth Client ID
+                                                        { t("oauth_client_id")}
                                                     </label>
                                                     <div className="mt-2 sm:col-span-2 sm:mt-0">
                                                         <select
@@ -90,7 +93,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
 
                                                 <div>
                                                     <label htmlFor="comment" className="flex justify-center text-sm font-medium leading-6 text-gray-900 mt-9">
-                                                        Description
+                                                        { t("description")}
                                                     </label>
                                                     <div className="mt-2">
                                                         <textarea
@@ -113,7 +116,7 @@ export default function AddApplicationSlideOver({ open, setOpen }) {
                                                             type="button"
                                                             className="rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-[white] shadow-sm hover:scale-105 duration-300 "
                                                         >
-                                                            Add
+                                                            { t("add")}
                                                         </Button>
                                                     </div>
 

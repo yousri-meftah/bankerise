@@ -31,20 +31,7 @@ const options = {
       easing: 'easeInOutQuad', // Animation easing function
     },
   },
-  scales: {
-    x: {
-     
-      ticks: {
-        color: 'rgb(17 24 39 )', // X-axis tick color
-      }
-    },
-    y: {
-      
-      ticks: {
-        color: 'rgb(17 24 39 )', // Y-axis tick color
-      }
-    },
-  },
+
 };
 
 const BarChart = ({ data }) => {

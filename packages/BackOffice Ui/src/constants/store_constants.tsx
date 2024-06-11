@@ -9,6 +9,15 @@ export const application_controlle = {
         CHANNEL : "WEB"
     }
 }
+
+export const dashboard_controlle = {
+    name: "dashboard_controlle_api",
+    API_URL: "/",
+
+}
+
+
+
 export const modules_controller = {
     name: "modules_controller_api",
     API_URL: "/",
@@ -33,6 +42,14 @@ export const application_controlle_endpoints = {
     Features: "/features",
     ComposedPermissions: "/composed-permissions",
     RegistrationMapping : "/registration-mapping"
+}
+
+
+export const dashboard_controlle_endpoints = {
+    loginstat: '/configuration/stats/login',
+    totalusers: '/configuration/platform-info/total-users',
+    hourstat: '/configuration/stats/hours',
+
 }
 
 export const user_app_management_controller = {

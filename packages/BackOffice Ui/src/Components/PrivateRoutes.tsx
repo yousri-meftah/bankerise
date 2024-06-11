@@ -14,6 +14,7 @@ import Dictionary from "../Modules/ConfigurationManagement/Views/Dictionary";
 import ProcessConfig from "../Modules/ConfigurationManagement/Views/ProcessConfig";
 import GlobalParameters from "../Modules/ConfigurationManagement/Views/GlobalParameters";
 import ChannelsManagement from "../Modules/ConfigurationManagement/Views/ChannelsManagement";
+import AllProducts from "../Modules/page_test/page_test";
 const Routers = () => {
   return (
 
@@ -34,6 +35,7 @@ const Routers = () => {
       <Route path="forms-management" element={<FormsManagement />} />
       <Route path="content-management" element={<ContentManagement />} />
       <Route path="bpmn-configuration" element={<BPMNConfiguration />} />
+      <Route path="test" element={<AllProducts />} />
 
     </Routes>
 

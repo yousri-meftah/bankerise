@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import SwitchButton from '../Components/DarkModeSwitch'
-import LanguageToggle from '../Components/LanguageToggleButton'
+import LanguageSelector from '../Components/LanguageSelector'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -51,10 +51,10 @@ const Topbar = () => {
               <div className="hidden lg:ml-4 lg:block ">
                 <div className="flex items-center gap-4">
                   <SwitchButton />
-                  <LanguageToggle />
+                  <LanguageSelector />
 
 
-                  {/* Profile dropdown */}
+                  {/* <LanguageToggle /> */}
                   <Menu as="div" className="relative ml-4 flex-shrink-0 ">
                     <div>
                       <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
@@ -105,7 +105,7 @@ const Topbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/oauth2/sign_out"
                               className={classNames(
                                 active ? 'bg-gray-600' : '',
                                 'block px-4 py-2 text-sm text-gray-100 rounded-md'

@@ -99,7 +99,7 @@ const fieldsConfig = [
     options: [
       { value: 'admin', label: 'Admin' },
       { value: 'user', label: 'User' },
-      { value: 'guest', label: 'Guest' }
+      { value: 'csa-admin', label: 'csa-admin' }
     ]
   },
   {
@@ -178,9 +178,8 @@ export default function UsersTable() {
     params: { pageable: "1" },
   });
   const [renderData, setRenderData] = useState<User[]>([]);
-
   const { data, error, isLoading } = useGetuserbyapplicationidQuery(queryParams);
-
+  console.log("data   ====",data)
   const handleFilter = (filterState: { [key: string]: string }) => {
     setFilterState(filterState);
     setQueryParams({
@@ -201,7 +200,7 @@ export default function UsersTable() {
 
     const tabContext = useContext(Context);
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-    const [, setRecords] = useState<{ name: string }[]>([]);
+    const [records, setRecords] = useState<{ name: string }[]>([]);
     const [IsDeletionopen, setIsDeletionOpen] = useState(false);
 
     const handleOpenConfirmationModal = () => {
@@ -284,7 +283,7 @@ export default function UsersTable() {
         {/* SLIDE OVER FOR ADDING USER */}
 
       </div>
-      <SharedTable columns={userColumns} data={renderData} actions={actions} link = {link} />
+      <SharedTable columns={userColumns} data={records} actions={actions} link = {link} />
       <Pagination setRecords={setRecords} array={renderData} pages={9} />
     </div >
   )

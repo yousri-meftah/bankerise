@@ -76,14 +76,14 @@ const AppFeatures = () => {
             </div>
           ) : (
             leftFeatures.map((feature) => (
-              <SwiperSlide key={feature.id} className="w-[400px] mx-auto">
+              <SwiperSlide key={feature.id} style={{ height: 'auto' , marginBottom: '20px'}} className="w-[400px] mx-auto swiper-slide-custom">
                 <Accordion feature={feature} />
               </SwiperSlide>
             ))
           )}
         </Swiper>
 
-        <Swiper {...sliderSettings} className="flex-1 flex justify-center items-center">
+        <Swiper {...sliderSettings} className="flex-1 flex justify-center items-center relative">
           <SlideNextButton />
           {isLoading || error ? (
             <div className="absolute">
@@ -98,14 +98,14 @@ const AppFeatures = () => {
             </div>
           ) : (
             rightFeatures.map((feature) => (
-              <SwiperSlide key={feature.id} className="w-[400px] mx-auto">
+              <SwiperSlide key={feature.id} style={{ height: 'auto' , marginBottom: '20px'}} className="w-[400px] mx-auto swiper-slide-custom">
                 <Accordion feature={feature} />
               </SwiperSlide>
             ))
           )}
         </Swiper>
         {
-          error? toast.error(error.error):  null 
+          error? toast.error(error.error):  null
         }
       </div>
     </>

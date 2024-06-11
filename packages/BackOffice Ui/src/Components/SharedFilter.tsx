@@ -51,6 +51,7 @@ const SharedFilter: React.FC<SharedFilterProps> = ({ fields, onFilter }) => {
                         onChange={handleChange}
                         className="block w-full text-gray-900 rounded-md border bg-white/10 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
                     >
+                        <option value="">Select an option</option>
                         {field.options?.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}

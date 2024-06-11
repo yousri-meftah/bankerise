@@ -52,17 +52,11 @@ const transformDataArray = (dataArray: UserData[]): TransformedUserData[] => {
 
 
 
-
-
-
-
-
-
 const AVUT = () => {
     const { id } = useParams();
 
     const { data, error, isLoading } = useGetavailableusersidQuery({ appId: Number(id), param: 1 });
-    console.log("data = ",data)
+    //console.log("data = ",data)
     const [, setIsSlideOverOpen] = useState(false);
     //console.log("rolesdata",data)
     const [open, setOpen] = useState(false);
@@ -103,7 +97,7 @@ const AVUT = () => {
 
     const roles = transformDataArray(data.content);
 
-    console.log("roles data  = ",roles);
+    //console.log("roles data  = ",roles);
     return (
         <>
             {isLoading || error ? (

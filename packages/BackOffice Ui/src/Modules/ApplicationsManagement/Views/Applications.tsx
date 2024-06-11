@@ -2,7 +2,6 @@
 import { useContext, useState } from "react"
 import AppCard from "../Components/AppCard"
 import { Button } from "../Components/Moving-border"
-import {  tabs } from "../utils/constants"
 import { motion } from "framer-motion"
 import AddApplicationSlideOver from "../Components/AddApplicationSlideOver"
 import { Context } from "../utils/context"
@@ -15,6 +14,7 @@ import { ApplicationDto } from "../../../store/admin-API/applications-controller
 
 import { useGetConfigApplicationQuery } from "../../../store/admin-API/applications-controller/applications_controller_endpoints";
 import { Puff } from "react-loader-spinner"
+import { useTranslation } from "react-i18next"
 
 
 const Applicationss = () => {
@@ -24,7 +24,7 @@ const Applicationss = () => {
   const tabContext = useContext(Context)
   const [IsSlideOverOpen, setIsSlideOverOpen] = useState(false)
   const { data : Applications, error, isLoading } = useGetConfigApplicationQuery({});
-
+  const { t } = useTranslation();
   if (isLoading) {
     return <div className="m-auto flex justify-center pt-[150px]">
                     <Puff
@@ -50,6 +50,10 @@ const Applicationss = () => {
                     />
                 </div>
   }
+   const tabs = [
+    { name: t("Adminstration"), href: '#', current: true, id: 0 },
+    { name: t("Customer"), href: '#', current: false, id: 1 },
+  ]
   return (
     <>
 
@@ -91,13 +95,13 @@ const Applicationss = () => {
         </div>
       </div>
       <div className='flex justify-between items-center my-8 mx-16'>
-        <span className='font-extrabold text-xl bg-gradient-to-r from-[--colorStart] to-[--colorEnd] bg-clip-text text-transparent '>Applications</span>
+        <span className='font-extrabold text-xl bg-gradient-to-r from-[--colorStart] to-[--colorEnd] bg-clip-text text-transparent '>{ t("applications")}</span>
         <div className="size-fit" onClick={() => setIsSlideOverOpen(true)}>
           <Button
             type="button"
             className="rounded-md bg-[--border-color] px-3.5 py-2.5 text-sm font-semibold text-[--txt] shadow-sm hover:scale-105 duration-300 "
           >
-            Add an Application
+           { t("add_application")}
           </Button>
         </div>
 
@@ -113,13 +117,13 @@ const Applicationss = () => {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.4 * index }}
             >
-              <AppCard key={index} title={app.name} description={"desription here ? "} id={app.id} />
+              <AppCard key={index} title={app.name} description={""} id={app.id} />
             </motion.div>
 
           ))}
 
         </div>
-        <span className='font-extrabold text-xl bg-gradient-to-r from-[--colorStart] to-[--colorEnd] bg-clip-text text-transparent ml-14'>Gateway Applications</span>
+        <span className='font-extrabold text-xl bg-gradient-to-r from-[--colorStart] to-[--colorEnd] bg-clip-text text-transparent ml-14'>{ t("G_app")}</span>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mx-16 my-9">
 
           {Applications?.filter((app: ApplicationDto)  => app.audience === APP_ADMIN && app.type === TYPE_GATE).map((app : ApplicationDto, index : number) => (<motion.div

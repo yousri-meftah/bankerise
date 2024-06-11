@@ -1,43 +1,6 @@
 import { logo, logoxs } from '../../public/Images/index'
 import { en_flag, fr_flag } from '../../public/Images/index'
-import { MdOutlineDashboard } from "react-icons/md";
-import { LuFileStack } from "react-icons/lu";
-import { IoSettingsSharp } from "react-icons/io5";
-import { AiFillMessage } from "react-icons/ai";
-import { FaUsers } from "react-icons/fa";
-import { PiSuitcaseSimpleDuotone } from "react-icons/pi";
-import { MdOutlineCached } from "react-icons/md";
-import { TbSettingsSearch } from "react-icons/tb";
-import { AiOutlineAudit } from "react-icons/ai";
-import { SiGoogleforms } from "react-icons/si";
-import { BiSolidBookContent } from "react-icons/bi";
-import { TiSortAlphabetically } from "react-icons/ti";
-import { FaProjectDiagram } from "react-icons/fa";
-import { IoSettings } from "react-icons/io5";
-import { MdOutlineSmartphone } from "react-icons/md";
-import { VscServerProcess } from "react-icons/vsc";
-export const Modules = [
-  { hasSubModules: false, name: "Dashboard", link: "dashboard", icon: MdOutlineDashboard },
-  { hasSubModules: false, name: "Applications Management", link: "applications-management", icon: LuFileStack },
-  {
-    hasSubModules: true, name: "Configuration Management", link: "", icon: IoSettingsSharp,
-    subModules: [
-      { name: "Dictionary Management", link: "configuration-management/dictionary-management", icon: TiSortAlphabetically  },
-      { name: "Process Configuration", link: "configuration-management/process-config", icon: VscServerProcess },
-      { name: "Global Parameters", link: "configuration-management/global-parameters" , icon: IoSettings},
-      { name: "Channels Management", link: "configuration-management/channels-management", icon: MdOutlineSmartphone }
-    ]
-  },
-  { hasSubModules: false, name: "Message Center", link: "message-center", icon: AiFillMessage },
-  { hasSubModules: false, name: "Users Management", link: "users-management", icon: FaUsers },
-  { hasSubModules: false, name: "Jobs Management", link: "jobs-management", icon: PiSuitcaseSimpleDuotone },
-  { hasSubModules: false, name: "Cache Maintenance", link: "cache-maintenance", icon: MdOutlineCached },
-  { hasSubModules: false, name: "Lookups Configuration", link: "lookups-configuration", icon: TbSettingsSearch },
-  { hasSubModules: false, name: "Audit", link: "audit", icon: AiOutlineAudit },
-  { hasSubModules: false, name: "Forms Management", link: "forms-management", icon: SiGoogleforms },
-  { hasSubModules: false, name: "Content Management", link: "content-management", icon: BiSolidBookContent },
-  { hasSubModules: false, name: "BPMN Configuration", link: "bpmn-configuration", icon: FaProjectDiagram },
-]
+
 export const permissions = [
   {
     id: 'all',

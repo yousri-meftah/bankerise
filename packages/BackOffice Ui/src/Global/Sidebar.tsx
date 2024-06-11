@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modules } from '@utils/constants'
+//import { Modules } from '@utils/constants'
 import { Logos } from '@utils/constants'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -7,6 +7,28 @@ import { Link } from 'react-router-dom';
 import { IModule, ISubModule } from './types/types';
 import { IoChevronDownOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
+
+import { MdOutlineDashboard } from "react-icons/md";
+import { LuFileStack } from "react-icons/lu";
+import { IoSettingsSharp } from "react-icons/io5";
+import { AiFillMessage } from "react-icons/ai";
+import { FaUsers } from "react-icons/fa";
+import { PiSuitcaseSimpleDuotone } from "react-icons/pi";
+import { MdOutlineCached } from "react-icons/md";
+import { TbSettingsSearch } from "react-icons/tb";
+import { AiOutlineAudit } from "react-icons/ai";
+import { SiGoogleforms } from "react-icons/si";
+import { BiSolidBookContent } from "react-icons/bi";
+import { TiSortAlphabetically } from "react-icons/ti";
+import { FaProjectDiagram } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
+import { MdOutlineSmartphone } from "react-icons/md";
+import { VscServerProcess } from "react-icons/vsc";
+import { useTranslation } from 'react-i18next';
+
+
+
+
 const Sidebarr = () => {
   // sidebar state
   const [open, setOpen] = React.useState(true)
@@ -23,7 +45,31 @@ const Sidebarr = () => {
     setOpen(!open);
     setExpanded(false)
   };
-  const handleModuleClick = (module: IModule | ISubModule) => {
+  const { t } = useTranslation();
+
+   const Modules = [
+  { hasSubModules: false, name: t("Dashboard"), link: "dashboard", icon: MdOutlineDashboard },
+  { hasSubModules: false, name: t("Applications Management"), link: "applications-management", icon: LuFileStack },
+  {
+    hasSubModules: true, name: t("Configuration Management"), link: "", icon: IoSettingsSharp,
+    subModules: [
+      { name: t("Dictionary Management"), link: "configuration-management/dictionary-management", icon: TiSortAlphabetically  },
+      { name: t("Process Configuration"), link: "configuration-management/process-config", icon: VscServerProcess },
+      { name: t("Global Parameters"), link: "configuration-management/global-parameters" , icon: IoSettings},
+      { name: t("Channels Management"), link: "configuration-management/channels-management", icon: MdOutlineSmartphone }
+    ]
+  },
+  { hasSubModules: false, name: t("Message Center"), link: "message-center", icon: AiFillMessage },
+  { hasSubModules: false, name: t("Users Management"), link: "users-management", icon: FaUsers },
+  { hasSubModules: false, name: t("Jobs Management"), link: "jobs-management", icon: PiSuitcaseSimpleDuotone },
+  { hasSubModules: false, name: t("Cache Maintenance"), link: "cache-maintenance", icon: MdOutlineCached },
+  { hasSubModules: false, name: t("Lookups Configuration"), link: "lookups-configuration", icon: TbSettingsSearch },
+  { hasSubModules: false, name: t("Audit"), link: "audit", icon: AiOutlineAudit },
+  { hasSubModules: false, name: t("Forms Management"), link: "forms-management", icon: SiGoogleforms },
+  { hasSubModules: false, name: t("Content Management"), link: "content-management", icon: BiSolidBookContent },
+  { hasSubModules: false, name: t("BPMN Configuration"), link: "bpmn-configuration", icon: FaProjectDiagram },
+];
+const handleModuleClick = (module: IModule | ISubModule) => {
     // Update selected module in state
     setSelectedModule(module);
     // Store selected module in local storage

@@ -21,7 +21,7 @@ const options = {
       display: true,
       text: 'User Distribution',
       color: 'rgb(17 24 39)',
-    
+
     },
     animation: {
       duration: 1000, // Animation duration in milliseconds
@@ -31,7 +31,7 @@ const options = {
 };
 
 const PieChart = ({ data }) => {
-  return <Pie options={options} data={data} />;
+  return <Pie options={options} data={data}/>;
 };
 
 export default PieChart;

@@ -1,7 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-import HeaderSlice from './headerSlice/headerSlice';
-
 import { persistStore } from 'redux-persist';
 
 
@@ -10,6 +7,7 @@ import {applications_controlle} from './admin-API/applications-controller/applic
 import {user_app_management} from './admin-API/user-app-management-controller/user_app_management_controller'
 import {global_parameter_controller} from './admin-API/global-parameter-controller/global_parameter_controller'
 import { roles_controll } from './admin-API/roles-controller/roles-controller';
+import {dashboard_controller} from './admin-API/dashboard-controller/dashboard_controller'
 
 
 export const store = configureStore({
@@ -19,8 +17,7 @@ export const store = configureStore({
     [user_app_management.reducerPath]: user_app_management.reducer,
     [global_parameter_controller.reducerPath]: global_parameter_controller.reducer,
     [roles_controll.reducerPath]: roles_controll.reducer,
-
-    [HeaderSlice.reducerPath]: HeaderSlice.reducer,
+    [dashboard_controller.reducerPath]: dashboard_controller.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -30,6 +27,7 @@ export const store = configureStore({
       user_app_management.middleware,
       global_parameter_controller.middleware,
       roles_controll.middleware,
+      dashboard_controller.middleware,
     ]),
 
 });

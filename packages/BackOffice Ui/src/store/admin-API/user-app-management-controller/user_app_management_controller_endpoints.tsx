@@ -1,6 +1,6 @@
 import {user_app_management} from './user_app_management_controller';
 import { user_app_management_controller_endpoints } from '../../../constants/store_constants';
-import { ApplicationUser_query, user_response } from './user_app_management_controller_schema';
+//import { ApplicationUser_query, user_response } from './user_app_management_controller_schema';
 
 
 
@@ -8,12 +8,33 @@ import { ApplicationUser_query, user_response } from './user_app_management_cont
 
 const applicationEndpoints = user_app_management.injectEndpoints({
   endpoints: (builder) => ({
-    getuserbyapplicationid: builder.query<user_response, {appId : number ,  params : ApplicationUser_query}>({
+    getuserbyapplicationid: builder.query({
       query: (arg ) => {
         const { appId, params } = arg;
+        console.log("params = ",params)
+        const queryParams = {
+          pageable: params.pageable,
+          ...(params.email && { "user.email": params.email }),
+          ...(params.firstName && { "user.firstname": params.firstName }),
+          ...(params.from && { from: params.from }),
+          ...(params.lastName && { "user.firstname": params.lastName }),
+          ...(params.role && { "role.name": params.role }),
+          ...(params.to && { to: params.to }),
+          ...(params.userName && { "user.name": params.userName }),
+          ...(params.active !== undefined && { active: params.active }), // to handle boolean properly
+          ...(params.metaData && { metaData: params.metaData }),
+          ...(params.preferredLanguage && { preferredLanguage: params.preferredLanguage }),
+          ...(params.segmentAssignmentId && { segmentAssignmentId: params.segmentAssignmentId }),
+          ...(params.segmentAssignmentLevel && { segmentAssignmentLevel: params.segmentAssignmentLevel }),
+          ...(params.segmentId && { segmentId: params.segmentId }),
+          ...(params.id && { id: params.id }),
+          //...(params.user && { "role.user": params.user }),
+          ...(params.blockingReason && { blockingReason: params.blockingReason }),
+        };
+        console.log("queryParams = ",queryParams)
         return {
           url: `${user_app_management_controller_endpoints.ConfigApplication}/${appId}/users`,
-          params : params
+          params : queryParams
         };
       },
 
@@ -37,9 +58,7 @@ const applicationEndpoints = user_app_management.injectEndpoints({
     }),
     addUser: builder.mutation({
       query: (arg) => {
-        //console.log("argaaaa = ",arg)
         const { appId, data } = arg;
-        //console.log("data = ",data)
         return {
           url: `${user_app_management_controller_endpoints.ConfigApplication}/${appId}/users`,
           method: 'POST',

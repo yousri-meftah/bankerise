@@ -23,7 +23,7 @@ const Accordion: React.FC = ({ feature }: any) => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       <motion.div
         key={feature?.id}
         initial={{ opacity: 0, x: -30 }}
@@ -47,6 +47,7 @@ const Accordion: React.FC = ({ feature }: any) => {
             )}
           </span>
         </div>
+
         <AnimatePresence>
           {openSectionId === feature?.id && (
             <motion.div
@@ -55,11 +56,11 @@ const Accordion: React.FC = ({ feature }: any) => {
               animate={{ opacity: 1, y: 0, overflow: 'visible' }}
               exit={{ opacity: 0, overflow: 'hidden' }}
               transition={{ duration: 0.3 }}
-              className="px-4 py-3 text-[--txt] duration-300"
+              className="px-4 py-3 text-[--txt] duration-300 h-auto"
             >
               <div className="space-y-2">
                 {feature.features.map((option, optionIdx) => (
-                  <div key={option?.value} className="flex justify-between items-center gap-12pl-6">
+                  <div key={option?.value} className="flex justify-between items-center gap-12pl-6 h-auto">
                     <label htmlFor={`filter-${feature?.id}-${optionIdx}`} className="ml-3 text-[--txt]">
                       {option.name}
                     </label>
