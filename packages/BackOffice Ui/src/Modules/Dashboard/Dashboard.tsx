@@ -2,9 +2,23 @@
 import BarChart from './Components/BarChart';
 import { TextGenerateEffect } from "@components/Text-Generate-Effect";
 import PieChart from './Components/PieChart';
+import Dropdown from './Components/Dropdown';
+import LineChart from './Components/LineChart';
 import {useGetloginstatsQuery,useGetplatforminfoQuery,useGethourstatsQuery} from "../../store/admin-API/dashboard-controller/dashboard_controller_endpoints";
 import { Puff } from 'react-loader-spinner';
-
+const LineData = {
+    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
+    datasets: [
+      {
+        label: 'API Requests',
+        data: [65, 59, 80, 81, 56, 4, 40, 45, 23, 17, 35, 65, 80, 85, 78, 92, 105, 75, 60, 45, 32, 55, 65, 72],
+        fill: false,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        tension: 0.1,
+      },
+    ],
+  };
 type DataItem = {
     name: string;
     count: number;
@@ -54,7 +68,7 @@ const Dashboard = () => {
   const { data: platformData, error: platformError, isLoading: platformIsLoading } = useGetplatforminfoQuery({});
   const { data: hourData, error: hourError, isLoading: hourIsLoading } = useGethourstatsQuery(getFormattedDate());
   //console.log("platformData = ",platformData)
-  console.log("data = ", hourData)
+  //console.log("data = ", hourData)
   if (isLoading || platformIsLoading||hourIsLoading) {
     return (
             <div className="m-auto flex justify-center pt-[150px]">
@@ -140,6 +154,10 @@ const Dashboard = () => {
         >
           <PieChart data={PieData} />
         </div>
+      </div>
+    <div className='bg-white/80 h-fit rounded-2xl px-auto p-4 m-7 shadow-xl w-[90%] mx-auto'>
+        <Dropdown/>
+        <LineChart data={LineData}/>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ const AVUT = () => {
     const [, setIsSlideOverOpen] = useState(false);
     //console.log("rolesdata",data)
     const [open, setOpen] = useState(false);
-    const [records, setRecords] = useState<TransformedUserData[]>([]);
+    //const [records, setRecords] = useState<TransformedUserData[]>([]);
     if (isLoading) {
         return (
             <div className="m-auto flex justify-center pt-[150px]">
@@ -126,7 +126,7 @@ const AVUT = () => {
                                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
 
-                                            <SharedTable columns={userColumns} data={records} link={link} component={true} />
+                                            <SharedTable columns={userColumns} data={roles} link={link} component={true} />
                                             <ConfirmationModal open={open} setOpen={() => setOpen(false)} title={"Delete Role"} desc={"Are you sure you want to delete this role?"} msg={'Role has been Deleted Successfully'} />
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@ const AVUT = () => {
                             </div>
                         </div>
                     </div>
-                    <Pagination setRecords={setRecords} array={roles} pages={6} />
+
                     </div>
 
             )};

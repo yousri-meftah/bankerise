@@ -78,6 +78,7 @@ export const global_parameter_controlle_endpoints = {
 
 export const modules_controller_endpoints = {
     getAllFeaturesbyId: '/configuration/modules/available-for-app',
+    getAllChannels: '/configuration/modules/feature-channel'
 }
 
 export const roles_controller_endpoints = {

@@ -7,7 +7,7 @@ export const modules_controll = createApi({
     reducerPath: modules_controller.name,
     baseQuery: fetchBaseQuery({
         baseUrl: modules_controller.API_URL,
-        prepareHeaders: (headers) => {  
+        prepareHeaders: (headers) => {
             headers.set(
                 "X-APP-ID"  ,   "back-office"
             );

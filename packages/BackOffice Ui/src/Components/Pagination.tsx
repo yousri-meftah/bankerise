@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const Pagination = ({setRecords,array,pages}:any) => {
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     const pageSize = pages; // Number of records per page
     const totalRecords = array.length;
     const totalPages = Math.ceil(totalRecords / pageSize);
@@ -25,6 +25,8 @@ const Pagination = ({setRecords,array,pages}:any) => {
     useEffect(() => {
         const startIndex = (currentPage - 1) * pageSize;
         const endIndex = Math.min(startIndex + pageSize, totalRecords);
+        //console.log("firstIndex",startIndex , "endIndex",endIndex , "totalRecords",totalRecords)
+        setRecords([])
         setRecords(array.slice(startIndex, endIndex));
     }, [currentPage, pageSize, totalRecords]);
 

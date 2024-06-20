@@ -37,4 +37,8 @@ export const Applications = [
       service:"customer",
       type:"app"
     }
-  ];
+];
+  export const tabs = [
+    { name: 'Adminstration', href: '#', current: true, id: 0 },
+    { name: 'Customer', href: '#', current: false, id: 1 },
+  ]
